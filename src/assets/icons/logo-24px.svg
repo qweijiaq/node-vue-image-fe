@@ -1,0 +1,7 @@
+<svg id="logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="circle" fill="none" stroke="#000" stroke-width="2">
+    <circle cx="12" cy="12" r="12" stroke="none"/>
+    <circle cx="12" cy="12" r="11" fill="none"/>
+  </g>
+  <path id="wave" d="M3628.107,1406.636l4.893,5.9,6-5.234,6,5.234,4.879-5.911" transform="translate(-3627 -1398)" fill="none" stroke="#000" stroke-width="2"/>
+</svg>

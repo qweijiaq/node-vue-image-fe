@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-square-minimal">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="square-minimal" clip-path="url(#clip-square-minimal)">
+    <g id="square-minimal-2" data-name="square-minimal">
+      <rect id="矩形_20" data-name="矩形 20" width="9" height="9" transform="translate(2 2)"/>
+      <rect id="矩形_25" data-name="矩形 25" width="9" height="9" transform="translate(2 13)"/>
+      <rect id="矩形_23" data-name="矩形 23" width="9" height="20" transform="translate(13 2)"/>
+    </g>
+  </g>
+</svg>
