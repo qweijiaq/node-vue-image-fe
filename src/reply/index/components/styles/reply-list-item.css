@@ -1,0 +1,13 @@
+.reply-list-item {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.reply-list-item>.small {
+    margin-right: 8px;
+}
+
+.reply-list-item>.small>.user-avatar.small {
+    width: 16px;
+    height: 16px;
+}

@@ -1,0 +1,38 @@
+.page-side-sheet {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    height: 100%;
+    z-index: 666;
+    max-width: 330px;
+    min-width: 330px;
+    overflow: scroll;
+    box-sizing: border-box;
+    background: var(--page-side-sheet-background);
+    border-top-left-radius: 10px;
+    box-shadow: -30px 30px 30px rgba(0, 0, 0, 0.1);
+}
+
+.page-side-sheet>.close-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.page-side-sheet-enter-active {
+    transform: translateX(360px);
+    transition: 0.25s;
+}
+
+.page-side-sheet-enter-to {
+    transform: translateX(0);
+}
+
+.page-side-sheet-leave-active {
+    transform: translateX(0);
+    transition: 0.25s;
+}
+
+.page-side-sheet-leave-to {
+    transform: translateX(360px);
+}

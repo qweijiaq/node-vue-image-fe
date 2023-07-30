@@ -1,0 +1,22 @@
+.post-show-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.post-show-actions>.action {
+    display: flex;
+    align-items: center;
+    color: var(--secondary-text-color);
+    margin-left: 8px;
+}
+
+.post-show-actions>.action>.icon {
+    cursor: pointer;
+    height: 24px;
+}
+
+.post-show-actions>.action>.text {
+    font-size: 14px;
+    margin-left: 4px;
+}

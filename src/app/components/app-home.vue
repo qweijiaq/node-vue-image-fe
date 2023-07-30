@@ -1,3 +1,7 @@
 <template>
-  <div>欢迎访问宁皓网：）</div>
+  <component :is="postIndex"></component>
 </template>
+
+<script lang="ts" setup>
+import postIndex from '../../post/index/post-index.vue';
+</script>

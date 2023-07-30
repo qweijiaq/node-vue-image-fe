@@ -1,0 +1,29 @@
+.app-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app-sidebar-item {
+    margin-bottom: 30px;
+}
+
+.app-sidebar-item>.link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.app-sidebar-item.bottom {
+    flex-grow: 2;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+}
+
+.app-sidebar-item.brand {
+    margin-bottom: 64px;
+}
+
+.app-sidebar-item.user {
+    position: relative;
+}

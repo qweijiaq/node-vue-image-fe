@@ -1,0 +1,9 @@
+.comment-list-item-meta {
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 8px;
+}
+
+.comment-list-item-meta .link {
+    color: var(--secondary-text-color);
+}

@@ -1,0 +1,16 @@
+.post-show-header {
+    display: grid;
+    grid-template-columns: 1fr 64px;
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+.post-show-header>.content>.text {
+    font-size: 26px;
+    margin-bottom: 16px;
+}
+
+.post-show-header>.content>.meta,
+.post-show-header>.content>.meta .link {
+    color: var(--secondary-text-color);
+}

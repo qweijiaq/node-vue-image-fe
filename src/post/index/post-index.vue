@@ -1,18 +1,24 @@
 <template>
-  <PostList />
+  <postListFilters v-if="filterItems.length" :filters="filterItems" />
+  <postList :sort="sort" :filter="filter" />
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-import PostList from './components/post-list';
+<script lang="ts" setup>
+import { useStore } from 'vuex';
+import { computed } from 'vue';
+import postList from './components/post-list.vue';
+import postListFilters from './components/post-list-filters.vue';
 
-export default defineComponent({
-  title() {
-    return '内容列表';
+const store = useStore();
+
+const props = defineProps({
+  sort: {
+    type: String,
   },
-
-  components: {
-    PostList,
+  filter: {
+    type: Object,
   },
 });
+
+const filterItems = computed(() => store.getters['post/index/filterItems']);
 </script>

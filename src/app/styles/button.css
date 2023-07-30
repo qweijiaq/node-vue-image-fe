@@ -1,0 +1,39 @@
+.button {
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 24px;
+    background: var(--primary-button-background);
+    border: 2px solid var(--outline-button-color);
+    cursor: pointer;
+    display: inline-block;
+}
+
+.button:active {
+    opacity: 0.8;
+}
+
+.button.large {
+    padding: 14px 40px;
+}
+
+.button.outline {
+    background: none;
+    color: var(--primary-text-color);
+}
+
+.button.basic {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.button.block {
+    display: block;
+    width: 100%
+}
+
+.button.lowkey {
+    background: var(--lowkey-button-background);
+    border-color: var(--lowkey-button-background);
+    color: var(--lowkey-button-text-color);
+}

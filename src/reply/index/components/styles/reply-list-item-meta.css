@@ -1,0 +1,9 @@
+.reply-list-item-meta {
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 8px;
+}
+
+.reply-list-item-meta .link {
+    color: var(--secondary-text-color);
+}

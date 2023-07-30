@@ -1,0 +1,29 @@
+.post-show-file-meta-specs {
+    display: flex;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.post-show-file-meta-specsc>.icon {
+    margin-right: 8px;
+    height: 24px;
+}
+
+.post-show-file-meta-specs>.content {
+    display: flex;
+}
+
+.post-show-file-meta-specs>.content>.spec {
+    display: flex;
+    margin-right: 16px;
+}
+
+.post-show-file-meta-specs>.content>.spec>.title {
+    font-weight: 300;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.post-show-file-meta-specs>.content>.spec>.value {
+    letter-spacing: 1px;
+}

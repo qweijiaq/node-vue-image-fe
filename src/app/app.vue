@@ -1,24 +1,35 @@
 <template>
-  <h3>
-    <router-link to="/">{{ name }}</router-link>
-  </h3>
-  <router-view></router-view>
+  <component :is="AppLayout">
+    <router-view></router-view>
+  </component>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      name: '宁皓网',
-    };
-  },
+<script lang="ts" setup>
+import { useStore } from 'vuex';
+import AppLayout from './layout/app-layout.vue';
+import { getStorages } from './app.service';
 
-  created() {
-    console.log(this.$store.state);
-  },
-};
+const store = useStore();
+
+const token = getStorages('nid');
+if (token) {
+  store.commit('auth/setToken', token);
+  store.dispatch('auth/configApiHttpClientAuthHeader', token);
+}
+
+// 当前用户
+const userId = getStorages('uid');
+if (userId) {
+  store.dispatch('user/getCurrentUser', userId);
+}
 </script>
 
 <style>
-@import './styles/app.css';
+@import url('./styles/normalize.css');
+@import url('./styles/app.css');
+@import url('./styles/base.css');
+@import url('./styles/page.css');
+@import url('./styles/theme.css');
+@import url('./styles/form.css');
+@import url('./styles/button.css');
 </style>

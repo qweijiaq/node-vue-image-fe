@@ -1,0 +1,21 @@
+.post-show-media {
+    margin-bottom: 16px;
+    cursor: pointer;
+    background: var(--skeleton-background);
+}
+
+.post-show-media.loading {
+    padding-top: 66.66%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.post-show-media.loading>.image {
+    position: absolute;
+    top: 0;
+
+}
+
+.post-show-media>.image {
+    width: 100%;
+}

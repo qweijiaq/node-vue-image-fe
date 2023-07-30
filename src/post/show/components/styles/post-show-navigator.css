@@ -1,0 +1,7 @@
+.post-show-navigator>.button {
+    margin-right: 8px;
+}
+
+.post-show-navigator>.button:last-child {
+    margin-right: 0;
+}

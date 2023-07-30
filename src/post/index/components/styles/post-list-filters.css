@@ -1,0 +1,16 @@
+.post-list-filters {
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.post-list-filter {
+    display: flex;
+    margin-right: 16px;
+}
+
+.post-list-filter>.title {
+    font-weight: 300;
+    white-space: nowrap;
+    margin-right: 8px;
+}

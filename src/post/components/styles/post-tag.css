@@ -1,0 +1,16 @@
+.post-tag {
+    margin-right: 8px;
+}
+
+.post-tag:last-child {
+    margin-right: 0;
+}
+
+.post-tag>.text>.link {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--light-text-color);
+    padding: 4px 8px;
+    background: var(--light-background);
+    border-radius: 3px;
+}

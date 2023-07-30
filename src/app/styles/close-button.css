@@ -1,0 +1,24 @@
+.close-button {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-button.right {
+    align-items: flex-end;
+}
+
+.close-button>.button.basic {
+    width: 24px;
+    height: 24px;
+    background: var(--light-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button>.button>.app-icon {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 16px !important;
+}

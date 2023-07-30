@@ -1,0 +1,12 @@
+.user-show-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line-color);
+    box-sizing: border-box;
+}
+
+.user-show-header>.user-avatar {
+    margin-bottom: 16px;
+}

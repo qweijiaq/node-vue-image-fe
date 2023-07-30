@@ -1,0 +1,8 @@
+.user-name.large {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.user-name-text>.link {
+    color: var(--primary-text-color);
+}

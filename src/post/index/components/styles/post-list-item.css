@@ -1,0 +1,15 @@
+.post-list-item {
+    display: grid;
+    grid-template-rows: 1fr 60px;
+
+}
+
+.post-list-item.portrait {
+    grid-row-start: auto;
+    grid-row-end: span 2;
+}
+
+.post-list-item.stackable-minimal,
+.post-list-item.flow-minimal {
+    grid-template-rows: 1fr;
+}

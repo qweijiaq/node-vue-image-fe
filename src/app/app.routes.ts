@@ -9,6 +9,15 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     path: '/',
     component: AppHome,
+    meta: {
+      title: 'GopherImage | 照片分享平台',
+    },
+    props: (route) => {
+      return {
+        sort: 'latest',
+        filter: route.query,
+      };
+    },
   },
 ];
 

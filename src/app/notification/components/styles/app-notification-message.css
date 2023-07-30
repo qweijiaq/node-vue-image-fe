@@ -1,0 +1,43 @@
+.app-notification-message {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--secondary-text-color);
+    padding: 16px 24px;
+    background: var(--primary-background);
+    min-width: 280px;
+    max-width: 280px;
+    border-radius: 5px;
+    margin-bottom: 24px;
+    min-height: 50px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.app-notification-message>.content {
+    flex-grow: 2;
+    min-height: 24px;
+}
+
+.app-notification-message>.icon {
+    margin-right: 8px;
+}
+
+.app-notification-message-enter-active {
+    transform: translateX(330px);
+    transition: 0.3s;
+}
+
+.app-notification-message-enter-to {
+    transform: translateX(0);
+}
+
+.app-notification-message-leave-active {
+    transition: 0.3s;
+}
+
+.app-notification-message-leave-to {
+    transform: translateX(330px);
+}

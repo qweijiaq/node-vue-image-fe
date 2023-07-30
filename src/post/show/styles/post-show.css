@@ -1,0 +1,35 @@
+.post-show {
+    width: 768px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    transition-property: width, margin, transform;
+    transition-duration: 0.5s;
+    margin-bottom: 32px;
+}
+
+.post-show.aside {
+    margin-left: 0;
+    transform: translateX(0);
+}
+
+.post-show.flow {
+    width: 100%;
+}
+
+.post-show>.section.meta.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 838px) {
+    .post-show {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .post-show {
+        max-width: 1280px;
+    }
+}

@@ -1,0 +1,48 @@
+.form {
+    margin-bottom: 32px;
+}
+
+.form>.header {
+    margin-bottom: 40px;
+}
+
+.field {
+    font-size: 16px;
+    color: var(--primary-text-color);
+    margin-bottom: 32px;
+}
+
+.field>.input {
+    color: var(--primary-text-color);
+    background: var(--primary-background);
+    box-sizing: border-box;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.field>.input.text {
+    border-bottom: 1px solid var(--line-color);
+}
+
+.field>.input.text:focus {
+    border-bottom-color: var(--highlight-line-color);
+}
+
+.field>.input.hide {
+    display: none;
+}
+
+.fields {
+    display: flex;
+}
+
+.fields .field {
+    margin-right: 16px;
+}
+
+.fields>.field:last-child {
+    margin-right: 0;
+}

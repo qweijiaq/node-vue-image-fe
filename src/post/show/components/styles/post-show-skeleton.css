@@ -1,0 +1,66 @@
+.post-show-media.skeleton {
+    background: var(--skeleton-background);
+    padding-top: 66.66%;
+    box-sizing: border-box;
+}
+
+.post-show-file-meta-item.skeleton {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.post-show-file-meta-item.skeleton>.icon {
+    background: var(--skeleton-background);
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+}
+
+.post-show-file-meta-item.skeleton>.text {
+    background: var(--skeleton-background);
+    height: 24px;
+    width: 24px;
+    min-width: 240px;
+}
+
+.post-show-file-meta-item.skeleton>.text.long {
+    min-width: 300px;
+}
+
+.post-show-actions.skeleton>.action {
+    background: var(--skeleton-background);
+    height: 24px;
+    width: 24px;
+}
+
+.post-show-header.skeleton>.content>.text {
+    background: var(--skeleton-background);
+    height: 29px;
+    width: 150px;
+}
+
+.post-show-header.skeleton>.content>.meta {
+    background: var(--skeleton-background);
+    height: 18px;
+    width: 50px;
+}
+
+.post-show-header.skeleton>.small {
+    background: var(--skeleton-background);
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+}
+
+.post-show-content.skeleton {
+    background: var(--skeleton-background);
+    height: 20px;
+    width: 280px;
+}
+
+.post-show-tags.skeleton>.tag {
+    background: var(--skeleton-background);
+    height: 24px;
+    width: 30px;
+    margin-right: 8px;
+}
