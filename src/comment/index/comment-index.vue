@@ -1,11 +1,11 @@
 <template>
   <div class="comment-index">
-    <commentList :filter="filter" />
+    <CommentList :filter="filter" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import commentList from './components/comment-list.vue';
+import CommentList from './components/comment-list.vue';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 

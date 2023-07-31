@@ -1,11 +1,18 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
+
 import {
   CommentIndexStoreState,
   commentIndexStoreModule,
 } from './index/comment-index.store';
 
+import {
+  CommentCreateStoreState,
+  commentCreateStoreModule,
+} from '@/comment/create/comment-create.store';
+
 export interface CommentStoreState {
+  create: CommentCreateStoreState;
   index: CommentIndexStoreState;
 }
 
@@ -36,6 +43,7 @@ export const commentStoreModule: Module<CommentStoreState, RootState> = {
   actions: {},
 
   modules: {
+    create: commentCreateStoreModule,
     index: commentIndexStoreModule,
   },
 };

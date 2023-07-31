@@ -120,6 +120,7 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
         commit('setPost', response.data);
 
         return response;
+        // eslint-disable-next-line
       } catch (error: any) {
         commit('setLoading', false);
 
@@ -140,6 +141,7 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
         });
 
         return res;
+        // eslint-disable-next-line
       } catch (error: any) {
         throw error.response;
       }
@@ -161,6 +163,7 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
         });
 
         return res;
+        // eslint-disable-next-line
       } catch (error: any) {
         throw error.response;
       }

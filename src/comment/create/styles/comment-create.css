@@ -1,0 +1,39 @@
+.comment-create {
+    display: flex;
+    margin-top: 16px;
+}
+
+.comment-create>.small {
+    margin-right: 16px;
+}
+
+.comment-create>.content {
+    flex-grow: 2;
+    margin-bottom: 16px;
+}
+
+.comment-create>.content>.field {
+    margin-bottom: 8px;
+}
+
+.comment-create .input.textarea {
+    padding: 8px;
+    font-size: 14px;
+    margin: 0;
+    border-radius: 5px;
+    border-color: var(--skeleton-background);
+}
+
+.comment-create>.content>.actions>.button {
+    font-size: 12px;
+    padding: 4px 8px;
+    margin-right: 8px;
+    color: var(--light-text-color);
+    background: var(--skeleton-background);
+    border-color: var(--skeleton-background);
+    border-radius: 3px;
+}
+
+.comment-create>.content>.actions>.button:last-child {
+    margin-right: 0;
+}

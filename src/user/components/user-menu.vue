@@ -1,8 +1,8 @@
 <template>
   <div class="user-menu">
-    <closeButton @click="$emit('close')" />
+    <CloseButton @click="$emit('close')" />
     <div class="user-menu-header">
-      <userName :user="currentUser" />
+      <UserName :user="currentUser" />
     </div>
     <div
       class="user-menu-items"
@@ -29,8 +29,8 @@
 </template>
 
 <script lang="ts" setup>
-import closeButton from '../../app/components/close-button.vue';
-import userName from './user-name.vue';
+import CloseButton from '../../app/components/close-button.vue';
+import UserName from './user-name.vue';
 import { onUnmounted, computed } from 'vue';
 import { useStore } from 'vuex';
 

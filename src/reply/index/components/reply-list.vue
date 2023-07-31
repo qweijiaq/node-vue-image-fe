@@ -19,6 +19,4 @@ const props = defineProps({
 });
 </script>
 
-<style scoped>
-@import url('./styles/reply-list.css');
-</style>
+<style scoped></style>

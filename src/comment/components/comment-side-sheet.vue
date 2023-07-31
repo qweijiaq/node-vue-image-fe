@@ -1,11 +1,13 @@
 <template>
   <div class="comment-side-sheet">
-    <commentIndex />
+    <CommentCreate />
+    <CommentIndex />
   </div>
 </template>
 
 <script lang="ts" setup>
-import commentIndex from '../index/comment-index.vue';
+import CommentIndex from '../index/comment-index.vue';
+import CommentCreate from '../create/comment-create.vue';
 </script>
 
 <style scoped>

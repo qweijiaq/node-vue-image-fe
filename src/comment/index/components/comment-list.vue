@@ -1,6 +1,6 @@
 <template>
   <div class="comment-list">
-    <commentListItem
+    <CommentListItem
       v-for="comment in comments"
       :key="comment.id"
       :item="comment"
@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { useStore } from 'vuex';
 import { computed, watch } from 'vue';
-import commentListItem from './comment-list-item.vue';
+import CommentListItem from './comment-list-item.vue';
 
 const store = useStore();
 
@@ -35,6 +35,4 @@ watch(
 );
 </script>
 
-<style scoped>
-@import url('./styles/comment-list.css');
-</style>
+<style scoped></style>
