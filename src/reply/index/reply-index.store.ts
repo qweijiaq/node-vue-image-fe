@@ -59,6 +59,11 @@ export const replyIndexStoreModule: Module<ReplyIndexStoreState, RootState> = {
     setReplies(state, data) {
       state.replies = { ...state.replies, ...data };
     },
+
+    removeReplyItem(state, data) {
+      const {commentId, replyId} = data
+      state.replies[commentId] = state.replies[commentId].filter((item) => item.id !== replyId);
+    },
   },
 
   /**

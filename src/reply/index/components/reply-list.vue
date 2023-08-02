@@ -1,6 +1,11 @@
 <template>
   <div class="reply-list">
-    <replyListItem v-for="reply in props.list" :key="reply.id" :item="reply" />
+    <replyListItem
+      v-for="reply in props.list"
+      :key="reply.id"
+      :item="reply"
+      :comment="props.comment"
+    />
   </div>
 </template>
 
@@ -15,6 +20,9 @@ interface ListItem {
 const props = defineProps({
   list: {
     type: Array<ListItem>,
+  },
+  comment: {
+    type: Object,
   },
 });
 </script>

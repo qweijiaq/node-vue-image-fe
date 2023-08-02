@@ -1,0 +1,23 @@
+.reply-list-item-actions {
+    display: flex;
+    font-size: 12px;
+    color: var(--secondary-text-color);
+}
+
+.reply-list-item-actions>.action {
+    display: flex;
+    align-items: center;
+    min-height: 24px;
+    margin-right: 8px;
+}
+
+.reply-list-item-actions>.action:last-child {
+    margin-right: 0;
+}
+
+.reply-list-item-actions>.action>.button {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: var(--secondary-text-color);
+}

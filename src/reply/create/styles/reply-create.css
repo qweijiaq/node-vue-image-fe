@@ -1,0 +1,34 @@
+.reply-create {
+    display: flex;
+    margin-top: 16px;
+}
+
+.reply-create>.small {
+    margin-right: 16px;
+}
+
+.reply-create>.content {
+    flex-grow: 2;
+    margin-bottom: 16px;
+}
+
+.reply-create>.content>.field {
+    margin-bottom: 8px;
+}
+
+.reply-create .input.textarea {
+    padding: 8px;
+    font-size: 14px;
+    margin: 0;
+    border-radius: 5px;
+    border-color: var(--skeleton-background);
+}
+
+.reply-create>.content>.actions>.button:last-child {
+    margin-right: 0;
+}
+
+.reply-create>.small>.user-avatar.small {
+    width: 16px;
+    height: 16px;
+}

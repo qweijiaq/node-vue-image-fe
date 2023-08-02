@@ -21,6 +21,13 @@
         :showOperations="showOperations"
         @editing="onEditingComment"
         :isEditing="isEditing"
+        @replying="onReplyingComment"
+        :isReplying="isReplying"
+      />
+      <ReplyCreate
+        v-if="isReplying"
+        :comment="props.item"
+        :showReplies="showReplies"
       />
       <ReplyIndex :comment="props.item" v-if="showReplies" />
     </div>
@@ -34,6 +41,7 @@ import CommentListItemContent from './comment-list-item-content.vue';
 import CommentListItemActions from './comment-list-item-actions.vue';
 import CommentEdit from '../../edit/comment-edit.vue';
 import ReplyIndex from '../../../reply/index/reply-index.vue';
+import ReplyCreate from '../../../reply/create/reply-create.vue';
 import { ref, reactive } from 'vue';
 
 const props = defineProps({
@@ -54,9 +62,14 @@ const onClickCommentListItemContent = () => {
 };
 
 const isEditing = ref(false);
+const isReplying = ref(false);
 
 const onEditingComment = () => {
   isEditing.value = !isEditing.value;
+};
+
+const onReplyingComment = () => {
+  isReplying.value = !isReplying.value;
 };
 
 const params = reactive({

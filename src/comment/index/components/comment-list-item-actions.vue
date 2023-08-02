@@ -6,6 +6,11 @@
         <appIcon :name="totalRepliesIconName" />
       </button>
     </div>
+    <div class="action">
+      <button class="button basic" @click="onClickReplyBtn">
+        {{ replyBtnText }}
+      </button>
+    </div>
     <div class="action" v-if="showOwnCommentOperation">
       <button class="button basic" @click="onClickDeleteBtn">
         {{ deleteBtnText }}
@@ -34,9 +39,12 @@ const props = defineProps({
   isEditing: {
     type: Boolean,
   },
+  isReplying: {
+    type: Boolean,
+  },
 });
 
-const emits = defineEmits(['toggle-replies', 'editing']);
+const emits = defineEmits(['toggle-replies', 'editing', 'replying']);
 
 const showReplies = ref(false);
 
@@ -85,6 +93,12 @@ const updateBtnText = computed(() => (props.isEditing ? '取消编辑' : '编辑
 
 const onClickUpdateBtn = () => {
   emits('editing');
+};
+
+const replyBtnText = computed(() => (props.isReplying ? '取消回复' : '回复'));
+
+const onClickReplyBtn = () => {
+  emits('replying');
 };
 </script>
 

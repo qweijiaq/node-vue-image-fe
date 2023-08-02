@@ -1,13 +1,13 @@
 <template>
   <div class="reply-index">
-    <reply-list :list="replies(props.comment?.id)" />
+    <ReplyList :list="replies(props.comment?.id)" :comment="props.comment" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import replyList from './components/reply-list.vue';
+import ReplyList from './components/reply-list.vue';
 
 const store = useStore();
 

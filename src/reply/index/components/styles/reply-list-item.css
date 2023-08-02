@@ -11,3 +11,7 @@
     width: 16px;
     height: 16px;
 }
+
+.reply-list-item>.content {
+    flex-grow: 2;
+}
