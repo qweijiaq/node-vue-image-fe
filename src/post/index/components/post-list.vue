@@ -40,6 +40,7 @@ const fn = async () => {
   });
 };
 fn();
+
 const posts = computed(() => {
   try {
     return store.getters['post/index/posts'];

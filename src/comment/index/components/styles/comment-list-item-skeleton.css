@@ -1,0 +1,18 @@
+.comment-list-item.skeleton {
+    width: 32px;
+    height: 32px;
+    background: var(--skeleton-background);
+    border-radius: 50%;
+}
+
+.comment-list-item-meta.skeleton {
+    width: 32px;
+    height: 32px;
+    background: var(--skeleton-background);
+}
+
+.comment-list-item-content.skeleton {
+    width: 200px;
+    height: 16px;
+    background: var(--skeleton-background);
+}

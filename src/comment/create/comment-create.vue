@@ -10,20 +10,32 @@
         @keydown="onKeyDownCommentTextarea"
       />
       <div class="actions">
-        <button class="button" v-if="currentUser" @click="onClickCancelButton">
+        <button
+          class="button pill"
+          v-if="currentUser"
+          @click="onClickCancelButton"
+        >
           取消
         </button>
-        <button class="button" v-if="currentUser" @click="onClickSubmitButton">
+        <button
+          class="button pill"
+          v-if="currentUser"
+          @click="onClickSubmitButton"
+        >
           发布
         </button>
         <button
-          class="button"
+          class="button pill"
           v-if="!currentUser"
           @click="onClickRegisterButton"
         >
           注册
         </button>
-        <button class="button" v-if="!currentUser" @click="onClickLoginButton">
+        <button
+          class="button pill"
+          v-if="!currentUser"
+          @click="onClickLoginButton"
+        >
           登录
         </button>
       </div>
@@ -47,6 +59,7 @@ const currentUser = computed(() => store.getters['user/currentUser']);
 const sideSheetProps = computed(() => store.getters['layout/sideSheetProps']);
 
 const submitComment = async () => {
+  if (!content.value.trim()) return;
   if (!currentUser.value) {
     store.dispatch('notification/pushMessage', { content: '请先登录' });
     return;
@@ -82,7 +95,7 @@ const onClickLoginButton = () => {
   router.push({ name: 'login' });
 };
 
-const onKeyDownCommentTextarea = (event) => {
+const onKeyDownCommentTextarea = (event: any) => {
   if (
     (event.ctrlKey && event.key === 'Enter') ||
     (event.metaKey && event.key === 'Enter')

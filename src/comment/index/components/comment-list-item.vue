@@ -1,27 +1,40 @@
 <template>
   <div class="comment-list-item">
     <div class="small">
-      <user-avatar :user="item?.user" link="user" />
+      <UserAvatar :user="props.item?.user" link="user" />
     </div>
     <div class="content">
-      <commentListItemMeta :item="props.item" />
-      <commentListItemContent :item="props.item" />
-      <commentListItemActions
+      <CommentListItemMeta :item="props.item" />
+      <CommentListItemContent
+        :item="params.comment"
+        @click="onClickCommentListItemContent"
+        v-if="!isEditing"
+      />
+      <CommentEdit
+        v-if="isEditing"
+        :comment="props.item"
+        @updated="onUpdateComment"
+      />
+      <CommentListItemActions
         :item="props.item"
         @toggle-replies="onToggleReplies"
+        :showOperations="showOperations"
+        @editing="onEditingComment"
+        :isEditing="isEditing"
       />
-      <replyIndex :comment="props.item" v-if="showReplies" />
+      <ReplyIndex :comment="props.item" v-if="showReplies" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import userAvatar from '../../../user/components/user-avatar.vue';
-import commentListItemMeta from './comment-list-item-meta.vue';
-import commentListItemContent from './comment-list-item-content.vue';
-import commentListItemActions from './comment-list-item-actions.vue';
-import replyIndex from '../../../reply/index/reply-index.vue';
-import { ref } from 'vue';
+import UserAvatar from '../../../user/components/user-avatar.vue';
+import CommentListItemMeta from './comment-list-item-meta.vue';
+import CommentListItemContent from './comment-list-item-content.vue';
+import CommentListItemActions from './comment-list-item-actions.vue';
+import CommentEdit from '../../edit/comment-edit.vue';
+import ReplyIndex from '../../../reply/index/reply-index.vue';
+import { ref, reactive } from 'vue';
 
 const props = defineProps({
   item: {
@@ -30,9 +43,29 @@ const props = defineProps({
 });
 
 const showReplies = ref(false);
+const showOperations = ref(false);
 
-const onToggleReplies = (data) => {
+const onToggleReplies = (data: any) => {
   showReplies.value = data;
+};
+
+const onClickCommentListItemContent = () => {
+  showOperations.value = !showOperations.value;
+};
+
+const isEditing = ref(false);
+
+const onEditingComment = () => {
+  isEditing.value = !isEditing.value;
+};
+
+const params = reactive({
+  comment: props.item || {},
+});
+
+const onUpdateComment = (data: any) => {
+  params.comment.content = data;
+  isEditing.value = false;
 };
 </script>
 

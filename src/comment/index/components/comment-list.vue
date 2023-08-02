@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import { useStore } from 'vuex';
-import { computed, watch } from 'vue';
+import { computed, watch, ref } from 'vue';
 import CommentListItem from './comment-list-item.vue';
 
 const store = useStore();
@@ -22,7 +22,18 @@ const props = defineProps({
 });
 
 const loading = computed(() => store.getters['comment/index/loading']);
-const comments = computed(() => store.getters['comment/index/comments']);
+const comments = computed(() => {
+  try {
+    return store.getters['comment/index/comments'];
+  } catch (e) {
+    return [];
+  }
+});
+
+const hasMore = computed(() => store.getters['comment/index/hasMore']);
+const sideSheetTouchdown = computed(
+  () => store.getters['layout/sideSheetTouchdown'],
+);
 
 store.dispatch('comment/index/getComments', { filter: props.filter });
 
@@ -30,6 +41,23 @@ watch(
   props,
   () => {
     store.dispatch('comment/index/getComments', { filter: props.filter });
+  },
+  { deep: true },
+);
+
+watch(
+  sideSheetTouchdown,
+  (newValue) => {
+    console.log('scroll', newValue, hasMore.value, !loading.value);
+    if (newValue && hasMore.value && !loading.value) {
+      try {
+        store.dispatch('comment/index/getComments', { filter: props.filter });
+      } catch (error: any) {
+        store.dispatch('notification/pushMessage', {
+          content: error.data.message,
+        });
+      }
+    }
   },
   { deep: true },
 );

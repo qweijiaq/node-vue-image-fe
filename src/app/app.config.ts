@@ -9,10 +9,13 @@ export const APP_NAME = process.env.VUE_APP_APP_NAME;
 export const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
 
 // 每页内容数量
-export const POSTS_PER_PAGE = parseInt(process.env.VUE_APP_POSTS_PER_PAGE, 10);
+export const POSTS_PER_PAGE = parseInt(
+  process.env.VUE_APP_API_POSTS_PER_PAGE,
+  10,
+);
 
 // 每页评论数量
 export const COMMENTS_PER_PAGE = parseInt(
-  process.env.VUE_APP_COMMENTS_PER_PAGE,
+  process.env.VUE_APP_API_COMMENTS_PER_PAGE,
   10,
 );

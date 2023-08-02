@@ -4,16 +4,13 @@ import { apiHttpClient } from '@/app/app.service';
 import { filterProcess } from '../../post/post.service';
 import { StringifiableRecord } from 'query-string';
 import { queryStringProcess } from '../../app/app.service';
-import { COMMENTS_PER_PAGE } from '../../app/app.config';
+import { COMMENTS_PER_PAGE, POSTS_PER_PAGE } from '../../app/app.config';
+import { User } from '../../user/show/user-show.store';
 
 export interface CommentListItem {
   id: number;
   content: string;
-  user: {
-    id: number;
-    name: string;
-    avatar: number;
-  };
+  user: User;
   post: {
     id: number;
     title: string;
@@ -21,11 +18,11 @@ export interface CommentListItem {
   totalReplies: number | null;
 }
 
-export type Comments = Array<CommentListItem>;
+// export type Comments = Array<CommentListItem>;
 
 export interface CommentIndexStoreState {
   loading: boolean;
-  comments: Comments;
+  comments: CommentListItem[];
   filter: { [name: string]: string } | null;
   queryString: string;
   nextPage: number;
@@ -68,6 +65,10 @@ export const commentIndexStoreModule: Module<
     comments(state) {
       return state.comments;
     },
+
+    hasMore(state) {
+      return state.totalPages - state.nextPage >= 0;
+    },
   },
 
   /**
@@ -102,6 +103,10 @@ export const commentIndexStoreModule: Module<
     setTotalPages(state, data) {
       state.totalPages = data;
     },
+
+    removeCommentItem(state, data) {
+      state.comments = state.comments.filter((item) => item.id !== data);
+    },
   },
 
   /**
@@ -110,7 +115,7 @@ export const commentIndexStoreModule: Module<
   actions: {
     async getComments(
       { commit, state, dispatch },
-      options: GetCommentsOptions,
+      options: GetCommentsOptions = {},
     ) {
       let getCommentsQueryString = '';
 
@@ -125,14 +130,13 @@ export const commentIndexStoreModule: Module<
 
       try {
         const response = await apiHttpClient.get(
-          `comments?page=${state.nextPage}&${getCommentsQueryString}`,
+          `/comments?page=${state.nextPage}&${getCommentsQueryString}`,
         );
         dispatch('getCommentsPostProcess', response);
 
         return response;
       } catch (error: any) {
         commit('setLoading', false);
-
         throw error.response;
       }
     },
@@ -168,11 +172,13 @@ export const commentIndexStoreModule: Module<
       const total =
         response.headers['X-Total-Count'] || response.headers['x-total-count'];
 
-      const totalPages = Math.ceil(total / COMMENTS_PER_PAGE);
+      const totalPages = Math.ceil(parseInt(total, 10) / COMMENTS_PER_PAGE);
 
       commit('setTotalPages', totalPages);
 
       commit('setNextPage');
+
+      commit('layout/setSideSheetTouchdown', false, { root: true });
     },
   },
 };

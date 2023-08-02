@@ -6,3 +6,7 @@
 .comment-list-item>.small {
     margin-right: 16px;
 }
+
+.comment-list-item>.content {
+    flex-grow: 2;
+}

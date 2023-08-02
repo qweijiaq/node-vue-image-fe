@@ -24,16 +24,6 @@
     border-color: var(--skeleton-background);
 }
 
-.comment-create>.content>.actions>.button {
-    font-size: 12px;
-    padding: 4px 8px;
-    margin-right: 8px;
-    color: var(--light-text-color);
-    background: var(--skeleton-background);
-    border-color: var(--skeleton-background);
-    border-radius: 3px;
-}
-
 .comment-create>.content>.actions>.button:last-child {
     margin-right: 0;
 }
