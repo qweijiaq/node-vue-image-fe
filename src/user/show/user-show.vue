@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { useStore } from 'vuex';
-import { computed, watch } from 'vue';
+import { computed, watch, onUnmounted } from 'vue';
 import userAvatar from '../components/user-avatar.vue';
 import userName from '../components/user-name.vue';
 import userShowMenu from './components/user-show-menu.vue';
@@ -37,6 +37,26 @@ watch(
 );
 
 store.dispatch('user/show/getUserById', props.userId);
+
+const onScrollWindow = () => {
+  if (document) {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if (clientHeight + scrollTop === scrollHeight) {
+      store.commit('user/show/setTouchdown', true);
+    }
+  }
+};
+
+if (window) {
+  window.addEventListener('scroll', onScrollWindow);
+}
+
+onUnmounted(() => {
+  if (window) {
+    window.removeEventListener('scroll', onScrollWindow);
+  }
+});
 </script>
 
 <style scoped>

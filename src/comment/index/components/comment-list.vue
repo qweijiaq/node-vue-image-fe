@@ -35,6 +35,8 @@ const sideSheetTouchdown = computed(
   () => store.getters['layout/sideSheetTouchdown'],
 );
 
+const useShowTouchdown = computed(() => store.getters['user/show/touchdown']);
+
 store.dispatch('comment/index/getComments', { filter: props.filter });
 
 watch(
@@ -45,22 +47,31 @@ watch(
   { deep: true },
 );
 
-watch(
-  sideSheetTouchdown,
-  (newValue) => {
-    console.log('scroll', newValue, hasMore.value, !loading.value);
-    if (newValue && hasMore.value && !loading.value) {
-      try {
-        store.dispatch('comment/index/getComments', { filter: props.filter });
-      } catch (error: any) {
-        store.dispatch('notification/pushMessage', {
-          content: error.data.message,
-        });
-      }
+watch(sideSheetTouchdown, (newValue) => {
+  console.log('scroll', newValue, hasMore.value, !loading.value);
+  if (newValue && hasMore.value && !loading.value) {
+    try {
+      store.dispatch('comment/index/getComments', { filter: props.filter });
+    } catch (error: any) {
+      store.dispatch('notification/pushMessage', {
+        content: error.data.message,
+      });
     }
-  },
-  { deep: true },
-);
+  }
+});
+
+watch(useShowTouchdown, (newValue) => {
+  console.log('scroll', newValue, hasMore.value, !loading.value);
+  if (newValue && hasMore.value && !loading.value) {
+    try {
+      store.dispatch('comment/index/getComments', { filter: props.filter });
+    } catch (error: any) {
+      store.dispatch('notification/pushMessage', {
+        content: error.data.message,
+      });
+    }
+  }
+});
 </script>
 
 <style scoped></style>

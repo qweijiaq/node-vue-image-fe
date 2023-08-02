@@ -1,0 +1,9 @@
+.user-comments {
+    padding: 32px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.user-comments .textarea {
+    background: var(--skeleton-background);
+}

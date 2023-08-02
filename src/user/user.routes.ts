@@ -55,6 +55,11 @@ const routes: Array<RouteRecordRaw> = [
           title: 'GopherImage | 评论作品',
         },
         component: () => import('../user/show/components/user-comments.vue'),
+        props: (route) => {
+          return {
+            filter: { user: route.params.userId, action: 'published' },
+          };
+        },
       },
       {
         name: 'userReplies',
@@ -63,6 +68,11 @@ const routes: Array<RouteRecordRaw> = [
           title: 'GopherImage | 回复作品',
         },
         component: () => import('../user/show/components/user-replies.vue'),
+        props: (route) => {
+          return {
+            filter: { user: route.params.userId, action: 'replied' },
+          };
+        },
       },
       {
         name: 'userAccount',

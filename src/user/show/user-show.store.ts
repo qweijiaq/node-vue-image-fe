@@ -9,6 +9,7 @@ export interface User {
 }
 
 export interface UserShowStoreState {
+  touchdown: boolean;
   loading: boolean;
   user: User | null;
 }
@@ -23,6 +24,7 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
    * 数据
    */
   state: {
+    touchdown: false,
     loading: false,
     user: null,
   } as UserShowStoreState,
@@ -31,6 +33,10 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    touchdown(state) {
+      return state.touchdown;
+    },
+
     loading(state) {
       return state.loading;
     },
@@ -44,6 +50,10 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setTouchdown(state, data) {
+      state.touchdown = data;
+    },
+
     setLoading(state, data) {
       state.loading = data;
     },

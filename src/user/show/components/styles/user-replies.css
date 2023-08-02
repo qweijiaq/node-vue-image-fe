@@ -1,0 +1,9 @@
+.user-replies {
+    padding: 32px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.user-replies .textarea {
+    background: var(--skeleton-background);
+}

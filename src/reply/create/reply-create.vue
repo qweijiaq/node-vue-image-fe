@@ -2,7 +2,7 @@
   <div class="reply-create">
     <div class="small"><UserAvatar :user="currentUser" /></div>
     <div class="content">
-      <TextField
+      <TextareaField
         placeholder="回复评论"
         v-model="content"
         @keydown="onKeyDownReplyTextarea"
@@ -19,7 +19,7 @@
 import { computed, ref, reactive } from 'vue';
 import store from '../../app/app.store';
 import UserAvatar from '../../user/components/user-avatar.vue';
-import TextField from '../../app/components/text-field.vue';
+import TextareaField from '../../app/components/textarea-field.vue';
 
 const props = defineProps({
   comment: {

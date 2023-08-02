@@ -25,6 +25,9 @@
 
     /* Sheet */
     --page-side-sheet-background: #f8f8f8;
+
+    /* Reply */
+    --reply-filter: drop-shadow(rgba(0, 0, 0, 0.1) 0 2px 0);
 }
 
 .page.dark {
@@ -54,4 +57,7 @@
 
     /* Sheet */
     --page-side-sheet-background: #262626;
+
+    /* Reply */
+    --reply-filter: drop-shadow(rgba(255, 255, 255, 0.1) 0 2px 0);
 }

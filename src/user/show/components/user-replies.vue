@@ -1,7 +1,19 @@
 <template>
-  <div class="user-replies">UR</div>
+  <div class="user-replies">
+    <CommentList :filter="filter" />
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import CommentList from '../../../comment/index/components/comment-list.vue';
 
-<style scoped></style>
+const props = defineProps({
+  filter: {
+    type: Object,
+  },
+});
+</script>
+
+<style scoped>
+@import url('./styles/user-replies.css');
+</style>
