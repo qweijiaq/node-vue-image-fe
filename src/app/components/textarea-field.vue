@@ -1,10 +1,11 @@
 <template>
-  <div class="textarea-field">
+  <div class="field">
     <textarea
       class="input textarea"
       :value="modelValue"
       :placeholder="placeholder"
-      @input="$emit('update:modelValue', $event.target.value)"
+      :rows="rows"
+      @input="$emit('update:modelValue', $event.target?.value.trim())"
     >
     ></textarea
     >
@@ -23,6 +24,10 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
+  },
+  rows: {
+    type: Number,
+    default: 2,
   },
 });
 

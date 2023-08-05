@@ -5,7 +5,7 @@
       :type="props.type"
       :value="props.modelValue"
       :placeholder="props.placeholder"
-      @input="$emit('update:modelValue', $event.target?.value)"
+      @input="$emit('update:modelValue', $event.target?.value.trim())"
     />
   </div>
 </template>

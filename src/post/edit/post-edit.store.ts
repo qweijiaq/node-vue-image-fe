@@ -2,20 +2,21 @@ import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 import { apiHttpClient } from '@/app/app.service';
 
-export interface PostCreateStoreState {
+export interface PostEditStoreState {
   loading: boolean;
 }
 
-export interface CreatePostData {
-  title: string;
+export interface UpdatePostData {
+  title?: string;
   content?: string;
 }
 
-export interface CreatePostOptions {
-  data?: CreatePostData;
+export interface UpdatePostOptions {
+  postId?: null;
+  data?: UpdatePostData;
 }
 
-export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
+export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
   /**
    * 命名空间
    */
@@ -26,7 +27,7 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    */
   state: {
     loading: false,
-  } as PostCreateStoreState,
+  } as PostEditStoreState,
 
   /**
    * 获取器
@@ -50,13 +51,13 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 动作
    */
   actions: {
-    async createPost({ commit }, options: CreatePostOptions = {}) {
+    async updatePost({ commit }, options: UpdatePostOptions = {}) {
       commit('setLoading', true);
 
-      const { data } = options;
+      const { postId, data } = options;
 
       try {
-        const response = await apiHttpClient.post(`posts`, data);
+        const response = await apiHttpClient.patch(`posts/${postId}`, data);
         commit('setLoading', false);
 
         return response;

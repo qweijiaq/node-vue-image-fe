@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
 import PostIndex from './index/post-index.vue';
 import PostShow from './show/post-show.vue';
+import PostCreate from './create/post-create.vue';
 
 /**
  * 定义路由
@@ -36,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
         filter: route.query,
       };
     },
+  },
+  {
+    name: 'postCreate',
+    path: '/create',
+    component: PostCreate,
   },
 ];
 

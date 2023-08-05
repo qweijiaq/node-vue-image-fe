@@ -23,11 +23,13 @@
     outline: none;
 }
 
-.field>.input.text {
+.field>.input.text,
+.field.bordered>.input.textarea {
     border-bottom: 1px solid var(--line-color);
 }
 
-.field>.input.text:focus {
+.field>.input.text:focus,
+.field.bordered>.input.textarea:focus {
     border-bottom-color: var(--highlight-line-color);
 }
 

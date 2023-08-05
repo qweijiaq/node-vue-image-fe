@@ -1,0 +1,35 @@
+.post-create {
+    width: 768px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    transition-property: width, margin, transform;
+    transition-duration: 0.5s;
+    margin-bottom: 32px;
+}
+
+.post-create.aside {
+    margin-left: 0;
+    transform: translateX(0);
+}
+
+.post-create.flow {
+    width: 100%;
+}
+
+.post-create>.section.meta.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 838px) {
+    .post-create {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .post-create {
+        max-width: 1280px;
+    }
+}
