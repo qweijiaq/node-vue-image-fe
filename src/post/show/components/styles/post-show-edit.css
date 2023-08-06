@@ -1,0 +1,10 @@
+.post-show-edit {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin: 16px 0;
+}
+
+.post-show-edit>.button:last-child {
+    margin-right: 0;
+}

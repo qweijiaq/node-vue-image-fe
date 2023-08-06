@@ -1,0 +1,29 @@
+.post-meta {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.post-meta .link {
+    color: var(--secondary-text-color);
+    font-size: 14px;
+}
+
+.post-meta>.action {
+    margin-bottom: 8px;
+}
+
+.post-meta>.meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.post-meta>.meta>.user-avatar {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}

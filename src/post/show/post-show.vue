@@ -6,14 +6,15 @@
       <postShowFileMeta :post="post" />
       <postShowActions :post="post" />
     </div>
-    <postShowHeader :post="post" />
+    <postShowHeader :post="post" @click="onClickPostHandle" />
     <postShowContent :post="post" />
     <postShowTags v-if="post.tags" :tags="post.tags" />
+    <PostShowEdit :post="post" v-if="showPostEdit" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onUnmounted } from 'vue';
+import { computed, onUnmounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import postShowMedia from './components/post-show-media.vue';
 import postShowHeader from './components/post-show-header.vue';
@@ -22,6 +23,7 @@ import postShowActions from './components/post-show-actions.vue';
 import postShowFileMeta from './components/post-show-file-meta.vue';
 import postShowTags from './components/post-show-tags.vue';
 import postShowSkeleton from './components/post-show-skeleton.vue';
+import PostShowEdit from './components/post-show-edit.vue';
 import { getStorages, setStorages } from '../../app/app.service';
 import router from '../../app/app.router';
 
@@ -80,6 +82,11 @@ onUnmounted(() => {
     window.removeEventListener('keyup', onKeyUpWindow);
   }
 });
+
+const showPostEdit = ref(false);
+const onClickPostHandle = () => {
+  showPostEdit.value = !showPostEdit.value;
+};
 </script>
 
 <style scoped>

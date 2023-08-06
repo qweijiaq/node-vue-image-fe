@@ -1,4 +1,3 @@
-PostActions, PostContentField, PostTitleField, PostTagField,
 <template>
   <div class="post-create">
     <PostTitleField />
@@ -7,8 +6,11 @@ PostActions, PostContentField, PostTitleField, PostTagField,
     <PostActions
       @update="submitUpdatePost"
       @create="submitCreatePost"
+      @delete="onDeletePost"
       size="large"
+      :useDeleteButton="postId ? true : false"
     />
+    <PostMeta v-if="postId && post" :post="post" />
   </div>
 </template>
 
@@ -21,6 +23,7 @@ import PostTagField from '../components/post-tag-field.vue';
 import PostTitleField from '../components/post-title-field.vue';
 import PostContentField from '../components/post-content-field.vue';
 import PostActions from '../components/post-actions.vue';
+import PostMeta from '../components/post-meta.vue';
 
 const title = computed(() => store.getters['post/create/title']);
 const content = computed(() => store.getters['post/create/content']);
@@ -87,6 +90,7 @@ const submitCreatePost = async () => {
       },
     });
     store.commit('post/create/setUnsaved', false);
+    getPost(postId.value);
     store.dispatch('notification/pushMessage', {
       content: '发布内容成功',
     });
@@ -107,8 +111,22 @@ const submitUpdatePost = () => {
       },
     });
     store.commit('post/create/setUnsaved', false);
+    getPost(postId.value);
     store.dispatch('notification/pushMessage', {
       content: '更新内容成功',
+    });
+  } catch (error: any) {
+    store.dispatch('notification/pushMessage', {
+      content: error.data.message,
+    });
+  }
+};
+
+const onDeletePost = async () => {
+  try {
+    await store.dispatch('post/destroy/deletePost', { postId: postId.value });
+    router.push({
+      name: 'postCreate',
     });
   } catch (error: any) {
     store.dispatch('notification/pushMessage', {

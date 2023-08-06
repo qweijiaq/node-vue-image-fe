@@ -1,7 +1,7 @@
 <template>
   <div class="post-show-header">
     <div class="content">
-      <h1 class="text">{{ props.post?.title }}</h1>
+      <h1 class="text" @click="onClickPostTitle">{{ props.post?.title }}</h1>
       <div class="meta">
         <userName :user="props.post?.user" />
       </div>
@@ -20,6 +20,12 @@ const props = defineProps({
     type: Object,
   },
 });
+
+const emits = defineEmits(['click']);
+
+const onClickPostTitle = () => {
+  emits('click');
+};
 </script>
 
 <style scoped>

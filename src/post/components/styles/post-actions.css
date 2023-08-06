@@ -1,1 +1,7 @@
-/* post-actions */
+.post-actions>.button {
+    margin-right: 16px;
+}
+
+.post-actions>.button:last-child {
+    margin-right: 0;
+}

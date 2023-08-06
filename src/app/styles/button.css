@@ -47,3 +47,14 @@
     border-color: var(--skeleton-background);
     border-radius: 3px;
 }
+
+.button.red {
+    background: #c62828;
+    border: 2px solid #c62828;
+    color: #fff;
+}
+
+.button.outline.red {
+    background: none;
+    color: #c62828;
+}

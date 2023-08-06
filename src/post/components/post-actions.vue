@@ -1,5 +1,12 @@
 <template>
   <div class="post-actions">
+    <button
+      :class="deleteButtonClasses"
+      @click="onClickDeleteButton"
+      v-if="useDeleteButton"
+    >
+      {{ deleteButtonText }}
+    </button>
     <button :class="submitButtonClasses" @click="onClickSubmitButton">
       {{ submitButtonText }}
     </button>
@@ -7,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import store from '../../app/app.store';
 
@@ -17,9 +24,12 @@ const props = defineProps({
   size: {
     type: String,
   },
+  useDeleteButton: {
+    type: Boolean,
+  },
 });
 
-const emits = defineEmits(['update', 'create']);
+const emits = defineEmits(['update', 'create', 'delete']);
 
 // const { post: post_id } = route.query;
 
@@ -38,10 +48,37 @@ const content = computed(() => store.getters['post/create/content']);
 
 const onClickSubmitButton = () => {
   if (!title.value.trim()) return;
-  if (post_id) {
+  if (postId.value) {
     emits('update');
   } else {
     emits('create');
+  }
+};
+
+const confirmDelete = ref(false);
+const timeoutId = ref(null);
+const deleteButtonText = computed(() =>
+  confirmDelete.value ? '确定删除' : '删除',
+);
+const deleteButtonClasses = computed(() => [
+  'button',
+  props.size,
+  'red',
+  { outline: !confirmDelete.value },
+]);
+
+const onClickDeleteButton = () => {
+  if (timeoutId.value) {
+    clearInterval(timeoutId.value);
+  }
+  if (confirmDelete.value) {
+    emits('delete');
+  }
+  confirmDelete.value = !confirmDelete.value;
+  if (confirmDelete.value) {
+    timeoutId.value = setTimeout(() => {
+      confirmDelete.value = false;
+    }, 3000);
   }
 };
 </script>
