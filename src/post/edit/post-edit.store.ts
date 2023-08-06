@@ -134,6 +134,7 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
       commit('setLoading', true);
 
       const { postId, tag_id } = options;
+      console.log(options);
 
       try {
         const response = await apiHttpClient.delete(`posts/${postId}/tag`, {

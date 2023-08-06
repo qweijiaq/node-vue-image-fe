@@ -5,7 +5,8 @@
       :value="modelValue"
       :placeholder="placeholder"
       :rows="rows"
-      @input="$emit('update:modelValue', $event.target?.value.trim())"
+      @input="onInputTextarea"
+      @change="onChangeTextarea"
     >
     ></textarea
     >
@@ -31,7 +32,18 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(['update:modelValue']);
+const value = ref('');
+
+const emits = defineEmits(['update:modelValue', 'dirty']);
+
+const onInputTextarea = (event: any) => {
+  const _value = event.target.value.trim();
+  if (value.value !== _value) {
+    emits('dirty');
+  }
+  value.value = _value;
+  emits('update:modelValue', event.target?.value.trim());
+};
 </script>
 
 <style scoped>

@@ -1,42 +1,41 @@
-PostTagField,
+PostActions, PostContentField, PostTitleField, PostTagField,
 <template>
   <div class="post-create">
-    <TextField placeholder="标题" v-model="title" />
-    <TextareaField
-      placeholder="描述"
-      class="bordered"
-      :rows="1"
-      v-model="content"
+    <PostTitleField />
+    <PostContentField />
+    <PostTagField :postId="postId" v-if="postId" />
+    <PostActions
+      @update="submitUpdatePost"
+      @create="submitCreatePost"
+      size="large"
     />
-    <PostTagField :postId="parseInt(postId!, 10)" />
-    <button class="button large" @click="onClickSubmitButton">
-      {{ submitButtonText }}
-    </button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch } from 'vue';
+import { computed, watch } from 'vue';
 import store from '../../app/app.store';
 import router from '../../app/app.router';
 import { useRoute } from 'vue-router';
-import TextField from '../../app/components/text-field.vue';
-import TextareaField from '../../app/components/textarea-field.vue';
 import PostTagField from '../components/post-tag-field.vue';
+import PostTitleField from '../components/post-title-field.vue';
+import PostContentField from '../components/post-content-field.vue';
+import PostActions from '../components/post-actions.vue';
 
-const title = ref('');
-const content = ref('');
-const postId = ref(null);
+const title = computed(() => store.getters['post/create/title']);
+const content = computed(() => store.getters['post/create/content']);
+const postId = computed(() => store.getters['post/create/postId']);
+const post = computed(() => store.getters['post/show/post']);
 
 const route = useRoute();
 
 const getPost = async (_postId: any) => {
   try {
-    const response = await store.dispatch('post/show/getPostById', _postId);
-    const { title: _title, content: _content, tags } = response.data;
-    title.value = _title;
-    content.value = _content;
-    postId.value = _postId;
+    await store.dispatch('post/show/getPostById', _postId);
+    const { title, content, tags } = post.value;
+    store.commit('post/create/setPostId', _postId);
+    store.commit('post/create/setTitle', title);
+    store.commit('post/create/setContent', content);
     store.commit('post/edit/setTags', tags);
   } catch (error: any) {
     store.dispatch('notification/pushMessage', {
@@ -48,13 +47,15 @@ const getPost = async (_postId: any) => {
 const { post: post_id } = route.query;
 
 if (post_id) {
-  getPost(post_id);
+  getPost(parseInt(post_id as string, 10));
 }
 
 const reset = () => {
-  title.value = '';
-  content.value = '';
-  postId.value = null;
+  store.commit('post/create/setPostId', null);
+  store.commit('post/create/setTitle', '');
+  store.commit('post/create/setContent', '');
+  store.commit('post/edit/setTags', null);
+  store.commit('post/create/setUnsaved', false);
 };
 
 watch(
@@ -62,7 +63,7 @@ watch(
   (to) => {
     const { post: postId } = to.query;
     if (postId) {
-      getPost(postId);
+      getPost(parseInt(postId as string, 10));
     } else {
       reset();
     }
@@ -70,23 +71,22 @@ watch(
   { immediate: true, deep: true },
 );
 
-const submitButtonText = computed(() => (post_id ? '更新' : '发布'));
-
 const submitCreatePost = async () => {
   try {
-    const response = await store.dispatch('post/create/createPost', {
+    await store.dispatch('post/create/createPost', {
       data: {
         title: title.value,
         content: content.value,
       },
     });
-    postId.value = response.data.insertId;
+    // postId.value = response.data.insertId;
     router.push({
       name: 'postCreate',
       query: {
         post: postId.value,
       },
     });
+    store.commit('post/create/setUnsaved', false);
     store.dispatch('notification/pushMessage', {
       content: '发布内容成功',
     });
@@ -106,6 +106,7 @@ const submitUpdatePost = () => {
         content: content.value,
       },
     });
+    store.commit('post/create/setUnsaved', false);
     store.dispatch('notification/pushMessage', {
       content: '更新内容成功',
     });
@@ -113,15 +114,6 @@ const submitUpdatePost = () => {
     store.dispatch('notification/pushMessage', {
       content: error.data.message,
     });
-  }
-};
-
-const onClickSubmitButton = () => {
-  if (!title.value.trim()) return;
-  if (post_id) {
-    submitUpdatePost();
-  } else {
-    submitCreatePost();
   }
 };
 </script>
