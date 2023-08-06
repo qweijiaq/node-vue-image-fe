@@ -1,3 +1,4 @@
+PostTagField,
 <template>
   <div class="post-create">
     <TextField placeholder="标题" v-model="title" />
@@ -7,6 +8,7 @@
       :rows="1"
       v-model="content"
     />
+    <PostTagField :postId="parseInt(postId!, 10)" />
     <button class="button large" @click="onClickSubmitButton">
       {{ submitButtonText }}
     </button>
@@ -20,6 +22,7 @@ import router from '../../app/app.router';
 import { useRoute } from 'vue-router';
 import TextField from '../../app/components/text-field.vue';
 import TextareaField from '../../app/components/textarea-field.vue';
+import PostTagField from '../components/post-tag-field.vue';
 
 const title = ref('');
 const content = ref('');
@@ -30,13 +33,12 @@ const route = useRoute();
 const getPost = async (_postId: any) => {
   try {
     const response = await store.dispatch('post/show/getPostById', _postId);
-    const { title: _title, content: _content } = response.data;
-    console.log(response.data);
+    const { title: _title, content: _content, tags } = response.data;
     title.value = _title;
     content.value = _content;
     postId.value = _postId;
+    store.commit('post/edit/setTags', tags);
   } catch (error: any) {
-    console.log(error);
     store.dispatch('notification/pushMessage', {
       content: error.data.message,
     });
@@ -59,7 +61,6 @@ watch(
   () => router.currentRoute.value,
   (to) => {
     const { post: postId } = to.query;
-    console.log(postId);
     if (postId) {
       getPost(postId);
     } else {
