@@ -89,6 +89,15 @@ const menu = computed(() => {
         },
         text: '账户',
       },
+      {
+        linkTo: {
+          name: 'managePost',
+          params: {
+            userId: currentUser.value.id,
+          },
+        },
+        text: '管理',
+      },
     ],
   ];
 });

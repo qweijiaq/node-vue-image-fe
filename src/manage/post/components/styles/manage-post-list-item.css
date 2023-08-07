@@ -1,0 +1,9 @@
+.manage-post-list-item {
+    display: grid;
+    grid-template-rows: 1fr 32px;
+}
+
+.manage-post-list-item.selected {
+    border: 1px solid var(--highlight-light-color);
+    padding: 8px;
+}

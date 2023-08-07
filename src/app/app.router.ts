@@ -3,6 +3,7 @@ import appRoutes from './app.routes';
 import postRoutes from '@/post/post.routes';
 import authRoutes from '@/auth/auth.routes';
 import userRoutes from '@/user/user.routes';
+import manageRoutes from '@/manage/manage.routes';
 import { appToolbarItemGuard } from './app.router.guard';
 
 /**
@@ -10,7 +11,13 @@ import { appToolbarItemGuard } from './app.router.guard';
  */
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...appRoutes, ...postRoutes, ...authRoutes, ...userRoutes],
+  routes: [
+    ...appRoutes,
+    ...postRoutes,
+    ...authRoutes,
+    ...userRoutes,
+    ...manageRoutes,
+  ],
 });
 
 // 使用路由守卫

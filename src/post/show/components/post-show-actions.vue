@@ -7,7 +7,9 @@
           <appIcon name="comment" />
         </button>
       </div>
-      <div class="text">{{ props.post?.totalComments }}</div>
+      <div class="text" v-if="post?.totalComments">
+        {{ post?.totalComments }}
+      </div>
     </div>
   </div>
 </template>

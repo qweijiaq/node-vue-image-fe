@@ -1,0 +1,44 @@
+.manage-post-list-item-content {
+    display: grid;
+    grid-template-columns: 16px 1fr 2fr;
+    gap: 8px;
+    align-items: center;
+    font-size: 12px;
+    padding: 8px 0;
+}
+
+.manage-post-list-item-content>.small>.user-avatar {
+    width: 16px;
+    height: 16px;
+}
+
+.manage-post-list-item-content>.meta {
+    overflow: hidden;
+}
+
+.manage-post-list-item-content>.meta .link {
+    color: var(--secondary-text-color);
+}
+
+.manage-post-list-item-content>.meta .user-name-text {
+    overflow: hidden;
+    word-spacing: nowrap;
+    text-overflow: ellipsis;
+    color: var(--secondary-text-color);
+}
+
+.manage-post-list-item-content>.header {
+    text-align: right;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.manage-post-list-item-content>.header>.text {
+    overflow: hidden;
+    word-spacing: nowrap;
+    text-overflow: ellipsis;
+}
+
+.manage-post-list-item-content>.header>.text .link {
+    color: var(--primary-text-color);
+}
