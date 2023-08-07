@@ -45,3 +45,26 @@
     opacity: 0;
     transform: scale(0.95);
 }
+
+.app-toolbar-item-side-sheet-enter-active {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: 0.3s;
+    transition-delay: 0.5s;
+}
+
+.app-toolbar-item-side-sheet-enter-to {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.app-toolbar-item-side-sheet-leave-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: 0.5s;
+}
+
+.app-toolbar-item-side-sheet-leave-to {
+    opacity: 0;
+    transform: scale(0.95);
+}

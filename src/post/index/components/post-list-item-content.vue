@@ -15,16 +15,7 @@
     </div>
     <div class="actions">
       <PostDiggAction class="action" :post="item" />
-      <div class="action">
-        <div class="icon">
-          <button class="button basic" @click="onClickCommentBtn">
-            <appIcon name="comment" />
-          </button>
-        </div>
-        <div class="text" v-if="item?.totalComments">
-          {{ item?.totalComments }}
-        </div>
-      </div>
+      <PostCommentAction class="action" :post="item" actionType="switch" />
     </div>
   </div>
 </template>
@@ -32,8 +23,8 @@
 <script lang="ts" setup>
 import userAvatar from '../../../user/components/user-avatar.vue';
 import userName from '../../../user/components/user-name.vue';
-import appIcon from '../../../app/components/app-icon.vue';
 import PostDiggAction from '../../components/post-digg-action.vue';
+import PostCommentAction from '../../components/post-comment-action.vue';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 
@@ -53,15 +44,6 @@ const itemLinkTo = computed(() => {
     },
   };
 });
-
-const onClickCommentBtn = () => {
-  store.commit('layout/setSideSheetComponent', 'CommentSideSheet');
-  store.commit('layout/setSideSheetProps', {
-    filter: {
-      post: props.item?.id,
-    },
-  });
-};
 </script>
 
 <style scoped>

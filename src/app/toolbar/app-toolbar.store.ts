@@ -2,6 +2,7 @@ import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 
 export interface AppToolbarStoreState {
+  showSideSheetItem: boolean;
   showPostListLayoutSwitcher: boolean;
   showPostShowNavigator: boolean;
 }
@@ -16,6 +17,7 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
    * 数据
    */
   state: {
+    showSideSheetItem: false,
     showPostListLayoutSwitcher: false,
     showPostShowNavigator: false,
   } as AppToolbarStoreState,
@@ -24,6 +26,10 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    showSideSheetItem(state) {
+      return state.showSideSheetItem;
+    },
+
     showPostListLayoutSwitcher(state) {
       return state.showPostListLayoutSwitcher;
     },
@@ -37,6 +43,10 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setShowSideSheetItem(state, data) {
+      state.showSideSheetItem = data;
+    },
+
     setShowPostListLayoutSwitcher(state, data) {
       state.showPostListLayoutSwitcher = data;
     },

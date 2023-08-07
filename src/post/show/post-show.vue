@@ -50,10 +50,13 @@ const sideSheetComponent = computed(
 );
 const posts = computed(() => store.getters['post/index/posts']);
 const showPost = computed(() => !loading.value && post.value);
+const isSideSheetActive = computed(
+  () => store.getters['layout/isSideSheetActive'],
+);
 const postShowClasses = computed(() => [
   'post-show',
   layout.value,
-  { aside: sideSheetComponent.value },
+  { aside: isSideSheetActive.value },
 ]);
 
 const onClickPostShowMedia = () => {
@@ -64,6 +67,7 @@ const onClickPostShowMedia = () => {
 
 // eslint-disable-next-line
 const onKeyUpWindow = (event: any) => {
+  if (event.ctrlKey || event.metaKey) return;
   switch (event.key) {
     case 'b':
       if (posts.value.length) {

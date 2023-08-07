@@ -12,7 +12,7 @@
     padding-top: 100%;
 }
 
-.manage-post-list-item-media>.image {
+.manage-post-list-item-media>.link>.image {
     position: absolute;
     top: 0;
     width: 100%;

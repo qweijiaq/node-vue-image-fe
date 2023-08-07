@@ -1,9 +1,6 @@
 <template>
   <transition name="page-side-sheet">
-    <div
-      class="page-side-sheet"
-      v-if="sideSheetComponent === 'CommentSideSheet'"
-    >
+    <div class="page-side-sheet" v-if="isSideSheetActive">
       <closeButton @click="onClickCloseBtn" />
       <commentSideSheet />
     </div>
@@ -23,13 +20,13 @@ const sideSheetComponent = computed(
 );
 
 const onClickCloseBtn = () => {
-  store.commit('layout/resetSideSheetComponent');
+  store.dispatch('layout/closeSideSheet');
 };
 
 // eslint-disable-next-line
 const onKeyUpWindow = (event: any) => {
   if (event.key === 'Escape') {
-    store.commit('layout/resetSideSheetComponent');
+    store.dispatch('layout/closeSideSheet');
   }
 };
 
@@ -42,6 +39,10 @@ onUnmounted(() => {
     window.removeEventListener('keyup', onKeyUpWindow);
   }
 });
+
+const isSideSheetActive = computed(
+  () => store.getters['layout/isSideSheetActive'],
+);
 </script>
 
 <style scoped>

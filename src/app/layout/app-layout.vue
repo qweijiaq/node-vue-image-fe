@@ -29,9 +29,11 @@ if (storageTheme) {
 
 const pageSideSheet = ref(null);
 const onScrollPageSideSheet = () => {
-  const { scrollTop, scrollHeight, clientHeight } = pageSideSheet.value.$el;
-  if (clientHeight + scrollTop === scrollHeight) {
-    store.commit('layout/setSideSheetTouchdown', true);
+  if (pageSideSheet.value) {
+    const { scrollTop, scrollHeight, clientHeight } = pageSideSheet.value;
+    if (clientHeight + scrollTop === scrollHeight) {
+      store.commit('layout/setSideSheetTouchdown', true);
+    }
   }
 };
 </script>

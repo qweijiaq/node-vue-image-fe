@@ -33,6 +33,23 @@ watch(
   },
 );
 
+const managePostListRef = ref(null);
+
+onUpdated(() => {
+  if (document) {
+    const { clientHeight: documentHeight } = document.documentElement;
+    if (managePostListRef.value) {
+      console.log(managePostListRef.value);
+      const { clientHeight: componentHeight } = managePostListRef.value;
+      if (componentHeight < documentHeight && hasMore.value && !loading.value) {
+        store.dispatch('post/index/getPosts', {
+          filter: filter.value,
+        });
+      }
+    }
+  }
+});
+
 const prevScrollTop = ref(0);
 
 const onScrollWindow = () => {
@@ -60,21 +77,6 @@ if (window) {
 onUnmounted(() => {
   if (window) {
     window.removeEventListener('scroll', onScrollWindow);
-  }
-});
-
-const managePostListRef = ref(null);
-
-onUpdated(() => {
-  if (document) {
-    const { clientHeight: documentHeight } = document.documentElement;
-    const { clientHeight: componentHeight } = managePostListRef.value.$el;
-
-    if (componentHeight < documentHeight && hasMore.value && !loading.value) {
-      store.dispatch('post/index/getPosts', {
-        filter: filter.value,
-      });
-    }
   }
 });
 </script>

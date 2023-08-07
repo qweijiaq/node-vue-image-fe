@@ -2,6 +2,7 @@ import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 
 export interface LayoutStoreState {
+  isSideSheetActive: boolean;
   sideSheetTouchdown: boolean;
   theme: string;
   sideSheetComponent: string;
@@ -19,6 +20,7 @@ export const layoutStoreModule: Module<LayoutStoreState, RootState> = {
    * 数据
    */
   state: {
+    isSideSheetActive: false,
     sideSheetTouchdown: false,
     theme: 'light',
     sideSheetComponent: '',
@@ -29,6 +31,10 @@ export const layoutStoreModule: Module<LayoutStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    isSideSheetActive(state) {
+      return state.isSideSheetActive;
+    },
+
     sideSheetTouchdown(state) {
       return state.sideSheetTouchdown;
     },
@@ -50,6 +56,10 @@ export const layoutStoreModule: Module<LayoutStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setIsSideSheetActive(state, data) {
+      state.isSideSheetActive = data;
+    },
+
     setSideSheetTouchdown(state, data) {
       state.sideSheetTouchdown = data;
     },
@@ -75,5 +85,17 @@ export const layoutStoreModule: Module<LayoutStoreState, RootState> = {
   /**
    * 动作
    */
-  actions: {},
+  actions: {
+    switchSideSheet({ commit, state }) {
+      commit('setIsSideSheetActive', !state.isSideSheetActive);
+    },
+
+    closeSideSheet({ commit }) {
+      commit('setIsSideSheetActive', false);
+    },
+
+    openSideSheet({ commit }) {
+      commit('setIsSideSheetActive', true);
+    },
+  },
 };

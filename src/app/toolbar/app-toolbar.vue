@@ -2,22 +2,26 @@
   <div class="app-toolbar">
     <transition name="app-toolbar-item-layout">
       <div class="app-toolbar-item layout" v-if="showPostListLayoutSwitcher">
-        <postListLayoutSwitcher />
+        <PostListLayoutSwitcher />
       </div>
     </transition>
     <transition name="app-toolbar-item-navigator">
       <div class="app-toolbar-item navigator" v-if="showPostShowNavigator">
-        <postShowNavigator />
+        <PostShowNavigator />
       </div>
     </transition>
-    <appToolbarItemSearch />
+    <transition name="app-toolbar-item-side-sheet">
+      <AppToolbarItemSideSheet v-if="showSideSheetItem" />
+    </transition>
+    <AppToolbarItemSearch />
   </div>
 </template>
 
 <script lang="ts" setup>
-import appToolbarItemSearch from './components/app-toolbar-item-search.vue';
-import postListLayoutSwitcher from '../../post/index/components/post-list-layout-switcher.vue';
-import postShowNavigator from '../../post/show/components/post-show-navigator.vue';
+import AppToolbarItemSearch from './components/app-toolbar-item-search.vue';
+import PostListLayoutSwitcher from '../../post/index/components/post-list-layout-switcher.vue';
+import PostShowNavigator from '../../post/show/components/post-show-navigator.vue';
+import AppToolbarItemSideSheet from '../../toolbar/components/app-toolbar-item-side-sheet.vue';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 
@@ -29,6 +33,10 @@ const showPostListLayoutSwitcher = computed(
 
 const showPostShowNavigator = computed(
   () => store.getters['toolbar/showPostShowNavigator'],
+);
+
+const showSideSheetItem = computed(
+  () => store.getters['toolbar/showSideSheetItem'],
 );
 </script>
 
