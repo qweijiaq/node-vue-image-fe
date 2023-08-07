@@ -14,12 +14,16 @@ import {
 } from './toolbar/app-toolbar.store';
 import { fileStoreModule, FileStoreState } from '../file/file.store';
 import { ReplyStoreState, replyStoreModule } from '../reply/reply.store';
+
 import {
   commentStoreModule,
   CommentStoreState,
 } from '../comment/comment.store';
 
+import { DiggStoreState, diggStoreModule } from '@/digg/digg.store';
+
 export interface RootState {
+  digg: DiggStoreState;
   appName: string;
   post: PostStoreState;
   layout: LayoutStoreState;
@@ -41,6 +45,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    digg: diggStoreModule,
     post: postStoreModule,
     layout: layoutStoreModule,
     auth: authStoreModule,

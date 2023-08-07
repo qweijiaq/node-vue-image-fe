@@ -14,14 +14,7 @@
       </div>
     </div>
     <div class="actions">
-      <div class="action">
-        <div class="icon">
-          <appIcon name="favorite" />
-        </div>
-        <div class="text">
-          {{ props.item?.totalDiggs }}
-        </div>
-      </div>
+      <PostDiggAction class="action" :post="item" />
       <div class="action">
         <div class="icon">
           <button class="button basic" @click="onClickCommentBtn">
@@ -40,6 +33,7 @@
 import userAvatar from '../../../user/components/user-avatar.vue';
 import userName from '../../../user/components/user-name.vue';
 import appIcon from '../../../app/components/app-icon.vue';
+import PostDiggAction from '../../components/post-digg-action.vue';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 

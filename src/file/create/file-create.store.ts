@@ -96,6 +96,7 @@ export const fileCreateStoreModule: Module<FileCreateStoreState, RootState> = {
       const { file, postId } = options;
 
       const formData = new FormData();
+      // eslint-disable-next-line
       formData.append('file', file as any);
 
       try {

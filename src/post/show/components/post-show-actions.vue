@@ -1,11 +1,6 @@
 <template>
   <div class="post-show-actions">
-    <div class="action">
-      <div class="icon">
-        <appIcon name="favorite" />
-      </div>
-      <div class="text">{{ props.post?.totalDiggs }}</div>
-    </div>
+    <PostDiggAction class="action" :post="post" />
     <div class="action">
       <div class="icon">
         <button class="button basic" @click="onClickCommentsBtn">
@@ -19,6 +14,7 @@
 
 <script lang="ts" setup>
 import appIcon from '../../../app/components/app-icon.vue';
+import PostDiggAction from '../../components/post-digg-action.vue';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 

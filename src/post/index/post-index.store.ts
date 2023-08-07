@@ -13,6 +13,7 @@ export interface PostListItem {
   user: User;
   totalComments: number;
   totalDiggs: number;
+  digged: number;
   file: {
     id: number;
     width: number;
@@ -140,6 +141,33 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
     setFilter(state, data) {
       const filter = filterProcess(data);
       state.filter = filter;
+    },
+
+    setPostItemDigged(state, data) {
+      const { postId, digged } = data;
+      state.posts = state.posts.map((post) => {
+        if (post.id === postId) {
+          post.digged = digged;
+        }
+        return post;
+      });
+    },
+
+    setPostItemTotalDiggs(state, data) {
+      const { postId, actionType } = data;
+      state.posts = state.posts.map((post) => {
+        if (post.id === postId) {
+          switch (actionType) {
+            case 'increase':
+              post.totalDiggs++;
+              break;
+            case 'decrease':
+              post.totalDiggs--;
+              break;
+          }
+        }
+        return post;
+      });
     },
   },
 

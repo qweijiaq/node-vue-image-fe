@@ -12,6 +12,7 @@ export interface Post {
   user: User;
   totalComments: number;
   totalDiggs: number;
+  digged: number;
   file: {
     id: number;
     width: number;
@@ -107,6 +108,27 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
 
     setLayout(state, data) {
       state.layout = data;
+    },
+
+    setPostDigged(state, data) {
+      const { postId, digged } = data;
+      if (state.post.id === postId) {
+        state.post.digged = digged;
+      }
+    },
+
+    setPostTotalDiggs(state, data) {
+      const { postId, actionType } = data;
+      if (state.post.id === postId) {
+        switch (actionType) {
+          case 'increase':
+            state.post.totalDiggs++;
+            break;
+          case 'decrease':
+            state.post.totalDiggs--;
+            break;
+        }
+      }
     },
   },
 
