@@ -1,0 +1,52 @@
+.file-create-drag-zone {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-create-drag-zone::after {
+    display: block;
+    content: ' ';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #1792e972;
+    border: 1px solid #1790e9;
+    box-sizing: border-box;
+    z-index: -1;
+    opacity: 0;
+}
+
+.file-create-drag-zone.overlay::after {
+    opacity: 1;
+    z-index: 666;
+}
+
+.file-create-drag-zone>.field {
+    margin-bottom: 16px;
+}
+
+.file-create-drag-zone>.description {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+}
+
+.file-create-drag-zone.active>.field {
+    position: relative;
+    z-index: 2;
+}
+
+.file-create-drag-zone.active>.field>.button {
+    background: #000000d2;
+    border-color: transparent;
+    color: #ffffffd6;
+}
+
+.file-create-drag-zone.active>.description {
+    color: #000000;
+}

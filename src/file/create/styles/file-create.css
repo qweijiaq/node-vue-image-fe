@@ -1,0 +1,10 @@
+.file-create {
+    position: relative;
+    padding-top: 56.25%;
+    margin-bottom: 32px;
+    background: var(--skeleton-background);
+}
+
+.file-create.active {
+    padding-top: 0;
+}

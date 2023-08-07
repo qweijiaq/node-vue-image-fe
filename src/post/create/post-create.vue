@@ -1,5 +1,6 @@
 <template>
   <div class="post-create">
+    <FileCreate @change="onChangeFileCreate" />
     <PostTitleField />
     <PostContentField />
     <PostTagField :postId="postId" v-if="postId" />
@@ -10,12 +11,12 @@
       size="large"
       :useDeleteButton="postId ? true : false"
     />
-    <PostMeta v-if="postId && post" :post="post" />
+    <PostMeta v-if="postCache" :post="postCache" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
+import { computed, watch, ref } from 'vue';
 import store from '../../app/app.store';
 import router from '../../app/app.router';
 import { useRoute } from 'vue-router';
@@ -24,6 +25,7 @@ import PostTitleField from '../components/post-title-field.vue';
 import PostContentField from '../components/post-content-field.vue';
 import PostActions from '../components/post-actions.vue';
 import PostMeta from '../components/post-meta.vue';
+import FileCreate from '../../file/create/file-create.vue';
 
 const title = computed(() => store.getters['post/create/title']);
 const content = computed(() => store.getters['post/create/content']);
@@ -35,11 +37,15 @@ const route = useRoute();
 const getPost = async (_postId: any) => {
   try {
     await store.dispatch('post/show/getPostById', _postId);
-    const { title, content, tags } = post.value;
+    const { title, content, tags, file } = post.value;
     store.commit('post/create/setPostId', _postId);
     store.commit('post/create/setTitle', title);
     store.commit('post/create/setContent', content);
     store.commit('post/edit/setTags', tags);
+    if (file) {
+      // store.commit('file/create/setSelectedFile');
+      store.commit('file/create/setPreviewImage', file.size.large);
+    }
   } catch (error: any) {
     store.dispatch('notification/pushMessage', {
       content: error.data.message,
@@ -48,6 +54,8 @@ const getPost = async (_postId: any) => {
 };
 
 const { post: post_id } = route.query;
+
+const postCache = ref(null);
 
 if (post_id) {
   getPost(parseInt(post_id as string, 10));
@@ -59,7 +67,19 @@ const reset = () => {
   store.commit('post/create/setContent', '');
   store.commit('post/edit/setTags', null);
   store.commit('post/create/setUnsaved', false);
+  store.commit('file/create/setSelectedFile', null);
+  store.commit('file/create/setPreviewImage', null);
+  postCache.value = null;
 };
+
+watch(
+  () => postCache.value,
+  (newValue) => {
+    if (newValue) {
+      postCache.value = newValue;
+    }
+  },
+);
 
 watch(
   () => router.currentRoute.value,
@@ -74,6 +94,8 @@ watch(
   { immediate: true, deep: true },
 );
 
+const selectedFile = computed(() => store.getters['file/create/selectedFile']);
+
 const submitCreatePost = async () => {
   try {
     await store.dispatch('post/create/createPost', {
@@ -81,6 +103,7 @@ const submitCreatePost = async () => {
         title: title.value,
         content: content.value,
       },
+      file: selectedFile.value,
     });
     // postId.value = response.data.insertId;
     router.push({
@@ -132,6 +155,34 @@ const onDeletePost = async () => {
     store.dispatch('notification/pushMessage', {
       content: error.data.message,
     });
+  }
+};
+
+const submitCreateFile = async () => {
+  try {
+    await store.dispatch('file/create/createFile', {
+      postId: postId.value,
+      file: selectedFile.value,
+    });
+  } catch (error: any) {
+    store.dispatch('notification/pushMessage', {
+      content: error.data.message,
+    });
+  }
+};
+
+const onChangeFileCreate = (files: any) => {
+  const file = files[0];
+  if (!file) return;
+
+  if (!title.value) {
+    store.commit('post/create/setTitle', file.name.split('.')[0]);
+  }
+
+  if (postId.value) {
+    submitCreateFile();
+  } else {
+    submitCreatePost();
   }
 };
 </script>
