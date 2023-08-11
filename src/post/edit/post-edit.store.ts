@@ -57,6 +57,10 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
     loading(state) {
       return state.loading;
     },
+
+    hasTags(state) {
+      return state.tags && state.tags.length ? true : false;
+    },
   },
 
   /**
@@ -108,12 +112,13 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
       try {
         const response = await apiHttpClient.post(`posts/${postId}/tag`, data);
 
-        const {
-          data: { tags },
-        } = await dispatch('post/show/getPostById', postId, { root: true });
+        const { data: post } = await dispatch('post/show/getPostById', postId, {
+          root: true,
+        });
 
         commit('setLoading', false);
-        commit('setTags', tags);
+        commit('setTags', post.tags);
+        commit('post/index/setPostItem', post, { root: true });
 
         return response;
       } catch (error) {
@@ -134,19 +139,19 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
       commit('setLoading', true);
 
       const { postId, tag_id } = options;
-      console.log(options);
 
       try {
         const response = await apiHttpClient.delete(`posts/${postId}/tag`, {
           data: { tag_id },
         });
 
-        const {
-          data: { tags },
-        } = await dispatch('post/show/getPostById', postId, { root: true });
+        const { data: post } = await dispatch('post/show/getPostById', postId, {
+          root: true,
+        });
 
         commit('setLoading', false);
-        commit('setTags', tags);
+        commit('setTags', post.tags);
+        commit('post/index/setPostItem', post, { root: true });
 
         return response;
       } catch (error) {

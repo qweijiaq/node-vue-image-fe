@@ -11,7 +11,7 @@ import { computed, ref, onUnmounted } from 'vue';
 import store from '../../app/app.store';
 import AppIcon from '../../app/components/app-icon.vue';
 
-const onKeyDownWindow = (event) => {
+const onKeyDownWindow = (event: any) => {
   const isCommandB = event.metaKey && event.key === 'b';
   const isCtrlB = event.ctrlKey && event.key === 'b';
   if (isCommandB || isCtrlB) {

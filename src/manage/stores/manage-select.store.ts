@@ -1,6 +1,7 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 import { PostListItem } from '../../post/index/post-index.store';
+import { TagItem } from '../../post/edit/post-edit.store';
 
 export interface ManageSelectStoreState {
   selectedPosts: Array<PostListItem>;
@@ -59,6 +60,20 @@ export const manageSelectStoreModule: Module<
     hasSelected(state) {
       return state.selectedItems.length ? true : false;
     },
+
+    currentEditedPost(state) {
+      return state.selectedPosts[state.selectedPosts.length - 1];
+    },
+
+    selectedPostsTags(state) {
+      const tags = state.selectedPosts.reduce((accumulator, post: any) => {
+        return post.tags ? [...accumulator, ...post.tags] : accumulator;
+      }, [] as Array<TagItem>);
+
+      return Array.from(new Set(tags.map((tag) => tag.id))).map((tagId) =>
+        tags.find((tag) => tag.id === tagId),
+      );
+    },
   },
 
   /**
@@ -78,7 +93,7 @@ export const manageSelectStoreModule: Module<
    * 动作
    */
   actions: {
-    getSelectedPosts({ state, commit, rootGetters }) {
+    getSelectedPosts({ state, commit, getters, rootGetters }) {
       const selectedPosts = state.selectedItems.map((item) =>
         rootGetters['post/index/posts'].find(
           (post: PostListItem) => post.id === item,
@@ -86,6 +101,8 @@ export const manageSelectStoreModule: Module<
       );
 
       commit('setSelectedPosts', selectedPosts);
+
+      commit('post/edit/setTags', getters['selectedPostsTags'], { root: true });
 
       return selectedPosts;
     },
@@ -121,6 +138,36 @@ export const manageSelectStoreModule: Module<
         case 'post':
           dispatch('getSelectedPosts');
           break;
+      }
+    },
+
+    async deleteSelectedPosts({ commit, dispatch, getters }) {
+      const posts = getters.selectedPosts as Array<PostListItem>;
+
+      if (!posts.length) return;
+
+      for (const post of posts) {
+        try {
+          await dispatch(
+            'post/destroy/deletePost',
+            { postId: post.id },
+            { root: true },
+          );
+          await dispatch('manageSelectedItems', {
+            resourceType: 'post',
+            actionType: 'remove',
+            item: post.id,
+          });
+          commit('post/index/removePostItem', post, { root: true });
+        } catch (error: any) {
+          dispatch(
+            'notification/pushMessage',
+            {
+              content: error.data.message,
+            },
+            { root: true },
+          );
+        }
       }
     },
   },

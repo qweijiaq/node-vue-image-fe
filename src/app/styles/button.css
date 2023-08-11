@@ -58,3 +58,21 @@
     background: none;
     color: #c62828;
 }
+
+.button.circle {
+    display: flex;
+    padding: 2px;
+    background: #ffffff20;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    opacity: 0.5;
+}
+
+.button.circle:active {
+    opacity: 0.4;
+}
+
+.button.circle.active {
+    opacity: 0.8;
+}

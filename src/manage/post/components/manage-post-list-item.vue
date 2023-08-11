@@ -38,8 +38,6 @@ const onClickPostListItemMedia = (event: any, post: any) => {
     actionType = 'remove';
   }
 
-  event.preventDefault();
-
   store.dispatch('manage/select/manageSelectedItems', {
     resourceType: 'post',
     item: post.id,

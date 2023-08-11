@@ -1,0 +1,16 @@
+.manage-post-edit-form .input {
+    background: var(--page-side-sheet-background) !important;
+}
+
+.manage-post-edit-form>.actions {
+    display: flex;
+}
+
+.manage-post-edit-form>.actions>.button {
+    width: 100%;
+    margin-right: 16px;
+}
+
+.manage-post-edit-form>.actions>.button:last-child {
+    margin-right: 0;
+}

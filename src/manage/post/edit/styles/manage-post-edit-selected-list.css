@@ -1,0 +1,5 @@
+.manage-post-edit-selected-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+    margin-bottom: 24px;
+}

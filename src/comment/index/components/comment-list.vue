@@ -48,7 +48,6 @@ watch(
 );
 
 watch(sideSheetTouchdown, (newValue) => {
-  console.log('scroll', newValue, hasMore.value, !loading.value);
   if (newValue && hasMore.value && !loading.value) {
     try {
       store.dispatch('comment/index/getComments', { filter: props.filter });
@@ -61,7 +60,6 @@ watch(sideSheetTouchdown, (newValue) => {
 });
 
 watch(useShowTouchdown, (newValue) => {
-  console.log('scroll', newValue, hasMore.value, !loading.value);
   if (newValue && hasMore.value && !loading.value) {
     try {
       store.dispatch('comment/index/getComments', { filter: props.filter });

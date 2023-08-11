@@ -40,7 +40,11 @@ onUpdated(() => {
     const { clientHeight: documentHeight } = document.documentElement;
     if (managePostListRef.value) {
       const { clientHeight: componentHeight } = managePostListRef.value;
-      if (componentHeight < documentHeight && hasMore.value && !loading.value) {
+      if (
+        componentHeight < documentHeight + 200 &&
+        hasMore.value &&
+        !loading.value
+      ) {
         store.dispatch('post/index/getPosts', {
           filter: filter.value,
         });
@@ -68,14 +72,22 @@ const onScrollWindow = () => {
   }
 };
 
+const onKeydownWindow = (event: any) => {
+  if ((event.metaKey || event.ctrlKey) && event.key === 'Backspace') {
+    store.dispatch('manage/select/deleteSelectedPosts');
+  }
+};
+
 if (window) {
   window.addEventListener('scroll', onScrollWindow);
   window.scrollTo({ top: 0 });
+  window.addEventListener('keydown', onKeydownWindow);
 }
 
 onUnmounted(() => {
   if (window) {
     window.removeEventListener('scroll', onScrollWindow);
+    window.removeEventListener('keydown', onKeydownWindow);
   }
 });
 </script>

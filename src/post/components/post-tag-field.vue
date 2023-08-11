@@ -10,7 +10,7 @@
         <AppIcon name="add" />
       </button>
     </div>
-    <div class="meta" v-if="tags">
+    <div class="meta" v-if="hasTags">
       <transition-group name="post-tag">
         <PostTag
           v-for="tag in tags"
@@ -35,11 +35,18 @@ const props = defineProps({
   postId: {
     type: Number,
   },
+  posts: {
+    type: Array,
+  },
 });
+
+const emits = defineEmits(['updated']);
 
 const name = ref('');
 
 const tags = computed(() => store.getters['post/edit/tags']);
+
+const hasTags = computed(() => store.getters['post/edit/hasTags']);
 
 const submitCreatePostTag = async () => {
   if (!name.value) return;
@@ -59,15 +66,43 @@ const submitCreatePostTag = async () => {
   }
 };
 
+const batchCreatePostTag = async () => {
+  for (const post of props.posts!) {
+    if (post.tags && post.tags.some((tag) => tag.name === name.value.trim()))
+      continue;
+
+    try {
+      await store.dispatch('post/edit/createPostTag', {
+        postId: post.id,
+        data: {
+          name: name.value,
+        },
+      });
+    } catch (error) {
+      continue;
+    }
+  }
+  emits('updated');
+  name.value = '';
+};
+
 const onClickAddButton = () => {
-  submitCreatePostTag();
+  if (props.posts) {
+    batchCreatePostTag();
+  } else {
+    submitCreatePostTag();
+  }
 };
 
 const onKeyUpEnterTag = () => {
-  submitCreatePostTag();
+  if (props.posts) {
+    batchCreatePostTag();
+  } else {
+    submitCreatePostTag();
+  }
 };
 
-const onDeletePostTag = async (tagId: number) => {
+const submitDeletePostTag = async (tagId: number) => {
   try {
     await store.dispatch('post/edit/deletePostTag', {
       postId: props.postId,
@@ -77,6 +112,32 @@ const onDeletePostTag = async (tagId: number) => {
     store.dispatch('notification/pushMessage', {
       content: error.data.message,
     });
+  }
+};
+
+const batchDeletePostTag = async (tagId: number) => {
+  for (const post of props.posts) {
+    if (post.tags && !post.tags.some((tag) => tag.id == tagId)) continue;
+
+    try {
+      await store.dispatch('post/edit/deletePostTag', {
+        postId: post.id,
+        tag_id: tagId,
+      });
+    } catch (error) {
+      continue;
+    }
+  }
+
+  emits('updated');
+  name.value = '';
+};
+
+const onDeletePostTag = async (tagId: number) => {
+  if (props.posts) {
+    batchDeletePostTag(tagId);
+  } else {
+    submitDeletePostTag(tagId);
   }
 };
 </script>

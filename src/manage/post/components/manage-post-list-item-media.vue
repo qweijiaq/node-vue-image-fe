@@ -1,8 +1,8 @@
 <template>
   <div class="manage-post-list-item-media">
-    <router-link class="link" :to="itemLinkTo">
+    <div class="link">
       <img class="image" :src="item?.file.size.medium" alt="" />
-    </router-link>
+    </div>
   </div>
 </template>
 

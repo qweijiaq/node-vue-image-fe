@@ -1,1 +1,7 @@
-/* manage-post-side-sheet */
+.manage-post-side-sheet {
+    padding: 16px;
+    margin-top: 40px;
+    min-height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+}

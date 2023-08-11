@@ -1,0 +1,17 @@
+.page-side-sheet-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--secondary-text-color);
+    flex: 1;
+}
+
+.page-side-sheet-status>.icon {
+    margin-right: 4px;
+    height: 24px;
+}
+
+.page-side-sheet-status>.content {
+    line-height: 24px;
+}
