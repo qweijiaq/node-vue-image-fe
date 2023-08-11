@@ -21,8 +21,10 @@ import {
 } from '../comment/comment.store';
 
 import { DiggStoreState, diggStoreModule } from '@/digg/digg.store';
+import { ManageStoreState, manageStoreModule } from '@/manage/manage.store';
 
 export interface RootState {
+  manage: ManageStoreState;
   digg: DiggStoreState;
   appName: string;
   post: PostStoreState;
@@ -45,6 +47,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    manage: manageStoreModule,
     digg: diggStoreModule,
     post: postStoreModule,
     layout: layoutStoreModule,

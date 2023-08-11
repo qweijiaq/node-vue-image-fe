@@ -4,6 +4,6 @@
 }
 
 .manage-post-list-item.selected {
-    border: 1px solid var(--highlight-light-color);
+    border: 1px solid var(--highlight-line-color);
     padding: 8px;
 }

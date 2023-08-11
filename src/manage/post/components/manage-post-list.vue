@@ -39,7 +39,6 @@ onUpdated(() => {
   if (document) {
     const { clientHeight: documentHeight } = document.documentElement;
     if (managePostListRef.value) {
-      console.log(managePostListRef.value);
       const { clientHeight: componentHeight } = managePostListRef.value;
       if (componentHeight < documentHeight && hasMore.value && !loading.value) {
         store.dispatch('post/index/getPosts', {

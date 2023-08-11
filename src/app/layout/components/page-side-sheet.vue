@@ -1,8 +1,11 @@
 <template>
   <transition name="page-side-sheet">
     <div class="page-side-sheet" v-if="isSideSheetActive">
-      <closeButton @click="onClickCloseBtn" />
-      <commentSideSheet />
+      <CloseButton @click="onClickCloseBtn" />
+      <CommentSideSheet v-if="sideSheetComponent === 'CommentSideSheet'" />
+      <ManagePostSideSheet
+        v-if="sideSheetComponent === 'ManagePostSideSheet'"
+      />
     </div>
   </transition>
 </template>
@@ -10,8 +13,9 @@
 <script lang="ts" setup>
 import { computed, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
-import commentSideSheet from '@/comment/components/comment-side-sheet.vue';
-import closeButton from '../../components/close-button.vue';
+import CommentSideSheet from '@/comment/components/comment-side-sheet.vue';
+import CloseButton from '../../components/close-button.vue';
+import ManagePostSideSheet from '../../../manage/post/components/manage-post-side-sheet.vue';
 
 const store = useStore();
 
