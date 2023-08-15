@@ -6,10 +6,13 @@ import {
   FileShowStoreState,
 } from './show/file-show.store';
 
-import { FileCreateStoreState, fileCreateStoreModule } from '@/file/create/file-create.store';
+import {
+  FileCreateStoreState,
+  fileCreateStoreModule,
+} from '@/file/create/file-create.store';
 
 export interface FileStoreState {
-  create: FileCreateStoreState,
+  create: FileCreateStoreState;
   show: FileShowStoreState;
 }
 

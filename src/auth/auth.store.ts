@@ -55,6 +55,7 @@ export const authStoreModule: Module<AuthStoreState, RootState> = {
         root: true,
       });
       commit('auth/login/setLoginResponseData', null, { root: true });
+      apiHttpClient.defaults.headers.common['Authorization'] = null;
     },
   },
 

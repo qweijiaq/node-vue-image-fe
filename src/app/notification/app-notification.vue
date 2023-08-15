@@ -25,5 +25,6 @@ const messages = computed(() => store.getters['notification/messages']);
   position: fixed;
   bottom: 64px;
   right: 64px;
+  z-index: 666;
 }
 </style>

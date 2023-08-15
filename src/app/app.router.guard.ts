@@ -37,3 +37,26 @@ export const appToolbarItemGuard = (
 
   next();
 };
+
+/**
+ *  身份验证守卫
+ */
+export const authGuard = (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext,
+) => {
+  if (to.matched.some((record) => record.meta.requireAuth)) {
+    if (!appStore.getters['auth/isLogin']) {
+      appStore.dispatch('notification/pushMessage', {
+        content: '请先登录',
+      });
+
+      next({ name: 'login' });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+};

@@ -9,6 +9,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/manage',
     component: () => import('./manage.vue'),
     props: true,
+    meta: {
+      requireAuth: true,
+    },
     children: [
       {
         name: 'managePost',

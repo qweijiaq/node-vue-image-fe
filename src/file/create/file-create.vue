@@ -22,20 +22,37 @@ const fileCreateClasses = computed(() => [
 ]);
 
 const createPreviewImage = (file) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = (event) => {
-    store.commit('file/create/setPreviewImage', event.target?.result);
-  };
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const image = new Image();
+      image.src = event.target?.result;
+
+      image.onload = () => {
+        if (image.width > 1280) {
+          resolve(event.target?.result);
+        } else {
+          reject('图像宽度小于 1280px');
+        }
+      };
+    };
+  });
 };
 
-const onChangeDragZone = (files) => {
+const onChangeDragZone = async (files) => {
   const file = files[0];
-  if (file) {
+
+  if (!file) return;
+
+  try {
+    const result = await createPreviewImage(file);
     store.commit('file/create/setSelectedFile', file);
-    createPreviewImage(file);
+    store.commit('file/create/setPreviewImage', result);
+    emits('change', files);
+  } catch (error) {
+    store.dispatch('notification/pushMessage', { content: error });
   }
-  emits('change', files);
 };
 
 const uploading = computed(() => store.getters['file/create/uploading']);

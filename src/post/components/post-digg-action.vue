@@ -26,7 +26,15 @@ const diggIcon = computed(() =>
   props.post?.digged ? 'favorite' : 'favorite_border',
 );
 
+const isLogin = computed(() => store.getters['auth/isLogin']);
+
 const onClickDiggButton = () => {
+  if (!isLogin.value) {
+    return store.dispatch('notification/pushMessage', {
+      content: '请先登录',
+    });
+  }
+
   if (props.post?.digged) {
     store.dispatch('digg/destroy/deleteUserDiggPost', {
       postId: props.post.id,

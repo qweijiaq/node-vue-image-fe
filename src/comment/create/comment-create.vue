@@ -7,7 +7,8 @@
       <TextareaField
         placeholder="发表评论"
         v-model="content"
-        @keydown="onKeyDownCommentTextarea"
+        @keyup.stop
+        @keydown.stop="onKeyDownCommentTextarea"
       />
       <div class="actions">
         <button

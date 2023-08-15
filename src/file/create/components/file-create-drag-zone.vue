@@ -9,7 +9,7 @@
     <FileField
       name="file"
       @change="onChangeFile"
-      fileType="image/*"
+      fileType="image/jpg,image/jpeg,iamge/png"
       :text="fileFieldText"
     />
     <div class="description">直接把图像拖放到这里</div>
@@ -40,8 +40,18 @@ const fileCreateDragZoneClasses = computed(() => [
 ]);
 
 const onDropDragZone = (event) => {
+  const allowedFileTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+  const selectedFile = event.dataTransfer.files[0];
+
+  if (allowedFileTypes.some((type) => type === selectedFile.type)) {
+    emits('change', event.dataTransfer.files);
+  } else {
+    store.dispatch('notification/pushMessage', {
+      content: '不支持上传此类型的文件',
+    });
+  }
+
   isOverlay.value = false;
-  emits('change', event.dataTransfer.files);
 };
 
 const onDragEnterDragZone = () => {

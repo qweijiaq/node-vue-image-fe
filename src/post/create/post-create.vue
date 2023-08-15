@@ -96,7 +96,15 @@ watch(
 
 const selectedFile = computed(() => store.getters['file/create/selectedFile']);
 
+const isLogin = computed(() => store.getters['auth/isLogin']);
+
 const submitCreatePost = async () => {
+  if (!isLogin.value) {
+    store.dispatch('notification/pushMessage', {
+      content: '请先登录',
+    });
+  }
+
   try {
     await store.dispatch('post/create/createPost', {
       data: {
@@ -159,6 +167,12 @@ const onDeletePost = async () => {
 };
 
 const submitCreateFile = async () => {
+  if (!isLogin.value) {
+    store.dispatch('notification/pushMessage', {
+      content: '请先登录',
+    });
+  }
+
   try {
     await store.dispatch('file/create/createFile', {
       postId: postId.value,
