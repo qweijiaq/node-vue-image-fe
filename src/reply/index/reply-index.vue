@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import ReplyList from './components/reply-list.vue';
+import { socket } from '../../app/app.service';
 
 const store = useStore();
 
@@ -21,6 +22,36 @@ store.dispatch('reply/index/getReplies', props.comment?.id);
 
 const loading = computed(() => store.getters['reply/index/loading']);
 const replies = computed(() => store.getters['reply/index/replies']);
+
+const onCommentReplyCreated = ({ reply, socketId }) => {
+  if (socket.id === socketId) return;
+  store.commit('reply/index/addReplyItem', reply);
+};
+
+const onCommentReplyDeleted = ({ reply, socketId }) => {
+  if (socket.id === socketId) return;
+  const {
+    id: replyId,
+    repliedComment: { id: commentId },
+  } = reply;
+  store.commit('reply/index/removeReplyItem', { replyId, commentId });
+};
+
+const onCommentReplyUpdated = ({ reply, socketId }) => {
+  if (socket.id === socketId) return;
+
+  store.commit('reply/index/setReplyItemContent', reply);
+};
+
+socket.on('commentReplyCreated', onCommentReplyCreated);
+socket.on('commentReplyDeleted', onCommentReplyDeleted);
+socket.on('commentReplyUpdated', onCommentReplyUpdated);
+
+onUnmounted(() => {
+  socket.off('commentReplyCreated', onCommentReplyCreated);
+  socket.off('commentReplyDeleted', onCommentReplyDeleted);
+  socket.off('commentReplyUpdated', onCommentReplyUpdated);
+});
 </script>
 
 <style scoped>

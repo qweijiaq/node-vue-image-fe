@@ -1,5 +1,6 @@
 import axios from 'axios';
 import queryString, { StringifiableRecord } from 'query-string';
+import { io } from 'socket.io-client';
 import { API_BASE_URL } from './app.config';
 
 /**
@@ -36,3 +37,8 @@ export const queryStringProcess = (queryStringObject: StringifiableRecord) => {
 
   return queryString.stringify(queryStringObject);
 };
+
+/**
+ * Socket
+ */
+export const socket = io(API_BASE_URL);

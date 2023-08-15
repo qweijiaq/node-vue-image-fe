@@ -186,6 +186,25 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
 
       state.posts = state.posts.filter((post) => post.id !== postId);
     },
+
+    setPostItemTotalComments(state, data) {
+      const { postId, actionType } = data;
+
+      state.posts = state.posts.map((post) => {
+        if (post.id === postId) {
+          switch (actionType) {
+            case 'increase':
+              post.totalComments++;
+              break;
+            case 'decrease':
+              post.totalComments--;
+              break;
+          }
+        }
+
+        return post;
+      });
+    },
   },
 
   actions: {

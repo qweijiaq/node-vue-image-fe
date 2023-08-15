@@ -5,9 +5,10 @@
 
 <script lang="ts" setup>
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, onUnmounted } from 'vue';
 import postList from './components/post-list.vue';
 import postListFilters from './components/post-list-filters.vue';
+import { socket } from '../../app/app.service';
 
 const store = useStore();
 
@@ -21,4 +22,48 @@ const props = defineProps({
 });
 
 const filterItems = computed(() => store.getters['post/index/filterItems']);
+
+const onUserDiggPostCreated = ({ post_id, socketId }) => {
+  if (socket.id === socketId) return;
+
+  store.commit('post/index/setPostItemTotalDiggs', {
+    post_id,
+    actionType: 'increase',
+  });
+};
+
+const onUserDiggPostDeleted = ({ post_id, socketId }) => {
+  if (socket.id === socketId) return;
+
+  store.commit('post/index/setPostItemTotalDiggs', {
+    post_id,
+    actionType: 'decrease',
+  });
+};
+
+const onCommentCreated = ({ comment }) => {
+  store.commit('post/index/setPostItemTotalComments', {
+    postId: comment.post.id,
+    actionType: 'increase',
+  });
+};
+
+const onCommentDeleted = ({ comment }) => {
+  store.commit('post/index/setPostItemTotalComments', {
+    postId: comment.post.id,
+    actionType: 'decrease',
+  });
+};
+
+socket.on('userDiggPostCreated', onUserDiggPostCreated);
+socket.on('userDiggPostDeleted', onUserDiggPostDeleted);
+socket.on('commentCreated', onCommentCreated);
+socket.on('commentDeleted', onCommentDeleted);
+
+onUnmounted(() => {
+  socket.off('userDiggPostCreated', onUserDiggPostCreated);
+  socket.off('userDiggPostDeleted', onUserDiggPostDeleted);
+  socket.off('commentCreated', onCommentCreated);
+  socket.off('commentDeleted', onCommentDeleted);
+});
 </script>

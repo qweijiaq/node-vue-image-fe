@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import { useStore } from 'vuex';
 import AppLayout from './layout/app-layout.vue';
-import { getStorages } from './app.service';
+import { getStorages, socket, apiHttpClient } from './app.service';
 
 const store = useStore();
 
@@ -22,6 +22,11 @@ const userId = getStorages('uid');
 if (userId) {
   store.dispatch('user/getCurrentUser', userId);
 }
+
+// 设置请求头部
+socket.on('connect', () => {
+  apiHttpClient.defaults.headers.common['X-Socket-Id'] = socket.id;
+});
 </script>
 
 <style>

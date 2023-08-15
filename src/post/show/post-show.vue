@@ -24,7 +24,7 @@ import postShowFileMeta from './components/post-show-file-meta.vue';
 import postShowTags from './components/post-show-tags.vue';
 import postShowSkeleton from './components/post-show-skeleton.vue';
 import PostShowEdit from './components/post-show-edit.vue';
-import { getStorages, setStorages } from '../../app/app.service';
+import { getStorages, setStorages, socket } from '../../app/app.service';
 import router from '../../app/app.router';
 
 const store = useStore();
@@ -91,6 +91,55 @@ const showPostEdit = ref(false);
 const onClickPostHandle = () => {
   showPostEdit.value = !showPostEdit.value;
 };
+
+const filterItems = computed(() => store.getters['post/index/filterItems']);
+
+const onUserDiggPostCreated = ({ post_id, socketId }) => {
+  // console.log(post_id, socketId);
+  if (socket.id === socketId) return;
+
+  store.commit('post/show/setPostTotalDiggs', {
+    post_id,
+    actionType: 'increase',
+  });
+};
+
+const onUserDiggPostDeleted = ({ post_id, socketId }) => {
+  // console.log(post_id, socketId);
+  if (socket.id === socketId) return;
+
+  store.commit('post/show/setPostTotalDiggs', {
+    post_id,
+    actionType: 'decrease',
+  });
+};
+
+const onCommentCreated = ({ comment }) => {
+  store.commit('post/show/setPostTotalComments', {
+    postId: comment.post.id,
+    actionType: 'increase',
+  });
+};
+
+const onCommentDeleted = ({ comment }) => {
+  store.commit('post/show/setPostTotalComments', {
+    postId: comment.post.id,
+    actionType: 'decrease',
+  });
+};
+
+socket.on('userDiggPostCreated', onUserDiggPostCreated);
+socket.on('userDiggPostDeleted', onUserDiggPostDeleted);
+socket.on('commentCreated', onCommentCreated);
+socket.on('commentDeleted', onCommentDeleted);
+
+onUnmounted(() => {
+  socket.off('userDiggPostCreated', onUserDiggPostCreated);
+  socket.off('userDiggPostDeleted', onUserDiggPostDeleted);
+
+  socket.off('commentCreated', onCommentCreated);
+  socket.off('commentDeleted', onCommentDeleted);
+});
 </script>
 
 <style scoped>

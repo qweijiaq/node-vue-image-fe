@@ -131,6 +131,20 @@ export const commentIndexStoreModule: Module<
         return item;
       });
     },
+
+    addCommentItem(state, data) {
+      state.comments = [data, ...state.comments];
+    },
+
+    setCommentItemContent(state, data) {
+      const { id: commentId, content } = data;
+      state.comments = state.comments.map((comment) => {
+        if (comment.id === commentId) {
+          comment.content = content;
+        }
+        return comment;
+      });
+    },
   },
 
   /**
