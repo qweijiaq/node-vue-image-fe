@@ -28,6 +28,10 @@
 
 }
 
+.post-show-file-meta-kit>.content>.kit .link {
+    color: var(--primary-text-color);
+}
+
 @media (max-width: 838px) {
     .post-show-file-meta-kit {
         align-items: flex-start;

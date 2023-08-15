@@ -6,7 +6,11 @@
     <div class="content">
       <div class="kit" v-for="(item, index) in props.kit" :key="index">
         <div class="title">{{ item.title }}</div>
-        <div class="value">{{ item.value }}</div>
+        <div class="value">
+          <router-link class="link" :to="item?.url">
+            {{ item.value }}
+          </router-link>
+        </div>
       </div>
     </div>
   </div>

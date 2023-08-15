@@ -1,0 +1,32 @@
+.app-search-result-list-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    border-bottom: 1px solid var(--line-color);
+}
+
+.app-search-result-list-item>.title {
+    flex-grow: 2;
+}
+
+.app-search-result-list-item>.title>.link {
+    display: block;
+    padding: 8px 0;
+    color: var(--secondary-text-color);
+}
+
+.app-search-result-list-item>.meta {
+    font-size: 12px;
+    margin-left: 8px;
+    opacity: 0.5;
+}
+
+.app-search-result-list-item>.thumbnail {
+    margin-right: 8px;
+}
+
+.app-search-result-list-item>.thumbnail>.user-avatar {
+    width: 16px;
+    height: 16px;
+}

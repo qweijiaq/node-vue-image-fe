@@ -97,6 +97,16 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
             case 'tag':
               item.title = '标签';
               break;
+            case 'cameraMake':
+              item.title = '相机';
+              break;
+            case 'lensMake':
+              item.title = '镜头';
+              break;
+            case 'cameraModel':
+            case 'lensModel':
+              item.title = '型号';
+              break;
           }
 
           if (item.title && state.filter) {

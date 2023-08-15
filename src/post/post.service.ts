@@ -29,7 +29,16 @@ export const postFileProcess = (post: Post) => {
 
 // 处理内容列表过滤器
 export const filterProcess = (filterObject: { [name: string]: string }) => {
-  const allowedFilterNames = ['tag', 'user', 'action', 'post'];
+  const allowedFilterNames = [
+    'tag',
+    'user',
+    'action',
+    'post',
+    'cameraMake',
+    'cameraModel',
+    'lensMake',
+    'lensModel',
+  ];
   Object.keys(filterObject).forEach((filterName) => {
     const allowed = allowedFilterNames.some(
       (allowedFilterName) => allowedFilterName === filterName,

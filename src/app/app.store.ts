@@ -22,8 +22,13 @@ import {
 
 import { DiggStoreState, diggStoreModule } from '@/digg/digg.store';
 import { ManageStoreState, manageStoreModule } from '@/manage/manage.store';
+import {
+  AppSearchStoreState,
+  appSearchStoreModule,
+} from '@/app/search/app-search.store';
 
 export interface RootState {
+  search: AppSearchStoreState;
   manage: ManageStoreState;
   digg: DiggStoreState;
   appName: string;
@@ -47,6 +52,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    search: appSearchStoreModule,
     manage: manageStoreModule,
     digg: diggStoreModule,
     post: postStoreModule,

@@ -1,0 +1,15 @@
+.app-search-option {
+    margin: 0 8px;
+}
+
+.app-search-option:last-child {
+    margin-right: 0;
+}
+
+.app-search-option>.button {
+    color: var(--secondary-text-color) !important;
+}
+
+.app-search-option.active>.button {
+    color: var(--primary-text-color) !important;
+}
