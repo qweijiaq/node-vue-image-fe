@@ -64,7 +64,7 @@ const content = computed(() => store.getters['post/create/content']);
 const isLogin = computed(() => store.getters['auth/isLogin']);
 
 const onClickSubmitButton = () => {
-  if (!selectedFile.value) {
+  if (!selectedFile.value && !postId.value) {
     return store.dispatch('notification/pushMessage', {
       content: '请选择图片',
     });

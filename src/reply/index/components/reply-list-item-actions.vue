@@ -60,7 +60,7 @@ const onClickDeleteBtn = async () => {
       });
       store.commit('comment/index/decreaseTotalReplies', props.comment.id);
     } catch (error: any) {
-      store.dispatch('notofication/pushMessage', {
+      store.dispatch('notification/pushMessage', {
         content: error.data.message,
       });
     }

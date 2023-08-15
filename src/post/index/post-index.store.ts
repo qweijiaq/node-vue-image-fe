@@ -46,6 +46,8 @@ export interface PostIndexStoreState {
 export interface GetPostsOptions {
   sort?: string;
   filter?: { [name: string]: string };
+  manage?: string;
+  admin?: string;
 }
 
 export interface FilterItem {
@@ -244,8 +246,12 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
       commit('setLoading', true);
       commit('setFilter', options.filter);
 
+      const { sort, manage, admin } = options;
+
       const getPostsQueryObject: StringifiableRecord = {
-        sort: options.sort,
+        sort,
+        manage,
+        admin,
         ...state.filter,
       };
 

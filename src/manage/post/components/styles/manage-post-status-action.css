@@ -1,0 +1,6 @@
+.manage-post-status-action {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    z-index: 666;
+}

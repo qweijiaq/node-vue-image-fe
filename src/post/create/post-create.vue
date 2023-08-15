@@ -4,6 +4,7 @@
     <PostTitleField />
     <PostContentField />
     <PostTagField :postId="postId" v-if="postId" />
+    <PostStatusField />
     <PostActions
       @update="submitUpdatePost"
       @create="submitCreatePost"
@@ -26,6 +27,8 @@ import PostContentField from '../components/post-content-field.vue';
 import PostActions from '../components/post-actions.vue';
 import PostMeta from '../components/post-meta.vue';
 import FileCreate from '../../file/create/file-create.vue';
+import PostStatusField from '../components/post-status-field.vue';
+import { getImageBase64 } from '../../file/file.service';
 
 const title = computed(() => store.getters['post/create/title']);
 const content = computed(() => store.getters['post/create/content']);
@@ -34,17 +37,21 @@ const post = computed(() => store.getters['post/show/post']);
 
 const route = useRoute();
 
+const status = computed(() => store.getters['post/create/status']);
+
 const getPost = async (_postId: any) => {
   try {
     await store.dispatch('post/show/getPostById', _postId);
-    const { title, content, tags, file } = post.value;
+    const { title, content, tags, file, status } = post.value;
     store.commit('post/create/setPostId', _postId);
     store.commit('post/create/setTitle', title);
     store.commit('post/create/setContent', content);
     store.commit('post/edit/setTags', tags);
+    store.commit('post/create/setStatus', status);
     if (file) {
+      const imageData = await getImageBase64(file.size.large);
       // store.commit('file/create/setSelectedFile');
-      store.commit('file/create/setPreviewImage', file.size.large);
+      store.commit('file/create/setPreviewImage', imageData);
     }
   } catch (error: any) {
     store.dispatch('notification/pushMessage', {
@@ -70,6 +77,7 @@ const reset = () => {
   store.commit('file/create/setSelectedFile', null);
   store.commit('file/create/setPreviewImage', null);
   postCache.value = null;
+  store.commit('post/create/setStatus', null);
 };
 
 watch(
@@ -106,10 +114,13 @@ const submitCreatePost = async () => {
   }
 
   try {
+    const _status = status.value ? status.value : 'draft';
+
     await store.dispatch('post/create/createPost', {
       data: {
         title: title.value,
         content: content.value,
+        status: _status,
       },
       file: selectedFile.value,
     });
@@ -134,11 +145,14 @@ const submitCreatePost = async () => {
 
 const submitUpdatePost = () => {
   try {
+    const _status = status.value ? status.value : 'draft';
+
     store.dispatch('post/edit/updatePost', {
       postId: postId.value,
       data: {
         title: title.value,
         content: content.value,
+        status: _status,
       },
     });
     store.commit('post/create/setUnsaved', false);

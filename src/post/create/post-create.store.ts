@@ -4,6 +4,7 @@ import { apiHttpClient } from '@/app/app.service';
 import { File } from '../../file/create/file-create.store';
 
 export interface PostCreateStoreState {
+  status: string | null;
   unsaved: boolean;
   postId: number | null;
   title: string;
@@ -14,6 +15,7 @@ export interface PostCreateStoreState {
 export interface CreatePostData {
   title: string;
   content?: string;
+  status?: string;
 }
 
 export interface CreatePostOptions {
@@ -31,6 +33,7 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 数据
    */
   state: {
+    status: null,
     unsaved: false,
     postId: null,
     title: '',
@@ -42,6 +45,10 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    status(state) {
+      return state.status;
+    },
+
     unsaved(state) {
       return state.unsaved;
     },
@@ -67,6 +74,10 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setStatus(state, data) {
+      state.status = data;
+    },
+
     setUnsaved(state, data) {
       state.unsaved = data;
     },

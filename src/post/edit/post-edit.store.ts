@@ -15,6 +15,7 @@ export interface PostEditStoreState {
 export interface UpdatePostData {
   title?: string;
   content?: string;
+  status?: string;
 }
 
 export interface UpdatePostOptions {

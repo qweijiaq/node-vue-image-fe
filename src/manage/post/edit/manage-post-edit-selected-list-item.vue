@@ -1,7 +1,8 @@
 <template>
   <div class="manage-post-edit-selected-list-item">
     <div class="small">
-      <img class="image" :src="item?.file.size.medium" />
+      <img class="image" :src="image" v-if="image" />
+      <ManagePostStatusAction :post="item" />
     </div>
     <div class="actions">
       <button class="button basic circle" @click="onClickRemoveButton(item)">
@@ -15,12 +16,20 @@
 import { computed, ref, reactive } from 'vue';
 import store from '../../../app/app.store';
 import AppIcon from '../../../app/components/app-icon.vue';
+import ManagePostStatusAction from '../../components/manage-selected-status.vue';
+import { getImageBase64 } from '../../../file/file.service';
 
 const props = defineProps({
   item: {
     type: Object,
   },
 });
+
+const image = ref(null) as any;
+const getImage = async () => {
+  image.value = await getImageBase64(props.item?.file.size.medium);
+};
+getImage();
 
 const onClickRemoveButton = (post) => {
   store.dispatch('manage/select/manageSelectedItems', {

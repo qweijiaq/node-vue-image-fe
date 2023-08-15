@@ -22,8 +22,15 @@ const filter = computed(() => ({
   action: 'published',
 }));
 
+const getManagePosts = () => {
+  store.dispatch('post/index/getPosts', {
+    filter: filter.value,
+    manage: 'true',
+  });
+};
+
 if (currentUser.value) {
-  store.dispatch('post/index/getPosts', { filter: filter.value });
+  getManagePosts();
 }
 
 watch(
@@ -63,9 +70,7 @@ const onScrollWindow = () => {
     const scrollDown = scrollTop > prevScrollTop.value;
 
     if (touchDown && scrollDown && !loading.value && hasMore.value) {
-      store.dispatch('post/index/getPosts', {
-        filter: filter.value,
-      });
+      getManagePosts();
     }
 
     prevScrollTop.value = scrollTop;
