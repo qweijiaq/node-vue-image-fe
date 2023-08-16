@@ -14,6 +14,7 @@
       <transition name="app-toolbar-item-side-sheet">
         <AppToolbarItemSideSheet v-if="showSideSheetItem" />
       </transition>
+      <AppToolbarItemAdmin v-if="showAdminItem && isAdmin" />
     </template>
     <AppSearch v-if="showAppSearch" />
     <AppToolbarItemSearch />
@@ -24,8 +25,9 @@
 import AppToolbarItemSearch from './components/app-toolbar-item-search.vue';
 import PostListLayoutSwitcher from '../../post/index/components/post-list-layout-switcher.vue';
 import PostShowNavigator from '../../post/show/components/post-show-navigator.vue';
-import AppToolbarItemSideSheet from '../../toolbar/components/app-toolbar-item-side-sheet.vue';
+import AppToolbarItemSideSheet from './components/app-toolbar-item-side-sheet.vue';
 import AppSearch from '../search/app-search.vue';
+import AppToolbarItemAdmin from './components/app-toolbar-item-admin.vue';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 
@@ -44,6 +46,10 @@ const showSideSheetItem = computed(
 );
 
 const showAppSearch = computed(() => store.getters['toolbar/showAppSearch']);
+
+const showAdminItem = computed(() => store.getters['toolbar/showAdminItem']);
+
+const isAdmin = computed(() => store.getters['user/isAdmin']);
 </script>
 
 <style scoped>

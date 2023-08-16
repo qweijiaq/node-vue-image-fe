@@ -9,6 +9,7 @@ export const appToolbarItemGuard = (
   let showPostListLayoutSwitcher = false;
   let showPostShowNavigator = false;
   let showSideSheetItem = false;
+  let showAdminItem = false;
 
   switch (to.name) {
     case 'home':
@@ -24,6 +25,7 @@ export const appToolbarItemGuard = (
       break;
     case 'managePost':
       showSideSheetItem = true;
+      showAdminItem = true;
       break;
   }
 
@@ -34,6 +36,8 @@ export const appToolbarItemGuard = (
   appStore.commit('toolbar/setShowPostShowNavigator', showPostShowNavigator);
 
   appStore.commit('toolbar/setShowSideSheetItem', showSideSheetItem);
+
+  appStore.commit('toolbar/setShowAdminItem', showAdminItem);
 
   next();
 };

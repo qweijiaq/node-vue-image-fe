@@ -2,6 +2,7 @@ import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 
 export interface AppToolbarStoreState {
+  showAdminItem: boolean;
   showSideSheetItem: boolean;
   showPostListLayoutSwitcher: boolean;
   showPostShowNavigator: boolean;
@@ -18,6 +19,7 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
    * 数据
    */
   state: {
+    showAdminItem: false,
     showSideSheetItem: false,
     showPostListLayoutSwitcher: false,
     showPostShowNavigator: false,
@@ -28,6 +30,10 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    showAdminItem(state) {
+      return state.showAdminItem;
+    },
+
     showSideSheetItem(state) {
       return state.showSideSheetItem;
     },
@@ -49,6 +55,10 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setShowAdminItem(state, data) {
+      state.showAdminItem = data;
+    },
+
     setShowSideSheetItem(state, data) {
       state.showSideSheetItem = data;
     },

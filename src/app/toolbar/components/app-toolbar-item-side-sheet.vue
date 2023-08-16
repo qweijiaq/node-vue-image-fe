@@ -8,8 +8,8 @@
 
 <script lang="ts" setup>
 import { computed, ref, onUnmounted } from 'vue';
-import store from '../../app/app.store';
-import AppIcon from '../../app/components/app-icon.vue';
+import store from '../../app.store';
+import AppIcon from '../../components/app-icon.vue';
 
 const onKeyDownWindow = (event: any) => {
   const isCommandB = event.metaKey && event.key === 'b';

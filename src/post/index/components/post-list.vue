@@ -31,6 +31,8 @@ const props = defineProps({
 
 // sort.value = router.name === 'postIndexPopular' ? 'most_comments' : 'latest';
 
+store.commit('post/index/setposts', []);
+
 const loading = computed(() => store.getters['post/index/loading']);
 
 const fn = async () => {

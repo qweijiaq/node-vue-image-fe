@@ -9,6 +9,10 @@
     margin-left: 24px;
 }
 
+.app-toolbar-item.inactive {
+    opacity: 0.5;
+}
+
 .app-toolbar-item-layout-enter-active {
     opacity: 0;
     transform: scale(0.95);

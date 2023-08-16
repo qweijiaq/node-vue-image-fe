@@ -22,10 +22,13 @@ const filter = computed(() => ({
   action: 'published',
 }));
 
+const useAdmin = computed(() => store.getters['user/useAdmin']);
+
 const getManagePosts = () => {
   store.dispatch('post/index/getPosts', {
     filter: filter.value,
     manage: 'true',
+    admin: useAdmin.value,
   });
 };
 
@@ -37,6 +40,13 @@ watch(
   () => filter.value,
   () => {
     store.dispatch('post/index/getPosts', { filter: filter.value });
+  },
+);
+
+watch(
+  () => useAdmin.value,
+  () => {
+    getManagePosts();
   },
 );
 
