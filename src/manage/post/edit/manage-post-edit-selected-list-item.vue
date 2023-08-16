@@ -5,9 +5,10 @@
       <ManagePostStatusAction :post="item" />
     </div>
     <div class="actions">
-      <button class="button basic circle" @click="onClickRemoveButton(item)">
-        <AppIcon name="remove_circle_outline" color="#fff" size="16" />
-      </button>
+      <CircleButton
+        icon="remove_circle_outline"
+        @click="onClickRemoveButton(item)"
+      />
     </div>
   </div>
 </template>
@@ -15,8 +16,8 @@
 <script lang="ts" setup>
 import { computed, ref, reactive } from 'vue';
 import store from '../../../app/app.store';
-import AppIcon from '../../../app/components/app-icon.vue';
-import ManagePostStatusAction from '../../components/manage-selected-status.vue';
+import ManagePostStatusAction from '../components/manage-post-status-action.vue';
+import CircleButton from '../../../app/components/circle-button.vue';
 import { getImageBase64 } from '../../../file/file.service';
 
 const props = defineProps({

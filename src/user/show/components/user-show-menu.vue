@@ -68,7 +68,7 @@ const deleteUserAccountItem = () => {
 };
 
 watch(
-  props,
+  () => props.user?.id,
   () => {
     if (currentUser.value && currentUser.value.id === props.user?.id) {
       addUserAccountItem();
@@ -76,7 +76,6 @@ watch(
       deleteUserAccountItem();
     }
   },
-  { deep: true },
 );
 </script>
 

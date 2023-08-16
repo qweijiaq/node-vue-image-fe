@@ -217,6 +217,12 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
         return post;
       });
     },
+
+    resetPosts(state) {
+      state.posts = [];
+      state.nextPage = 1;
+      state.queryString = '';
+    },
   },
 
   actions: {

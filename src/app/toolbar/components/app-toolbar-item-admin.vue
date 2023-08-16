@@ -23,7 +23,7 @@ const appToolbarItemAdminClasses = computed(() => [
 const onClickadminButton = () => {
   store.commit('user/setUseAdmin', !useAdmin.value);
 
-  const query = useAdmin.value ? { admin: true } : {};
+  const query = useAdmin.value ? { manage: 'true', admin: 'true' } : {};
   router.replace({ query });
 };
 </script>

@@ -1,0 +1,6 @@
+.manage-post-audit-actions {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    display: flex;
+}

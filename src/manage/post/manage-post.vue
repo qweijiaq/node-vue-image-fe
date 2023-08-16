@@ -24,7 +24,7 @@ if (admin === 'true') {
 }
 
 if (useAdmin.value) {
-  router.replace({ query: { admin: true } });
+  router.replace({ query: { manage: 'true', admin: 'true' } });
 }
 </script>
 

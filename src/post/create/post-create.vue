@@ -1,5 +1,10 @@
 <template>
   <div class="post-create">
+    <PostAuditAction
+      v-if="postId"
+      :post="{ id: postId, audit }"
+      @change="onChangePostAuditAction"
+    />
     <FileCreate @change="onChangeFileCreate" />
     <PostTitleField />
     <PostContentField />
@@ -28,6 +33,7 @@ import PostActions from '../components/post-actions.vue';
 import PostMeta from '../components/post-meta.vue';
 import FileCreate from '../../file/create/file-create.vue';
 import PostStatusField from '../components/post-status-field.vue';
+import PostAuditAction from '../components/post-audit-action.vue';
 import { getImageBase64 } from '../../file/file.service';
 
 const title = computed(() => store.getters['post/create/title']);
@@ -39,15 +45,18 @@ const route = useRoute();
 
 const status = computed(() => store.getters['post/create/status']);
 
+const audit = computed(() => store.getters['post/create/audit']);
+
 const getPost = async (_postId: any) => {
   try {
     await store.dispatch('post/show/getPostById', _postId);
-    const { title, content, tags, file, status } = post.value;
+    const { title, content, tags, file, status, audit } = post.value;
     store.commit('post/create/setPostId', _postId);
     store.commit('post/create/setTitle', title);
     store.commit('post/create/setContent', content);
     store.commit('post/edit/setTags', tags);
     store.commit('post/create/setStatus', status);
+    store.commit('post/create/setAudit', audit);
     if (file) {
       const imageData = await getImageBase64(file.size.large);
       // store.commit('file/create/setSelectedFile');
@@ -78,6 +87,7 @@ const reset = () => {
   store.commit('file/create/setPreviewImage', null);
   postCache.value = null;
   store.commit('post/create/setStatus', null);
+  store.commit('post/create/setAudit', null);
 };
 
 watch(
@@ -212,6 +222,10 @@ const onChangeFileCreate = (files: any) => {
   } else {
     submitCreatePost();
   }
+};
+
+const onChangePostAuditAction = (audit: string) => {
+  store.commit('post/create/setAudit', audit);
 };
 </script>
 

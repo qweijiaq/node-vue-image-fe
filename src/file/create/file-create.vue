@@ -1,7 +1,10 @@
 <template>
   <div :class="fileCreateClasses">
     <FileCreateMedia v-if="previewImage" />
-    <FileCreateDragZone @change="onChangeDragZone" v-if="!uploading" />
+    <FileCreateDragZone
+      @change="onChangeDragZone"
+      v-if="showFileCreateDragZone"
+    />
     <FileCreateStatus v-if="uploading" />
   </div>
 </template>
@@ -56,6 +59,17 @@ const onChangeDragZone = async (files) => {
 };
 
 const uploading = computed(() => store.getters['file/create/uploading']);
+
+const isPendingAudit = computed(
+  () => store.getters['post/create/isPendingAudit'],
+);
+const isApprovedAudit = computed(
+  () => store.getters['post/create/isApprovedAudit'],
+);
+
+const showFileCreateDragZone = computed(() => {
+  return !uploading.value && !isPendingAudit.value && !isApprovedAudit.value;
+});
 </script>
 
 <style scoped>

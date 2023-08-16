@@ -29,11 +29,10 @@ const props = defineProps({
 const user = computed(() => store.getters['user/show/user']);
 
 watch(
-  props,
+  () => props.userId,
   () => {
     store.dispatch('user/show/getUserById', props.userId);
   },
-  { deep: true },
 );
 
 store.dispatch('user/show/getUserById', props.userId);

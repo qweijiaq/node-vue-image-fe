@@ -28,7 +28,7 @@ const getManagePosts = () => {
   store.dispatch('post/index/getPosts', {
     filter: filter.value,
     manage: 'true',
-    admin: useAdmin.value,
+    admin: '' + useAdmin.value,
   });
 };
 
@@ -39,7 +39,7 @@ if (currentUser.value) {
 watch(
   () => filter.value,
   () => {
-    store.dispatch('post/index/getPosts', { filter: filter.value });
+    getManagePosts();
   },
 );
 
@@ -62,9 +62,7 @@ onUpdated(() => {
         hasMore.value &&
         !loading.value
       ) {
-        store.dispatch('post/index/getPosts', {
-          filter: filter.value,
-        });
+        getManagePosts();
       }
     }
   }

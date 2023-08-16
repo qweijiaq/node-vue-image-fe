@@ -4,6 +4,10 @@ import { apiHttpClient } from '@/app/app.service';
 import { File } from '../../file/create/file-create.store';
 
 export interface PostCreateStoreState {
+  audit: {
+    id: number;
+    status: string;
+  } | null;
   status: string | null;
   unsaved: boolean;
   postId: number | null;
@@ -33,6 +37,7 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 数据
    */
   state: {
+    audit: null,
     status: null,
     unsaved: false,
     postId: null,
@@ -45,6 +50,10 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    audit(state) {
+      return state.audit;
+    },
+
     status(state) {
       return state.status;
     },
@@ -68,12 +77,24 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
     loading(state) {
       return state.loading;
     },
+
+    isPendingAudit(state) {
+      return state.audit && state.audit.status === 'pending';
+    },
+
+    isApprovedAudit(state) {
+      return state.audit && state.audit.status === 'approved';
+    },
   },
 
   /**
    * 修改器
    */
   mutations: {
+    setAudit(state, data) {
+      state.audit = data;
+    },
+
     setStatus(state, data) {
       state.status = data;
     },

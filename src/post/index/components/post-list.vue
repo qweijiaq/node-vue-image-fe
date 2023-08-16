@@ -31,7 +31,9 @@ const props = defineProps({
 
 // sort.value = router.name === 'postIndexPopular' ? 'most_comments' : 'latest';
 
-store.commit('post/index/setposts', []);
+store.commit('post/index/resetPosts');
+
+store.commit('post/index/setPosts', []);
 
 const loading = computed(() => store.getters['post/index/loading']);
 
@@ -96,15 +98,12 @@ onUnmounted(() => {
 });
 
 watch(
-  props,
+  () => [props.sort, props.filter],
   () => {
     store.dispatch('post/index/getPosts', {
       sort: props.sort,
       filter: props.filter,
     });
-  },
-  {
-    deep: true,
   },
 );
 </script>

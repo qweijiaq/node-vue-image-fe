@@ -1,0 +1,30 @@
+.post-audit-action {
+    position: absolute;
+    z-index: 333;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(30px);
+    border-radius: 25px;
+    margin: 16px;
+    padding: 8px;
+    display: flex;
+}
+
+.post-audit-action.compact {
+    backdrop-filter: unset;
+    padding: 0;
+    margin: 8px;
+}
+
+.post-audit-action>.text {
+    margin-left: 4px;
+    margin-right: 6px;
+}
+
+.post-audit-action>.text>.button {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.post-audit-action>.text>.button:disabled {
+    color: rgba(255, 255, 255, 0.8);
+}

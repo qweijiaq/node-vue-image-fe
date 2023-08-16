@@ -1,15 +1,17 @@
 <template>
   <div class="manage-post-status-action">
-    <button class="button basic circle" @click.stop="onClickStatusButton">
-      <AppIcon color="#fff" size="16" :name="postStatusIcon" />
-    </button>
+    <CircleButton
+      :icon="postStatusIcon"
+      :active="isActive"
+      @click="onClickStatusButton"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, reactive } from 'vue';
 import store from '../../../app/app.store';
-import AppIcon from '../../../app/components/app-icon.vue';
+import CircleButton from '../../../app/components/circle-button.vue';
 
 const props = defineProps({
   post: {
@@ -18,6 +20,10 @@ const props = defineProps({
 });
 
 const hasSelected = computed(() => store.getters['manage/select/hasSelected']);
+
+const isActive = computed(
+  () => props.post && props.post.status === 'published',
+);
 
 const postStatusIcon = computed(() => {
   let icon;
