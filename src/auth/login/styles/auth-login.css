@@ -1,0 +1,13 @@
+.auth-login {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.auth-login>.action {
+    text-align: right;
+}
+
+.auth-login>.action>.link {
+    color: var(--secondary-text-color);
+}

@@ -84,6 +84,11 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    name: 'userCreate',
+    path: '/register',
+    component: () => import('./create/user-create.vue'),
+  },
 ];
 
 /**

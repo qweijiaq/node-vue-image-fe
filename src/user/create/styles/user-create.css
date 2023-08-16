@@ -1,0 +1,23 @@
+.user-create {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.user-create>.action {
+    text-align: right;
+}
+
+.user-create>.action>.link {
+    color: var(--secondary-text-color);
+}
+
+.user-create>.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-create>.content>.description {
+    color: var(--secondary-text-color);
+}
