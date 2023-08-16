@@ -1,0 +1,36 @@
+.dashboard-access-count-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--light-background);
+}
+
+.dashboard-access-count-panel>.header {
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    margin-bottom: 24px;
+}
+
+.dashboard-access-count-panel>.content {
+    font-size: 44px;
+    font-weight: lighter;
+    text-align: center;
+    color: var(--secondary-text-color);
+    margin-bottom: 16px;
+}
+
+.dashboard-access-count-panel.large {
+    display: block;
+    grid-row-start: auto;
+    grid-row-end: span 2;
+    grid-column-start: auto;
+    grid-column-end: span 2;
+}
+
+.dashboard-access-count-panel.active {
+    background: var(--skeleton-background);
+}

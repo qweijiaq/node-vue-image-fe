@@ -1,0 +1,17 @@
+.dashboard-access-count-filter-datetime {
+    margin-bottom: 32px;
+    color: var(--secondary-text-color);
+    display: flex;
+}
+
+.dashboard-access-count-filter-datetime>.label {
+    margin-right: 8px;
+}
+
+.dashboard-access-count-filter-datetime>.label>.button {
+    color: var(--secondary-text-color);
+}
+
+.dashboard-access-count-filter-datetime>.fields {
+    display: flex;
+}

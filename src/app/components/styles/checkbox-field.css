@@ -9,6 +9,11 @@
     margin-right: 32px;
 }
 
+.checkbox-field.compact {
+    margin-right: 16px;
+    margin-bottom: 0;
+}
+
 .checkbox-field:last-child {
     margin-right: 0;
 }

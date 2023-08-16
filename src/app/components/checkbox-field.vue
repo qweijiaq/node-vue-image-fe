@@ -9,7 +9,7 @@
       :checked="isChecked"
       @change="onChangeInput"
     />
-    <div class="icon"></div>
+    <div class="icon" v-if="useIcon"></div>
     <div class="text">{{ text }}</div>
   </label>
 </template>
@@ -38,6 +38,11 @@ const props = defineProps({
 
   text: {
     type: String,
+  },
+
+  useIcon: {
+    type: Boolean,
+    default: false,
   },
 });
 

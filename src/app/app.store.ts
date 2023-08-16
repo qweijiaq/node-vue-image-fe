@@ -29,8 +29,10 @@ import {
 } from '@/app/search/app-search.store';
 
 import { AuditAuditStoreState, auditAuditStoreModule } from '@/audit/audit.store';
+import { DashboardStoreState, dashboardStoreModule } from '@/dashboard/dashboard.store';
 
 export interface RootState {
+  dashboard: DashboardStoreState,
   audit: AuditAuditStoreState,
   search: AppSearchStoreState;
   manage: ManageStoreState;
@@ -56,6 +58,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    dashboard: dashboardStoreModule,
     audit: auditAuditStoreModule,
     search: appSearchStoreModule,
     manage: manageStoreModule,
