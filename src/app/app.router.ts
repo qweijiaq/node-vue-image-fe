@@ -5,6 +5,7 @@ import authRoutes from '@/auth/auth.routes';
 import userRoutes from '@/user/user.routes';
 import manageRoutes from '@/manage/manage.routes';
 import dashboardRoutes from '@/dashboard/dashboard.routes';
+import weixinRoutes from '@/weixin/weixin.routes';
 import { appToolbarItemGuard, authGuard } from './app.router.guard';
 
 /**
@@ -19,6 +20,7 @@ const router = createRouter({
     ...userRoutes,
     ...manageRoutes,
     ...dashboardRoutes,
+    ...weixinRoutes,
   ],
 });
 

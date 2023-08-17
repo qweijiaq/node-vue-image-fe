@@ -76,3 +76,40 @@
 .button.circle.active {
     opacity: 0.8;
 }
+
+.button.outline.green {
+    color: #1bbb1f;
+    border-color: #1bbb1f;
+}
+
+.button.circle.large {
+    opacity: 1;
+    padding: 8px;
+    background: none;
+}
+
+.button.button.circle.large:active {
+    opacity: 0.8;
+}
+
+.button.icon.text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button.icon.text>.icon {
+    line-height: 0;
+}
+
+.button.icon.text>.text {
+    margin-left: 8px;
+}
+
+.button.large.relaxed {
+    padding: 24px 48px;
+}
+
+.button.fluid {
+    width: 100%;
+}

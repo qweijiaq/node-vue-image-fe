@@ -30,8 +30,10 @@ import {
 
 import { AuditAuditStoreState, auditAuditStoreModule } from '@/audit/audit.store';
 import { DashboardStoreState, dashboardStoreModule } from '@/dashboard/dashboard.store';
+import { WeixinStoreState, weixinStoreModule } from '@/weixin/weixin.store';
 
 export interface RootState {
+  weixin: WeixinStoreState,
   dashboard: DashboardStoreState,
   audit: AuditAuditStoreState,
   search: AppSearchStoreState;
@@ -58,6 +60,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    weixin: weixinStoreModule,
     dashboard: dashboardStoreModule,
     audit: auditAuditStoreModule,
     search: appSearchStoreModule,

@@ -11,3 +11,8 @@
 .auth-login>.action>.link {
     color: var(--secondary-text-color);
 }
+
+.auth-login>.form>.section.actions {
+    display: flex;
+    justify-content: space-between;
+}

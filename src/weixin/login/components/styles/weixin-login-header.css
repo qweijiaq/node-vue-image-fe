@@ -1,0 +1,18 @@
+.weixin-login-header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.weixin-login-header>.thumbnail {
+    margin-bottom: 24px;
+}
+
+.weixin-login-header>.header {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.weixin-login-header>.description {
+    color: var(--secondary-text-color);
+}

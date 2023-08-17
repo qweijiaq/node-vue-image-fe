@@ -1,0 +1,16 @@
+.weixin-login-iframe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weixin-login-iframe>.image.skeleton {
+    width: 200px;
+    height: 200px;
+    border-radius: 3px;
+    background: var(--skeleton-background);
+}
+
+.weixin-login-iframe.loading>.content {
+    opacity: 0;
+}

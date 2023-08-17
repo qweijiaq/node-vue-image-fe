@@ -8,12 +8,15 @@
         placeholder="请输入密码"
         type="password"
       />
-      <ButtonField
-        text="登录"
-        size="large"
-        :type="loginButtonType"
-        @click="onClickLoginBtn"
-      />
+      <div class="section actions">
+        <ButtonField
+          text="登录"
+          size="large"
+          :type="loginButtonType"
+          @click="onClickLoginBtn"
+        />
+        <WeixinLoginButton />
+      </div>
     </div>
     <div class="action">
       <router-link class="link" :to="registerLinkTo"> 注册 →</router-link>
@@ -27,6 +30,7 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import TextField from '../../app/components/text-field.vue';
 import ButtonField from '../../app/components/button-field.vue';
+import WeixinLoginButton from '../../weixin/login/components/weixin-login-button.vue';
 
 const store = useStore();
 const router = useRouter();
