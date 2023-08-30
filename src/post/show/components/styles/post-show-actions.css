@@ -1,6 +1,6 @@
 .post-show-actions {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
 }
 

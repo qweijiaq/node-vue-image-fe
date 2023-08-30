@@ -1,6 +1,7 @@
 .post-show-file-meta-kit {
     display: flex;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .post-show-file-meta-kit>.icon {

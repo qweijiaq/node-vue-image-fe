@@ -22,6 +22,7 @@ import appIcon from '../../../app/components/app-icon.vue';
 interface KitTypeItem {
   title: string;
   value: string;
+  url?: string;
 }
 
 const props = defineProps({

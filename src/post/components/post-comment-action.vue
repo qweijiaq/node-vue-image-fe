@@ -1,14 +1,12 @@
 <template>
   <div class="post-comment-action">
-    <div class="action">
-      <div class="icon">
-        <button class="button basic" @click="onClickCommentsBtn">
-          <AppIcon name="comment" />
-        </button>
-      </div>
-      <div class="text" v-if="post?.totalComments">
-        {{ post?.totalComments }}
-      </div>
+    <div class="icon">
+      <button class="button basic" @click="onClickCommentsBtn">
+        <AppIcon name="comment" />
+      </button>
+    </div>
+    <div class="text" v-if="post?.totalComments">
+      {{ post?.totalComments }}
     </div>
   </div>
 </template>

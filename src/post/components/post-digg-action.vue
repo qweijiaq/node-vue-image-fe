@@ -2,7 +2,7 @@
   <div class="post-digg-action">
     <div class="icon">
       <button class="button basic" @click="onClickDiggButton">
-        <appIcon :name="diggIcon" />
+        <AppIcon :name="diggIcon" />
       </button>
     </div>
     <div class="text" v-if="post.totalDiggs">

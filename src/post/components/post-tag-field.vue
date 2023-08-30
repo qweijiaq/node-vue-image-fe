@@ -30,13 +30,14 @@ import store from '../../app/app.store';
 import TextField from '../../app/components/text-field.vue';
 import AppIcon from '../../app/components/app-icon.vue';
 import PostTag from './post-tag.vue';
+import { Post } from '../show/post-show.store';
 
 const props = defineProps({
   postId: {
     type: Number,
   },
   posts: {
-    type: Array,
+    type: Array<Post>,
   },
 });
 
@@ -68,7 +69,10 @@ const submitCreatePostTag = async () => {
 
 const batchCreatePostTag = async () => {
   for (const post of props.posts!) {
-    if (post.tags && post.tags.some((tag) => tag.name === name.value.trim()))
+    if (
+      post.file.tags &&
+      post.file.tags.some((tag) => tag.name === name.value.trim())
+    )
       continue;
 
     try {
@@ -117,7 +121,8 @@ const submitDeletePostTag = async (tagId: number) => {
 
 const batchDeletePostTag = async (tagId: number) => {
   for (const post of props.posts) {
-    if (post.tags && !post.tags.some((tag) => tag.id == tagId)) continue;
+    if (post.file.tags && !post.file.tags.some((tag) => tag.id == tagId))
+      continue;
 
     try {
       await store.dispatch('post/edit/deletePostTag', {

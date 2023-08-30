@@ -1,7 +1,7 @@
 <template>
   <div class="post-show-file-meta">
     <postShowFileMetaKit :kit="kit" v-if="kit.length" />
-    <postShowFileMetaSpecs :specs="specs" v-if="kit.length" />
+    <postShowFileMetaSpecs :specs="specs" v-if="specs.length" />
   </div>
 </template>
 

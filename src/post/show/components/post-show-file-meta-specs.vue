@@ -1,19 +1,21 @@
 <template>
   <div class="post-show-file-meta-specs">
     <div class="icon">
-      <appIcon name="camera-alt" />
+      <AppIcon name="camera-alt" />
     </div>
     <div class="content">
       <div class="spec" v-for="(spec, index) in props.specs" :key="index">
         <div class="title">{{ spec.title }}</div>
-        <div class="value">{{ spec.value }}</div>
+        <div class="value">
+          {{ spec.value }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import appIcon from '../../../app/components/app-icon.vue';
+import AppIcon from '../../../app/components/app-icon.vue';
 
 interface SpecsTypeItem {
   title: string;
