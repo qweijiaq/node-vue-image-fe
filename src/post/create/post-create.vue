@@ -69,12 +69,12 @@ const getPost = async (_postId: any) => {
   }
 };
 
-const { post: post_id } = route.query;
+const { post: postId } = route.query;
 
 const postCache = ref(null);
 
-if (post_id) {
-  getPost(parseInt(post_id as string, 10));
+if (postId) {
+  getPost(parseInt(postId as string, 10));
 }
 
 const reset = () => {

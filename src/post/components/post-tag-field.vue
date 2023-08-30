@@ -106,7 +106,7 @@ const submitDeletePostTag = async (tagId: number) => {
   try {
     await store.dispatch('post/edit/deletePostTag', {
       postId: props.postId,
-      tag_id: tagId,
+      tagId: tagId,
     });
   } catch (error: any) {
     store.dispatch('notification/pushMessage', {
@@ -122,7 +122,7 @@ const batchDeletePostTag = async (tagId: number) => {
     try {
       await store.dispatch('post/edit/deletePostTag', {
         postId: post.id,
-        tag_id: tagId,
+        tagId: tagId,
       });
     } catch (error) {
       continue;

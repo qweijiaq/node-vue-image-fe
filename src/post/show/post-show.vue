@@ -94,22 +94,22 @@ const onClickPostHandle = () => {
 
 const filterItems = computed(() => store.getters['post/index/filterItems']);
 
-const onUserDiggPostCreated = ({ post_id, socketId }) => {
-  // console.log(post_id, socketId);
+const onUserDiggPostCreated = ({ postId, socketId }) => {
+  // console.log(postId, socketId);
   if (socket.id === socketId) return;
 
   store.commit('post/show/setPostTotalDiggs', {
-    post_id,
+    postId,
     actionType: 'increase',
   });
 };
 
-const onUserDiggPostDeleted = ({ post_id, socketId }) => {
-  // console.log(post_id, socketId);
+const onUserDiggPostDeleted = ({ postId, socketId }) => {
+  // console.log(postId, socketId);
   if (socket.id === socketId) return;
 
   store.commit('post/show/setPostTotalDiggs', {
-    post_id,
+    postId,
     actionType: 'decrease',
   });
 };

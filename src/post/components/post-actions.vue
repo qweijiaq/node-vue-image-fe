@@ -43,7 +43,7 @@ const props = defineProps({
 
 const emits = defineEmits(['update', 'create', 'delete']);
 
-// const { post: post_id } = route.query;
+// const { post: postId } = route.query;
 
 const unsaved = computed(() => store.getters['post/create/unsaved']);
 const postId = computed(() => store.getters['post/create/postId']);

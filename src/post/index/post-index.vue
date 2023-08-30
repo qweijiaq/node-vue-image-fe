@@ -23,20 +23,20 @@ const props = defineProps({
 
 const filterItems = computed(() => store.getters['post/index/filterItems']);
 
-const onUserDiggPostCreated = ({ post_id, socketId }) => {
+const onUserDiggPostCreated = ({ postId, socketId }) => {
   if (socket.id === socketId) return;
 
   store.commit('post/index/setPostItemTotalDiggs', {
-    post_id,
+    postId,
     actionType: 'increase',
   });
 };
 
-const onUserDiggPostDeleted = ({ post_id, socketId }) => {
+const onUserDiggPostDeleted = ({ postId, socketId }) => {
   if (socket.id === socketId) return;
 
   store.commit('post/index/setPostItemTotalDiggs', {
-    post_id,
+    postId,
     actionType: 'decrease',
   });
 };

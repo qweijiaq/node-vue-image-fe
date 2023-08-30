@@ -19,3 +19,10 @@ export const COMMENTS_PER_PAGE = parseInt(
   process.env.VUE_APP_API_COMMENTS_PER_PAGE,
   10,
 );
+
+// 微信登录
+export const WEIXIN_WEBSITE_APP_ID = process.env.VUE_APP_WEIXIN_WEBSITE_APP_ID;
+export const WEIXIN_LOGIN_REDIRECT_URI =
+  process.env.VUE_APP_WEIXIN_LOGIN_REDIRECT_URI;
+export const WEIXIN_LOGIN_CCUSTOM_STYLE =
+  process.env.VUE_APP_WEIXIN_LOGIN_CCUSTOM_STYLE;

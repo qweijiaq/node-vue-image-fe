@@ -8,7 +8,7 @@ export interface ReplyCreateStoreState {
 
 export interface CreateReplyOptions {
   commentId?: number;
-  post_id?: number;
+  postId?: number;
   content?: string;
 }
 
@@ -51,11 +51,11 @@ export const replyCreateStoreModule: Module<ReplyCreateStoreState, RootState> =
       async createReply({ commit }, options: CreateReplyOptions = {}) {
         commit('setLoading', true);
 
-        const { commentId, post_id, content } = options;
+        const { commentId, postId, content } = options;
 
         try {
           const response = await apiHttpClient.post(`comments/${commentId}`, {
-            post_id,
+            postId,
             content,
           });
           commit('setLoading', false);

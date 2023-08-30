@@ -30,7 +30,7 @@ export interface CreatePostTagOptions {
 
 export interface DeletePostTagOptions {
   postId?: number;
-  tag_id?: number;
+  tagId?: number;
 }
 
 export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
@@ -139,11 +139,11 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
     ) {
       commit('setLoading', true);
 
-      const { postId, tag_id } = options;
+      const { postId, tagId } = options;
 
       try {
         const response = await apiHttpClient.delete(`posts/${postId}/tag`, {
-          data: { tag_id },
+          data: { tagId },
         });
 
         const { data: post } = await dispatch('post/show/getPostById', postId, {

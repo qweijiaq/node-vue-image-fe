@@ -68,7 +68,7 @@ const submitComment = async () => {
 
   try {
     await store.dispatch('comment/create/createComment', {
-      post_id: sideSheetProps.value.filter.post,
+      postId: sideSheetProps.value.filter.post,
       content: content.value,
     });
     content.value = '';

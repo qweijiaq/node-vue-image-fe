@@ -7,7 +7,7 @@ export interface CommentCreateStoreState {
 }
 
 export interface CreateCommentOptions {
-  post_id?: number;
+  postId?: number;
   content?: string;
 }
 
@@ -55,11 +55,11 @@ export const commentCreateStoreModule: Module<
     ) {
       commit('setLoading', true);
 
-      const { post_id, content } = options;
+      const { postId, content } = options;
 
       try {
         const response = await apiHttpClient.post(`comments`, {
-          post_id,
+          postId,
           content,
         });
         commit('setLoading', false);
@@ -67,7 +67,7 @@ export const commentCreateStoreModule: Module<
 
         dispatch(
           'comment/index/getComments',
-          { filter: { post: post_id } },
+          { filter: { post: postId } },
           { root: true },
         );
 

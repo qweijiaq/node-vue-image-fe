@@ -42,7 +42,7 @@ const submitReply = async () => {
   try {
     await store.dispatch('reply/create/createReply', {
       commentId: props.comment.id,
-      post_id: props.comment.post.id,
+      postId: props.comment.post.id,
       content: content.value,
     });
     content.value = '';
