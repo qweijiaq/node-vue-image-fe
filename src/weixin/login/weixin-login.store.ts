@@ -1,6 +1,25 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 import { apiHttpClient } from '@/app/app.service';
+import { User } from '../../user/show/user-show.store';
+
+export interface WeixinLoginOptions {
+  user: User;
+  token: { id: number; name: string; token: string };
+}
+
+export interface WeixinUserInfo {
+  openid?: string;
+  nickname?: string;
+  sex?: number;
+  language?: string;
+  city?: string;
+  province?: string;
+  country?: string;
+  headimgUrl?: string;
+  privilege?: Array<string>;
+  unionid?: string;
+}
 
 export interface loginStep {
   name: string;
@@ -16,6 +35,7 @@ export interface connectOption {
 }
 
 export interface WeixinLoginStoreState {
+  weixinUserInfo: WeixinUserInfo | null;
   currentLoginStepName: string;
   loading: boolean;
   loginSteps: Array<loginStep>;
@@ -23,7 +43,10 @@ export interface WeixinLoginStoreState {
 }
 
 export interface WeixinLoginConnectOptions {
-  data?: null;
+  data: {
+    name: string;
+    password: string;
+  };
 }
 
 export const weixinLoginStoreModule: Module<WeixinLoginStoreState, RootState> =
@@ -37,6 +60,7 @@ export const weixinLoginStoreModule: Module<WeixinLoginStoreState, RootState> =
      * 数据
      */
     state: {
+      weixinUserInfo: null,
       connectOptions: [
         {
           title: '关联本站已有账户',
@@ -61,7 +85,7 @@ export const weixinLoginStoreModule: Module<WeixinLoginStoreState, RootState> =
         {
           name: 'connectAccount',
           title: '关联账户',
-          description: '关联您的微信账户和本账户',
+          description: '关联您的微信账户和本站账户',
           component: 'WeixinLoginConnect',
         },
         {
@@ -80,7 +104,6 @@ export const weixinLoginStoreModule: Module<WeixinLoginStoreState, RootState> =
           name: 'connectAccountCompleted',
           title: '关联成功',
           description: '成功地关联了您的微信账户与本站账户 :)',
-          component: 'WeixinLoginAccount',
         },
       ],
     } as WeixinLoginStoreState,
@@ -89,6 +112,10 @@ export const weixinLoginStoreModule: Module<WeixinLoginStoreState, RootState> =
      * 获取器
      */
     getters: {
+      weixinUserInfo(state) {
+        return state.weixinUserInfo;
+      },
+
       connectOptions(state) {
         return state.connectOptions;
       },
@@ -118,6 +145,10 @@ export const weixinLoginStoreModule: Module<WeixinLoginStoreState, RootState> =
      * 修改器
      */
     mutations: {
+      setWeixinUserInfo(state, data) {
+        state.weixinUserInfo = data;
+      },
+
       setCurrentLoginStepName(state, data) {
         state.currentLoginStepName = data;
       },
@@ -135,15 +166,79 @@ export const weixinLoginStoreModule: Module<WeixinLoginStoreState, RootState> =
      * 动作
      */
     actions: {
+      weixinLogin({ commit, dispatch }, options: WeixinLoginOptions) {
+        const { user, token } = options;
+
+        commit('auth/setToken', token, { root: true });
+        commit('user/setCurrentUser', user, { root: true });
+        commit(
+          'auth/login/setLoginResponseData',
+          { id: user.id, token },
+          { root: true },
+        );
+
+        dispatch('auth/configApiHttpClientAuthHeader', token, { root: true });
+      },
+
       async weixinLoginConnect(
-        { commit },
-        options: WeixinLoginConnectOptions = {},
+        { commit, state, dispatch },
+        options: WeixinLoginConnectOptions,
       ) {
         commit('setLoading', true);
 
+        const data = {
+          ...options.data,
+          weixinUserInfo: state.weixinUserInfo,
+        };
+
         try {
-          const response = await apiHttpClient.get(`resources`);
+          const response = await apiHttpClient.post(
+            `weixin-login/connect`,
+            data,
+          );
           commit('setLoading', false);
+
+          const { user, token } = response.data;
+
+          dispatch('weixinLogin', { user, token });
+
+          dispatch('user/getCurrentUser', user.id, { root: true });
+
+          return response;
+        } catch (error) {
+          commit('setLoading', false);
+
+          const _error = error as any;
+
+          if (_error.response) {
+            throw _error.response;
+          }
+        }
+      },
+
+      async weixinLoginCreateConnect(
+        { commit, state, dispatch },
+        options: WeixinLoginConnectOptions,
+      ) {
+        commit('setLoading', true);
+
+        const data = {
+          ...options.data,
+          weixinUserInfo: state.weixinUserInfo,
+        };
+
+        try {
+          const response = await apiHttpClient.post(
+            `weixin-login/create-connect`,
+            data,
+          );
+          commit('setLoading', false);
+
+          const { user, token } = response.data;
+
+          dispatch('weixinLogin', { user, token });
+
+          dispatch('user/getCurrentUser', user.id, { root: true });
 
           return response;
         } catch (error) {

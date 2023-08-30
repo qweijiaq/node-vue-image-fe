@@ -24,8 +24,10 @@ const connectOptions = computed(
   () => store.getters['weixin/login/connectOptions'],
 );
 
-const onClickOptionButton = (value) =>
+const onClickOptionButton = (value) => {
+  console.log(value);
   store.commit('weixin/login/setCurrentLoginStepName', value);
+};
 </script>
 
 <style scoped>

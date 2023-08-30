@@ -2,7 +2,11 @@
   <div class="weixin-login-account">
     <div class="form">
       <TextField v-model="formData.name" placeholder="请输入用户" />
-      <TextField v-model="formData.password" placeholder="请输入密码" />
+      <TextField
+        v-model="formData.password"
+        placeholder="请输入密码"
+        type="password"
+      />
       <IconTextButton
         :icon="selectedConnectOption.icon"
         :text="submitButtonText"
@@ -48,7 +52,7 @@ const submitButtonText = computed(
 
 const nextOption = computed(() =>
   connectOptions.value.find(
-    (option) => option.value !== selectedConnectOption.value,
+    (option) => option.value !== selectedConnectOption.value.value,
   ),
 );
 
@@ -58,12 +62,27 @@ const onClickSubmitButton = async () => {
   try {
     switch (selectedConnectOption.value.value) {
       case 'verifyAccount':
-        console.log(selectedConnectOption.value.title);
+        await store.dispatch('weixin/login/weixinLoginConnect', {
+          data: {
+            name: formData.name,
+            password: formData.password,
+          },
+        });
         break;
       case 'createAccount':
-        console.log(selectedConnectOption.value.title);
+        await store.dispatch('weixin/login/weixinLoginCreateConnect', {
+          data: {
+            name: formData.name,
+            password: formData.password,
+          },
+        });
         break;
     }
+
+    store.commit(
+      'weixin/login/setCurrentLoginStepName',
+      'connectAccountCompleted',
+    );
   } catch (error) {
     store.dispatch('notification/pushMessage', {
       content: error.data.message,

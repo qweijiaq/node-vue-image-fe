@@ -14,6 +14,7 @@ import {
 import { UserCreateStoreState, userCreateStoreModule } from '@/user/create/user-create.store';
 
 export interface UserStoreState {
+  socketId: string,
   create: UserCreateStoreState,
   useAdmin: boolean;
   currentUser: User | null;
@@ -31,6 +32,7 @@ export const userStoreModule: Module<UserStoreState, RootState> = {
    * 数据
    */
   state: {
+    socketId: '',
     useAdmin: false,
     currentUser: null,
   } as UserStoreState,
@@ -39,6 +41,10 @@ export const userStoreModule: Module<UserStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    socketId(state) {
+      return state.socketId;
+    },
+
     useAdmin(state) {
       return state.useAdmin;
     },
@@ -60,6 +66,10 @@ export const userStoreModule: Module<UserStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setSocketId(state, data) {
+      state.socketId = data;
+    },
+
     setUseAdmin(state, data) {
       state.useAdmin = data;
     },

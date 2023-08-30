@@ -26,6 +26,7 @@ if (userId) {
 // 设置请求头部
 socket.on('connect', () => {
   apiHttpClient.defaults.headers.common['X-Socket-Id'] = socket.id;
+  store.commit('user/setSocketId', socket.id);
 });
 </script>
 
