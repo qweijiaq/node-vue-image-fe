@@ -11,11 +11,14 @@ import {
   userAccountStoreModule,
 } from './account/user-account.store';
 
-import { UserCreateStoreState, userCreateStoreModule } from '@/user/create/user-create.store';
+import {
+  UserCreateStoreState,
+  userCreateStoreModule,
+} from '@/user/create/user-create.store';
 
 export interface UserStoreState {
-  socketId: string,
-  create: UserCreateStoreState,
+  socketId: string;
+  create: UserCreateStoreState;
   useAdmin: boolean;
   currentUser: User | null;
   show: UserShowStoreState;
@@ -59,6 +62,14 @@ export const userStoreModule: Module<UserStoreState, RootState> = {
 
     canUseAdmin(state) {
       return state.currentUser && state.currentUser.id === 1 && state.useAdmin;
+    },
+
+    hasValidSubscription(state) {
+      return (
+        state.currentUser &&
+        state.currentUser.subscription &&
+        state.currentUser.subscription.status === 'valid'
+      );
     },
   },
 

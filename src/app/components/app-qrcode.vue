@@ -9,7 +9,7 @@ import QRcode from 'qrcode-svg';
 const props = defineProps({
   content: {
     type: String,
-    default: 'https://ninghao.net',
+    default: 'http://blog.wei-jia.top',
   },
 
   padding: {
@@ -34,8 +34,10 @@ const props = defineProps({
 });
 
 const qrcodeSvg = computed(() => {
+  const content = props.content ? props.content : 'http://blog.wei-jia.top';
+
   const qrcode = new QRcode({
-    content: props.content,
+    content,
     container: 'svg-viewbox',
     join: true,
     width: props.size,

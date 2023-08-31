@@ -31,8 +31,12 @@ import {
 import { AuditAuditStoreState, auditAuditStoreModule } from '@/audit/audit.store';
 import { DashboardStoreState, dashboardStoreModule } from '@/dashboard/dashboard.store';
 import { WeixinStoreState, weixinStoreModule } from '@/weixin/weixin.store';
+import { DownloadStoreState, downloadStoreModule } from '@/download/download.store';
+import { LicenseStoreState, licenseStoreModule } from '@/license/license.store';
 
 export interface RootState {
+  license: LicenseStoreState,
+  download: DownloadStoreState,
   weixin: WeixinStoreState,
   dashboard: DashboardStoreState,
   audit: AuditAuditStoreState,
@@ -60,6 +64,8 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    license: licenseStoreModule,
+    download: downloadStoreModule,
     weixin: weixinStoreModule,
     dashboard: dashboardStoreModule,
     audit: auditAuditStoreModule,

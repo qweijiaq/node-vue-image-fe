@@ -6,6 +6,10 @@ export interface User {
   id: number;
   name: string;
   avatar: number | null;
+  subscription: {
+    type: string;
+    status: string;
+  } | null;
 }
 
 export interface UserShowStoreState {

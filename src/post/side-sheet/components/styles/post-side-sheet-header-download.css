@@ -6,8 +6,42 @@
     color: rgba(255, 255, 255, .3);
 }
 
-.post-side-sheet-header-download>.image {
+.post-side-sheet-header-download>.media {
     margin-bottom: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-side-sheet-header-download>.media>.image.mask::after {
+    position: absolute;
+    top: 0;
+    display: block;
+    content: '';
+    background: rgba(255, 255, 255, 0.05);
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(3px);
+}
+
+.post-side-sheet-header-download>.media>.action {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-side-sheet-header-download>.media>.action>.button {
+    height: 100%;
+    width: 100%;
+}
+
+.post-side-sheet-header-download>.media>.action>.button:active {
+    opacity: 0.6;
 }
 
 .post-side-sheet-header-download>.header {
