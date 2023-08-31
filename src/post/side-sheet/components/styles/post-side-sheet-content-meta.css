@@ -1,0 +1,15 @@
+.post-side-sheet-content-meta {
+    margin-bottom: 32px;
+    min-height: 130px;
+}
+
+.post-side-sheet-content-meta>.item {
+    display: flex;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.post-side-sheet-content-meta>.item>.title {
+    margin-right: 8px;
+    font-weight: bold;
+}

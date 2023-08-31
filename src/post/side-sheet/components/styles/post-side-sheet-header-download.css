@@ -1,0 +1,30 @@
+.post-side-sheet-header-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, .3);
+}
+
+.post-side-sheet-header-download>.image {
+    margin-bottom: 16px;
+}
+
+.post-side-sheet-header-download>.header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.post-side-sheet-header-download>.description {
+    font-size: 14px;
+    font-weight: lighter;
+    max-width: 200px;
+    text-align: center;
+    line-height: 16px;
+    margin-bottom: 16px;
+}
+
+.post-side-sheet-header-download>.action {
+    margin-bottom: 16px;
+}
