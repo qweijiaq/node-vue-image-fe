@@ -95,11 +95,7 @@ export const licenseValidStoreModule: Module<
       } catch (error) {
         commit('setLoading', false);
 
-        const _error = error as any;
-
-        if (_error.response) {
-          throw _error.response;
-        }
+        throw error.response;
       }
     },
   },

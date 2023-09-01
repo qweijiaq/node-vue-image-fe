@@ -1,5 +1,5 @@
 <template>
-  <label class="checkbox-field" :for="id">
+  <label :class="checkboxFieldClasses" :for="id">
     <input
       class="input"
       type="radio"
@@ -11,6 +11,7 @@
     />
     <div class="icon" v-if="useIcon"></div>
     <div class="text">{{ text }}</div>
+    <slot></slot>
   </label>
 </template>
 
@@ -55,7 +56,7 @@ const isChecked = computed(() => {
   if (isArray.value) {
     isChecked = props.modelValue?.includes(props.value);
   } else {
-    isChecked = props.modelValue === props.value;
+    isChecked = (props.modelValue as any) === props.value;
   }
 
   return isChecked;
@@ -74,6 +75,11 @@ const onChangeInput = (event: any) => {
 
   emits('update:modelValue', value);
 };
+
+const checkboxFieldClasses = computed(() => [
+  'checkbox-field',
+  { active: isChecked.value },
+]);
 </script>
 
 <style scoped>

@@ -95,7 +95,18 @@ export const postSideSheetStoreModule: Module<
   /**
    * 动作
    */
-  actions: {},
+  actions: {
+    async initialize({ dispatch, rootGetters }) {
+      // 检查下载权限
+      await dispatch('download/getDownloadPermission', null, { root: true });
+      if (rootGetters['download/canDownload']) return;
+
+      // 获取支付方法
+      if (!rootGetters['payment/index/hasPayments']) {
+        await dispatch('payment/index/getPayments', null, { root: true });
+      }
+    },
+  },
 
   /**
    * 模块

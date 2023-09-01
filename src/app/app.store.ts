@@ -28,18 +28,32 @@ import {
   appSearchStoreModule,
 } from '@/app/search/app-search.store';
 
-import { AuditAuditStoreState, auditAuditStoreModule } from '@/audit/audit.store';
-import { DashboardStoreState, dashboardStoreModule } from '@/dashboard/dashboard.store';
+import {
+  AuditAuditStoreState,
+  auditAuditStoreModule,
+} from '@/audit/audit.store';
+import {
+  DashboardStoreState,
+  dashboardStoreModule,
+} from '@/dashboard/dashboard.store';
 import { WeixinStoreState, weixinStoreModule } from '@/weixin/weixin.store';
-import { DownloadStoreState, downloadStoreModule } from '@/download/download.store';
+import {
+  DownloadStoreState,
+  downloadStoreModule,
+} from '@/download/download.store';
 import { LicenseStoreState, licenseStoreModule } from '@/license/license.store';
+import {
+  PaymentStoreState,
+  paymentStoreModule,
+} from '../payment/payment.store';
 
 export interface RootState {
-  license: LicenseStoreState,
-  download: DownloadStoreState,
-  weixin: WeixinStoreState,
-  dashboard: DashboardStoreState,
-  audit: AuditAuditStoreState,
+  payment: PaymentStoreState;
+  license: LicenseStoreState;
+  download: DownloadStoreState;
+  weixin: WeixinStoreState;
+  dashboard: DashboardStoreState;
+  audit: AuditAuditStoreState;
   search: AppSearchStoreState;
   manage: ManageStoreState;
   digg: DiggStoreState;
@@ -64,6 +78,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    payment: paymentStoreModule,
     license: licenseStoreModule,
     download: downloadStoreModule,
     weixin: weixinStoreModule,

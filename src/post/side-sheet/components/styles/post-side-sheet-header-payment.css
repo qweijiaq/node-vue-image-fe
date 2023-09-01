@@ -1,0 +1,64 @@
+.post-side-sheet-header-payment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, .3);
+}
+
+.post-side-sheet-header-payment>.media {
+    margin-bottom: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-side-sheet-header-payment>.media>.image.mask::after {
+    position: absolute;
+    top: 0;
+    display: block;
+    content: '';
+    background: rgba(255, 255, 255, 0.05);
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(3px);
+}
+
+.post-side-sheet-header-payment>.media>.action {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-side-sheet-header-payment>.media>.action>.button {
+    height: 100%;
+    width: 100%;
+}
+
+.post-side-sheet-header-payment>.media>.action>.button:active {
+    opacity: 0.6;
+}
+
+.post-side-sheet-header-payment>.header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.post-side-sheet-header-payment>.description {
+    font-size: 14px;
+    font-weight: lighter;
+    max-width: 200px;
+    text-align: center;
+    line-height: 16px;
+    margin-bottom: 16px;
+}
+
+.post-side-sheet-header-payment>.action {
+    margin-bottom: 16px;
+}

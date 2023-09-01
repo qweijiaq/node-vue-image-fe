@@ -60,3 +60,39 @@
 .checkbox-field>.input:checked~.icon::after {
     visibility: visible;
 }
+
+.checkbox-field.outline {
+    border: 2px solid var(--line-color);
+    padding: 16px;
+}
+
+.checkbox-field.outline.active.green,
+.checkbox-field.outline.active.green>.text,
+.checkbox-field.outline.active.green>.icon,
+.checkbox-field.outline.active.green>.icon::after {
+    color: #1bbb1f;
+    border-color: #1bbb1f;
+}
+
+.checkbox-field.outline.active.blue,
+.checkbox-field.outline.active.blue>.text,
+.checkbox-field.outline.active.blue>.icon,
+.checkbox-field.outline.active.blue>.icon::after {
+    color: #06b4fd;
+    border-color: #06b4fd;
+}
+
+.checkbox-field>.text {
+    flex-grow: 2;
+}
+
+.checkbox-field>.extra {
+    transform: translateX(16px);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.checkbox-field.active>.extra {
+    transform: translateX(0);
+    opacity: 1;
+}

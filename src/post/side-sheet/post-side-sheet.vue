@@ -15,20 +15,29 @@ import PostSideSheetActions from './components/post-side-sheet-actions';
 import PostSideSheetFooter from './components/post-side-sheet-footer';
 import store from '../../app/app.store';
 
-const canDownload = computed(() => store.getters['download/canDownload']);
 const sideSheetProps = computed(() => store.getters['layout/sideSheetProps']);
 
 const fn = async () => {
-  await store.dispatch('download/getDownloadPermission');
-  console.log(canDownload.value);
+  try {
+    await store.dispatch('post/sideSheet/initialize');
+  } catch (error) {
+    store.dispatch('notification/pushMessage', {
+      content: error.data.message,
+    });
+  }
 };
 fn();
 
 watch(
   () => sideSheetProps.value,
   async () => {
-    await store.dispatch('download/getDownloadPermission');
-    console.log(canDownload.value);
+    try {
+      await store.dispatch('post/sideSheet/initialize');
+    } catch (error) {
+      store.dispatch('notification/pushMessage', {
+        content: error.data.message,
+      });
+    }
   },
 );
 </script>
