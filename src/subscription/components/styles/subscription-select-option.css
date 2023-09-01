@@ -1,0 +1,43 @@
+.subscription-select-option {
+    margin-bottom: 16px;
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.subscription-select-option>.header {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.subscription-select-option>.header>.title {
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.subscription-select-option>.header>.meta {
+    position: absolute;
+    right: 0;
+}
+
+.subscription-select-option>.content {
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.subscription-select-option>.content>.icon {
+    font-size: 18px;
+}
+
+.subscription-select-option>.content>.description>.line {
+    margin-bottom: 4px;
+}
+
+.subscription-select-option.active {
+    color: var(--primary-text-color);
+    background: var(--sekeleton-background);
+}

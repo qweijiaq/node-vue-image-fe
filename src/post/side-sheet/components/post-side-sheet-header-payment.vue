@@ -33,8 +33,17 @@ const selectedPaymentName = computed(
 );
 const payments = computed(() => store.getters['payment/index/payments']);
 
+const selectedProduct = computed(
+  () => store.getters['product/select/selectedProduct'],
+);
+
 const headerText = computed(() => {
-  return '购买产品';
+  let headerText = '支付';
+
+  if (selectedProduct.value) {
+    headerText = `支付${selectedProduct.value.title}`;
+  }
+  return headerText;
 });
 
 const onClickPaymentIconButton = () => {

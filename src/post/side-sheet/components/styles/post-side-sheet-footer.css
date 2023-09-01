@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: space-between;
     color: var(--secondary-text-color);
-    padding: 16px 24px;
+    padding: 8px 24px;
     border-top: 1px solid var(--line-color);
     backdrop-filter: blur(4px);
 }

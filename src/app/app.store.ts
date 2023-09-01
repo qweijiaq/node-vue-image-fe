@@ -42,12 +42,16 @@ import {
   downloadStoreModule,
 } from '@/download/download.store';
 import { LicenseStoreState, licenseStoreModule } from '@/license/license.store';
+
 import {
   PaymentStoreState,
   paymentStoreModule,
 } from '../payment/payment.store';
 
+import { ProductStoreState, productStoreModule } from '@/product/product.store';
+
 export interface RootState {
+  product: ProductStoreState,
   payment: PaymentStoreState;
   license: LicenseStoreState;
   download: DownloadStoreState;
@@ -78,6 +82,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    product: productStoreModule,
     payment: paymentStoreModule,
     license: licenseStoreModule,
     download: downloadStoreModule,

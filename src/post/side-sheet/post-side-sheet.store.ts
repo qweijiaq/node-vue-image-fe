@@ -105,6 +105,18 @@ export const postSideSheetStoreModule: Module<
       if (!rootGetters['payment/index/hasPayments']) {
         await dispatch('payment/index/getPayments', null, { root: true });
       }
+
+      // 获取许可产品
+      if (!rootGetters['product/show/hasLicenseProduct']) {
+        await dispatch('product/show/getLicenseProduct', null, { root: true });
+      }
+
+      // 获取订阅产品
+      if (!rootGetters['product/show/hasSubscriptionProducts']) {
+        await dispatch('product/show/getSubscriptionProducts', null, {
+          root: true,
+        });
+      }
     },
   },
 

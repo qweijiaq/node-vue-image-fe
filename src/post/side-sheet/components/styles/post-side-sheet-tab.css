@@ -1,0 +1,38 @@
+.post-side-sheet-tab {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 24px;
+    margin-bottom: 24px;
+}
+
+.post-side-sheet-tab>.item {
+    border: 1px solid var(--line-color);
+    width: 100%;
+    text-align: center;
+}
+
+.post-side-sheet-tab>.item:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right: 0;
+}
+
+.post-side-sheet-tab>.item:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.post-side-sheet-tab>.item>.button {
+    font-size: 14px;
+    color: var(--secondary-text-color) !important;
+    padding: 8px;
+    width: 100%;
+}
+
+.post-side-sheet-tab>.item.active {
+    background: var(--light-background);
+}
+
+.post-side-sheet-tab>.item.active>.button {
+    color: var(--primary-text-color) !important;
+}

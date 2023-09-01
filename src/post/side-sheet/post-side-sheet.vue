@@ -1,6 +1,7 @@
 <template>
   <div class="post-side-sheet">
     <PostSideSheetHeader />
+    <PostSideSheetTab />
     <PostSideSheetContent />
     <PostSideSheetActions />
     <PostSideSheetFooter />
@@ -13,6 +14,7 @@ import PostSideSheetContent from './components/post-side-sheet-content';
 import PostSideSheetHeader from './components/post-side-sheet-header';
 import PostSideSheetActions from './components/post-side-sheet-actions';
 import PostSideSheetFooter from './components/post-side-sheet-footer';
+import PostSideSheetTab from './components/post-side-sheet-tab';
 import store from '../../app/app.store';
 
 const sideSheetProps = computed(() => store.getters['layout/sideSheetProps']);
