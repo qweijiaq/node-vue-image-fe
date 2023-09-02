@@ -50,8 +50,10 @@ import {
 
 import { ProductStoreState, productStoreModule } from '@/product/product.store';
 import { OrderStoreState, orderStoreModule } from '@/order/order.store';
+import { SubscriptionStoreState, subscriptionStoreModule } from '@/subscription/subscription.store';
 
 export interface RootState {
+  subscription: SubscriptionStoreState,
   order: OrderStoreState,
   product: ProductStoreState,
   payment: PaymentStoreState;
@@ -84,6 +86,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    subscription: subscriptionStoreModule,
     order: orderStoreModule,
     product: productStoreModule,
     payment: paymentStoreModule,

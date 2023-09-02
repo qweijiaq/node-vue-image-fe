@@ -1,0 +1,8 @@
+.subscription-signup-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subscription-signup-content.stack {
+    flex-direction: column;
+}

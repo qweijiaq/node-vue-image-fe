@@ -49,3 +49,7 @@
     font-size: 14px;
     margin-left: 4px;
 }
+
+.post-list-item-content>.header>.meta>.user-name>.text {
+    padding-bottom: 3px;
+}

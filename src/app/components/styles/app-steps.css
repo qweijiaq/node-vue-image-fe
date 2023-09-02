@@ -1,0 +1,18 @@
+.app-steps {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--secondary-text-color);
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.app-steps::after {
+    display: block;
+    content: '';
+    width: 100%;
+    border-bottom: 1px solid var(--line-color);
+    position: absolute;
+    top: 50%;
+    z-index: 9;
+}

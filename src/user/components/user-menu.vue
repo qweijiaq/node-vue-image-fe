@@ -99,6 +99,17 @@ const menu = computed(() => {
         text: '管理',
       },
     ],
+    [
+      {
+        linkTo: {
+          name: 'subscription',
+          params: {
+            userId: currentUser.value.id,
+          },
+        },
+        text: '订阅',
+      },
+    ],
   ];
 });
 

@@ -2,7 +2,7 @@
   <div class="user-show" v-if="user">
     <div class="user-show-header">
       <userAvatar :user="user" size="large" />
-      <userName :user="user" size="large" />
+      <userName class="vertical" :user="user" size="large" />
     </div>
     <userShowMenu :user="user" />
     <div class="user-show-body">

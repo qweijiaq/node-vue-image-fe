@@ -3,6 +3,31 @@
     font-weight: bold;
 }
 
-.user-name-text>.link {
+.user-name>.text>.link {
     color: var(--primary-text-color);
+}
+
+.user-name {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.user-name>.text {
+    line-height: 1;
+}
+
+.user-name>.icon {
+    margin-left: 4px;
+    line-height: 0.9;
+    color: var(--secondary-text-color);
+}
+
+.user-name.vertical {
+    flex-direction: column;
+}
+
+.user-name.vertical>.icon {
+    margin-left: 0;
+    margin-top: 8px;
 }
