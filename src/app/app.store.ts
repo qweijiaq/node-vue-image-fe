@@ -49,8 +49,10 @@ import {
 } from '../payment/payment.store';
 
 import { ProductStoreState, productStoreModule } from '@/product/product.store';
+import { OrderStoreState, orderStoreModule } from '@/order/order.store';
 
 export interface RootState {
+  order: OrderStoreState,
   product: ProductStoreState,
   payment: PaymentStoreState;
   license: LicenseStoreState;
@@ -82,6 +84,7 @@ const store = createStore({
   } as RootState,
 
   modules: {
+    order: orderStoreModule,
     product: productStoreModule,
     payment: paymentStoreModule,
     license: licenseStoreModule,

@@ -18,6 +18,9 @@ import PostSideSheetTab from './components/post-side-sheet-tab';
 import store from '../../app/app.store';
 
 const sideSheetProps = computed(() => store.getters['layout/sideSheetProps']);
+const selectedProduct = computed(
+  () => store.getters['product/select/selectedProduct'],
+);
 
 const fn = async () => {
   try {
@@ -33,12 +36,15 @@ fn();
 watch(
   () => sideSheetProps.value,
   async () => {
-    try {
+    await store.dispatch('post/sideSheet/initialize');
+  },
+);
+
+watch(
+  () => selectedProduct.value,
+  async (value, oldValue) => {
+    if (oldValue !== null) {
       await store.dispatch('post/sideSheet/initialize');
-    } catch (error) {
-      store.dispatch('notification/pushMessage', {
-        content: error.data.message,
-      });
     }
   },
 );

@@ -117,6 +117,26 @@ export const postSideSheetStoreModule: Module<
           root: true,
         });
       }
+
+      // 处理订单
+      const order = await dispatch('order/create/createOrderResolver', null, {
+        root: true,
+      });
+
+      // 支付订单
+      try {
+        await dispatch('order/pay/payOrder', order.id, { root: true });
+      } catch (error) {
+        dispatch(
+          'notification/pushMessage',
+          {
+            content: error.data.message,
+          },
+          { root: true },
+        );
+
+        return;
+      }
     },
   },
 

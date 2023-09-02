@@ -2,7 +2,7 @@
   <div class="post-side-sheet-header-payment" v-if="selectedPayment">
     <div class="media">
       <div class="image">
-        <AppQrcode />
+        <AppQrcode :content="qrcodeContent" />
       </div>
     </div>
     <div class="header">
@@ -65,6 +65,11 @@ const onClickPaymentIconButton = () => {
     payments.value[index].name,
   );
 };
+
+const prePay = computed(() => store.getters['order/pay/prePay']);
+const qrcodeContent = computed(() =>
+  prePay.value ? prePay.value.codeUrl : null,
+);
 </script>
 
 <style scoped>
