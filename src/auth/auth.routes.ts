@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     component: AuthLogin,
     props: true,
     meta: {
-      title: 'GopherImage | 用户登录',
+      title: '拾光者 | 用户登录',
     },
   },
 ];

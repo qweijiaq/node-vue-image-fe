@@ -16,6 +16,9 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: 'managePost',
         path: 'post',
+        meta: {
+          title: '拾光者 | 作品管理',
+        },
         component: () => import('./post/manage-post.vue'),
       },
     ],

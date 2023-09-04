@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: AppHome,
     meta: {
-      title: 'GopherImage | 照片分享平台',
+      title: '拾光者 | 照片分享平台',
     },
     props: (route) => {
       return {

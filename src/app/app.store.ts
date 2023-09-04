@@ -50,12 +50,15 @@ import {
 
 import { ProductStoreState, productStoreModule } from '@/product/product.store';
 import { OrderStoreState, orderStoreModule } from '@/order/order.store';
-import { SubscriptionStoreState, subscriptionStoreModule } from '@/subscription/subscription.store';
+import {
+  SubscriptionStoreState,
+  subscriptionStoreModule,
+} from '@/subscription/subscription.store';
 
 export interface RootState {
-  subscription: SubscriptionStoreState,
-  order: OrderStoreState,
-  product: ProductStoreState,
+  subscription: SubscriptionStoreState;
+  order: OrderStoreState;
+  product: ProductStoreState;
   payment: PaymentStoreState;
   license: LicenseStoreState;
   download: DownloadStoreState;
@@ -82,7 +85,7 @@ export interface RootState {
  */
 const store = createStore({
   state: {
-    appName: 'GopherImage | 照片分享平台',
+    appName: '拾光者 | 照片分享平台',
   } as RootState,
 
   modules: {

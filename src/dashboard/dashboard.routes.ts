@@ -14,6 +14,9 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: 'dashboardAccessCount',
         path: '',
+        meta: {
+          title: '拾光者 | 仪表盘',
+        },
         component: () => import('./access-count/dashboard-access-count.vue'),
       },
     ],

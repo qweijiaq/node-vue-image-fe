@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'userShow',
     path: '/users/:userId',
     meta: {
-      title: 'GopherImage | 用户',
+      title: '拾光者 | 用户',
     },
     component: UserShow,
     props: true,
@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'userPosts',
         path: '',
         meta: {
-          title: 'GopherImage | 发布作品',
+          title: '拾光者 | 发布作品',
         },
         component: () => import('../user/show/components/user-posts.vue'),
         props: (route) => {
@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'userDigged',
         path: 'digged',
         meta: {
-          title: 'GopherImage | 点赞作品',
+          title: '拾光者 | 点赞作品',
         },
         component: () => import('../user/show/components/user-digged.vue'),
         props: (route) => {
@@ -52,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'userComments',
         path: 'comments',
         meta: {
-          title: 'GopherImage | 评论作品',
+          title: '拾光者 | 评论作品',
         },
         component: () => import('../user/show/components/user-comments.vue'),
         props: (route) => {
@@ -65,7 +65,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'userReplies',
         path: 'replies',
         meta: {
-          title: 'GopherImage | 回复作品',
+          title: '拾光者 | 回复作品',
         },
         component: () => import('../user/show/components/user-replies.vue'),
         props: (route) => {
@@ -78,7 +78,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'userAccount',
         path: 'account',
         meta: {
-          title: 'GopherImage | 个人账户',
+          title: '拾光者 | 个人账户',
         },
         component: () => import('../user/account/user-account.vue'),
       },
@@ -87,6 +87,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'userCreate',
     path: '/register',
+    meta: {
+      title: '拾光者 | 注册用户',
+    },
     component: () => import('./create/user-create.vue'),
   },
 ];

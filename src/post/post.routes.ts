@@ -21,6 +21,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'postShow',
     path: '/posts/:postId',
+    meta: {
+      title: '拾光者 | 作品详情',
+    },
     component: PostShow,
     props: true,
   },
@@ -28,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'postIndexPopular',
     path: '/popular',
     meta: {
-      title: 'GopherImage | 热门',
+      title: '拾光者 | 热门作品',
     },
     component: PostIndex,
     props: (route) => {
@@ -41,6 +44,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'postCreate',
     path: '/create',
+    meta: {
+      title: '拾光者 | 创建作品',
+    },
     component: PostCreate,
   },
 ];
