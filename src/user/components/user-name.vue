@@ -32,7 +32,7 @@ const props = defineProps({
 
 const userNameClasses = computed(() => ['user-name', props.size]);
 const userNameLinkTo = computed(() => ({
-  name: 'userShow',
+  name: 'userPosts',
   params: {
     userId: props.user?.id,
   },
