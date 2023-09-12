@@ -1,15 +1,15 @@
 <template>
   <div class="user-account">
-    <userAccountSetAvatar />
-    <userAccountChangeName />
-    <userAccountChangePassword />
+    <UserAccountSetAvatar />
+    <UserAccountChangeName />
+    <UserAccountChangePassword />
   </div>
 </template>
 
 <script lang="ts" setup>
-import userAccountSetAvatar from './components/user-account-set-avatar.vue';
-import userAccountChangeName from './components/user-account-change-name.vue';
-import userAccountChangePassword from './components/user-account-change-password.vue';
+import UserAccountSetAvatar from './components/user-account-set-avatar.vue';
+import UserAccountChangeName from './components/user-account-change-name.vue';
+import UserAccountChangePassword from './components/user-account-change-password.vue';
 </script>
 
 <style scoped>

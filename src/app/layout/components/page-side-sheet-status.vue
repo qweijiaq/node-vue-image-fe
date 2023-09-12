@@ -3,12 +3,11 @@
     <div class="icon">
       <AppIcon name="error_outline" />
     </div>
-    <div class="content">{{ content }}</div>
+    <div class="content">{{ props.content }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
 import AppIcon from '../../components/app-icon.vue';
 
 const props = defineProps({

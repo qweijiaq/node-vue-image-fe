@@ -8,38 +8,37 @@
         </div>
       </div>
       <div class="fields">
-        <fileField
+        <FileField
           :text="avatarFileFieldText"
           size="large"
           name="avatar"
           fileType="image/jpeg"
           @change="onChangeAvatarFileField"
         />
-        <buttonField
+        <ButtonField
           v-if="data.avatarFile"
           text="取消"
           size="large"
           type="outline"
           @click="onClickCancelButton"
         />
-        <buttonField text="提交" size="large" @click="onClickSubmitBtn" />
+        <ButtonField text="提交" size="large" @click="onClickSubmitBtn" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import buttonField from '@/app/components/button-field.vue';
-import fileField from '@/app/components/file-field.vue';
+import ButtonField from '@/app/components/button-field.vue';
+import FileField from '@/app/components/file-field.vue';
 import { reactive, computed } from 'vue';
-import { useStore } from 'vuex';
-
-const store = useStore();
+import store from '../../../app/app.store';
 
 const data = reactive({
-  avatarFile: null,
+  avatarFile: null, // 用户选择的头像文件
 });
 
+// 获取头像预览图片
 const avatarPreviewImage = computed(
   () => store.getters['user/account/avatarPreviewImage'],
 );
@@ -48,6 +47,7 @@ const avatarFileFieldText = computed(() =>
   data.avatarFile ? '重新选择' : '选择头像',
 );
 
+// 点击提交按钮
 const onClickSubmitBtn = async () => {
   try {
     await store.dispatch('user/account/createAvatar', data.avatarFile);
@@ -55,23 +55,26 @@ const onClickSubmitBtn = async () => {
       content: '设置头像成功',
     });
     data.avatarFile = null;
-  } catch (e) {
+  } catch (error) {
     store.dispatch('notification/pushMessage', {
-      content: '设置头像出错了',
+      content: '设置头像时出错了',
     });
   }
 };
 
+// 点击取消按钮
 const onClickCancelButton = () => {
   store.commit('user/account/setAvatarPreviewImage', '');
   data.avatarFile = null;
 };
 
+// 创建头像预览
 // eslint-disable-next-line
 const createAvatarPreviewImage = (file: any) => {
   const fileReader = new FileReader();
   fileReader.readAsDataURL(file);
   fileReader.onload = (event) => {
+    // 设置头像预览图片
     store.commit('user/account/setAvatarPreviewImage', event.target?.result);
   };
 };

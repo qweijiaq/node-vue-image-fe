@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.4",
+    "@types/qrcode-svg": "^1.1.2",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^6.2.0",
     "@vue/cli-plugin-babel": "^5.0.8",

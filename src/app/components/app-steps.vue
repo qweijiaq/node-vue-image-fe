@@ -2,25 +2,26 @@ AppStep,
 <template>
   <div class="app-steps">
     <AppStep
-      v-for="(step, index) in steps"
+      v-for="(step, index) in props.steps"
       :key="step.name"
       :title="step.title"
       :number="index + 1"
-      :class="{ active: current === step.name }"
+      :class="{ active: props.current === step.name }"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
 import AppStep from './app-step.vue';
 import { SubscriptionStep } from '../../subscription/signup/subscription-signup.store';
 
 const props = defineProps({
+  // 订阅步骤数组
   steps: {
     type: Array<SubscriptionStep>,
   },
 
+  // 当前步骤
   current: {
     type: String,
   },

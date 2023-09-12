@@ -1,11 +1,11 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 import { apiHttpClient } from '../../app/app.service';
-import axios from 'axios';
-import { API_BASE_URL } from '../../app/app.config';
 
 export interface UserAccountStoreState {
+  // 加载中
   loading: boolean;
+  // 上传头像预览
   avatarPreviewImage: string;
 }
 
@@ -52,35 +52,40 @@ export const userAccountStoreModule: Module<UserAccountStoreState, RootState> =
      * 动作
      */
     actions: {
+      // 创建头像
       async createAvatar({ commit }, file) {
         commit('setLoading', true);
         const formData = new FormData();
-        //   file.destination = 'uploads/avatar';
-        //   file.filename = file.name;
+        // 构造 key 为 avatar, value 为 file 的 form-data 数据
         formData.append('avatar', file);
 
         try {
           const response = await apiHttpClient.post('/avatars', formData);
           commit('setLoading', false);
           return response;
-        } catch (e: any) {
+        } catch (error: any) {
           commit('setLoading', false);
-          throw e.response;
+          throw error.response;
         }
       },
 
+      // 更新用户账户
       async updateUserAccount({ commit, dispatch }, data) {
         commit('setLoading', true);
+
+        const { userId, body } = data;
+
         try {
-          const res = await apiHttpClient.patch('/users', data.body);
+          const res = await apiHttpClient.patch('/users', body);
           commit('setLoading', false);
-          dispatch('user/getCurrentUser', data.userId, {
+          // 重新获取一次当前用户以更新用户
+          dispatch('user/getCurrentUser', userId, {
             root: true,
           });
           return res;
-        } catch (e: any) {
+        } catch (error: any) {
           commit('setLoading', false);
-          throw e.response;
+          throw error.response;
         }
       },
     },

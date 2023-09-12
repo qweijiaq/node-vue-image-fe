@@ -4,31 +4,37 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import store from '../app.store';
 
-const store = useStore();
+// 主题色
 const theme = computed(() => store.getters['layout/theme']);
 
 const props = defineProps({
+  // logo 颜色
+  color: {
+    type: String,
+  },
+  // logo 名
   name: {
     type: String,
     default: 'w32',
   },
+  // logo 尺寸
+  // String: large、meduim、small
   size: {
     type: [String, Number],
     default: 32,
   },
-  color: {
-    type: String,
-  },
 });
 
+// class 属性
 const appLogoClasses = computed(() => {
   return ['app-logo', props.name];
 });
 
+// 样式
 const appLogoStyles = computed(() => {
-  let color;
+  let color: string;
   if (props.color) {
     color = props.color;
   } else {

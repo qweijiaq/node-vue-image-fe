@@ -28,6 +28,7 @@ export const authStoreModule: Module<AuthStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    // 是否登录
     isLogin(state) {
       return state.token ? true : false;
     },
@@ -46,9 +47,12 @@ export const authStoreModule: Module<AuthStoreState, RootState> = {
    * 动作
    */
   actions: {
+    // 将 bearer token 设置在头部
     configApiHttpClientAuthHeader(_, data) {
       apiHttpClient.defaults.headers.common['Authorization'] = `Bearer ${data}`;
     },
+
+    // 退出登录
     logout({ commit }) {
       commit('setToken', null);
       commit('user/setCurrentUser', null, {

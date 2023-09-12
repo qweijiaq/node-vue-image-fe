@@ -1,7 +1,7 @@
 <template>
-  <component :is="postIndex"></component>
+  <component :is="PostIndex"></component>
 </template>
 
 <script lang="ts" setup>
-import postIndex from '../../post/index/post-index.vue';
+import PostIndex from '../../post/index/post-index.vue';
 </script>

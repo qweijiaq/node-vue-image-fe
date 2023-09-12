@@ -4,31 +4,37 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import store from '../app.store';
 
-const store = useStore();
+// 主题色
 const theme = computed(() => store.getters['layout/theme']);
 
 const props = defineProps({
+  // 图标名
   name: {
     type: String,
     default: 'favorite',
   },
+  // 图标颜色
   color: {
     type: String,
   },
+  // 图标尺寸
+  // String: large、meduim、small
   size: {
     type: [String, Number],
     default: 24,
   },
 });
 
+// class 属性
 const appIconClasses = computed(() => {
   return ['app-icon'];
 });
 
+// 样式
 const appIconStyles = computed(() => {
-  let color;
+  let color: string;
   if (props.color) {
     color = props.color;
   } else {

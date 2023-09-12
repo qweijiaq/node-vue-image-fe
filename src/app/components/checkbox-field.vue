@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -52,7 +52,7 @@ const emits = defineEmits(['update:modelValue']);
 const id = computed(() => `${props.name}-${props.value}`);
 const isArray = computed(() => Array.isArray(props.modelValue));
 const isChecked = computed(() => {
-  let isChecked;
+  let isChecked: boolean;
   if (isArray.value) {
     isChecked = props.modelValue?.includes(props.value);
   } else {

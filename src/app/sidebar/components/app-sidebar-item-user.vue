@@ -12,20 +12,23 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from 'vuex';
 import { computed, ref } from 'vue';
+import store from '../../app.store';
 import userAvatar from '@/user/components/user-avatar.vue';
 import userMenu from '@/user/components/user-menu.vue';
 
-const store = useStore();
-
+// 当前用户
 const currentUser = computed(() => store.getters['user/currentUser']);
+
+// 用户头像对应的跳转链接
 const userAvatarLink = computed(() =>
   currentUser.value ? undefined : 'login',
 );
 
+// 是否显示用户菜单
 const showUserMenu = ref(false);
 
+// 点击用户头像
 const onClickUserAvatar = () => {
   if (currentUser.value) {
     showUserMenu.value = !showUserMenu.value;

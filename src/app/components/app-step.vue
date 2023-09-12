@@ -1,22 +1,22 @@
 <template>
   <div class="app-step">
     <div class="number">
-      {{ number }}
+      {{ props.number }}
     </div>
     <div class="text">
-      {{ title }}
+      {{ props.title }}
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
-
 const props = defineProps({
+  // 步骤数
   number: {
     type: Number,
   },
 
+  // 步骤标题
   title: {
     type: String,
   },

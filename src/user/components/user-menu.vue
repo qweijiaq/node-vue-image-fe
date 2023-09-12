@@ -29,15 +29,14 @@
 </template>
 
 <script lang="ts" setup>
+import { onUnmounted, computed } from 'vue';
+import store from '../../app/app.store';
 import CloseButton from '../../app/components/close-button.vue';
 import UserName from './user-name.vue';
-import { onUnmounted, computed } from 'vue';
-import { useStore } from 'vuex';
-
-const store = useStore();
 
 const emits = defineEmits(['close']);
 
+// 键盘键入 Escape => 等价于点击"关闭按钮"
 // eslint-disable-next-line
 const onKeyUpWindow = (event: any) => {
   if (event.key === 'Escape') {
@@ -45,18 +44,22 @@ const onKeyUpWindow = (event: any) => {
   }
 };
 
+// 监听键盘事件
 if (window) {
   window.addEventListener('keyup', onKeyUpWindow);
 }
 
+// 取消监听键盘事件
 onUnmounted(() => {
   if (window) {
     window.removeEventListener('keyup', onKeyUpWindow);
   }
 });
 
+// 当前用户
 const currentUser = computed(() => store.getters['user/currentUser']);
 
+// 菜单项
 const menu = computed(() => {
   return [
     [
@@ -113,6 +116,7 @@ const menu = computed(() => {
   ];
 });
 
+// 点击"退出登录按钮"
 const onClickLogoutBtn = () => {
   emits('close');
   store.dispatch('auth/logout');

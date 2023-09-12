@@ -1,11 +1,11 @@
 <template>
   <div class="page-aside">
-    <appSidebar></appSidebar>
+    <AppSidebar></AppSidebar>
   </div>
 </template>
 
 <script lang="ts" setup>
-import appSidebar from '../../sidebar/app-sidebar.vue';
+import AppSidebar from '../../sidebar/app-sidebar.vue';
 </script>
 
 <style scoped></style>

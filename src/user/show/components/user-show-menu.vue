@@ -12,9 +12,7 @@
 
 <script lang="ts" setup>
 import { reactive, computed, watch } from 'vue';
-import { useStore } from 'vuex';
-
-const store = useStore();
+import store from '../../../app/app.store';
 
 const props = defineProps({
   user: {
