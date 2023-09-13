@@ -8,7 +8,9 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+
 const props = defineProps({
+  // 单个帖子
   item: {
     type: Object,
   },
@@ -19,6 +21,7 @@ const props = defineProps({
   },
 });
 
+// 跳转路由
 const itemLinkTo = computed(() => ({
   name: 'postShow',
   params: {
@@ -26,6 +29,7 @@ const itemLinkTo = computed(() => ({
   },
 }));
 
+// class 属性
 const postListItemMediaClasses = computed(() => [
   'post-list-item-media',
   props.item?.file.orientation,

@@ -1,20 +1,16 @@
 <template>
-  <i :class="postListLayoutIconClass" @click="$emit('click', props.name)"></i>
+  <i :class="postListLayoutIconClass" @click="onClickIcon"></i>
 </template>
 
 <script lang="ts" setup>
-import { useStore } from 'vuex';
 import { computed } from 'vue';
-
-const store = useStore();
+import store from '../../../app/app.store';
 
 const props = defineProps({
   name: {
     type: String,
   },
 });
-
-const emits = defineEmits(['click']);
 
 const theme = computed(() => store.getters['layout/theme']);
 const layout = computed(() => store.getters['post/index/layout']);
@@ -28,6 +24,12 @@ const postListLayoutIconClass = computed(() => [
   theme.value,
   { active: isActive(props.name) },
 ]);
+
+const emits = defineEmits(['click']);
+
+const onClickIcon = () => {
+  emits('click', props.name);
+};
 </script>
 
 <style scoped>

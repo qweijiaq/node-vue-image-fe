@@ -21,21 +21,20 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import userAvatar from '../../../user/components/user-avatar.vue';
 import userName from '../../../user/components/user-name.vue';
 import PostDiggAction from '../../components/post-digg-action.vue';
 import PostCommentAction from '../../components/post-comment-action.vue';
-import { computed } from 'vue';
-import { useStore } from 'vuex';
-
-const store = useStore();
 
 const props = defineProps({
+  // 单个帖子
   item: {
     type: Object,
   },
 });
 
+// 跳转路由
 const itemLinkTo = computed(() => {
   return {
     name: 'postShow',

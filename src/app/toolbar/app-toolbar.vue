@@ -22,16 +22,14 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
+import store from '../app.store';
 import AppToolbarItemSearch from './components/app-toolbar-item-search.vue';
 import PostListLayoutSwitcher from '../../post/index/components/post-list-layout-switcher.vue';
 import PostShowNavigator from '../../post/show/components/post-show-navigator.vue';
 import AppToolbarItemSideSheet from './components/app-toolbar-item-side-sheet.vue';
 import AppSearch from '../search/app-search.vue';
 import AppToolbarItemAdmin from './components/app-toolbar-item-admin.vue';
-import { useStore } from 'vuex';
-import { computed } from 'vue';
-
-const store = useStore();
 
 const showPostListLayoutSwitcher = computed(
   () => store.getters['toolbar/showPostListLayoutSwitcher'],

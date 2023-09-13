@@ -18,6 +18,7 @@ export interface PostListItem {
     id: number;
     width: number;
     height: number;
+    // 方向 -横版、竖版
     orientation: string;
     size: {
       small: string;

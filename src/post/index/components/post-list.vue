@@ -1,8 +1,8 @@
 <template>
   <div :class="postListClasses">
-    <postListItem v-for="post in posts" :item="post" :key="post.id" />
+    <PostListItem v-for="post in posts" :item="post" :key="post.id" />
     <template v-if="loading">
-      <postListItemSkeleton v-for="number in 20" :key="number" />
+      <PostListItemSkeleton v-for="number in 20" :key="number" />
     </template>
   </div>
 </template>
@@ -10,13 +10,11 @@
 <script lang="ts" setup>
 import { computed, onUnmounted, ref, watch } from 'vue';
 import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
-import postListItem from './post-list-item.vue';
-import postListItemSkeleton from './post-list-item-skeleton.vue';
+import PostListItem from './post-list-item.vue';
+import PostListItemSkeleton from './post-list-item-skeleton.vue';
 import { getStorages } from '../../../app/app.service';
 
 const store = useStore();
-const router = useRoute();
 
 const props = defineProps({
   sort: {
@@ -26,10 +24,6 @@ const props = defineProps({
     type: Object,
   },
 });
-
-// const sort = ref('');
-
-// sort.value = router.name === 'postIndexPopular' ? 'most_comments' : 'latest';
 
 store.commit('post/index/resetPosts');
 
