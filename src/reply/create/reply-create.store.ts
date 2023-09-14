@@ -54,10 +54,13 @@ export const replyCreateStoreModule: Module<ReplyCreateStoreState, RootState> =
         const { commentId, postId, content } = options;
 
         try {
-          const response = await apiHttpClient.post(`comments/${commentId}`, {
-            postId,
-            content,
-          });
+          const response = await apiHttpClient.post(
+            `comments/${commentId}/reply`,
+            {
+              postId,
+              content,
+            },
+          );
           commit('setLoading', false);
 
           return response;
