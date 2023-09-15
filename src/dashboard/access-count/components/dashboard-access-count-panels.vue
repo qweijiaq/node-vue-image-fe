@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import router from '../../../app/app.router';
 import store from '../../../app/app.store';

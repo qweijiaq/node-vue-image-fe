@@ -43,7 +43,7 @@ const props = defineProps({
 
   useIcon: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 });
 

@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
 import DashboardAccessCount from './access-count/dashboard-access-count.vue';
 </script>
 

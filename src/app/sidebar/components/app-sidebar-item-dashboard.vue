@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
+import { computed } from 'vue';
 import AppIcon from '../../components/app-icon.vue';
 
 const dashboardLinkTo = computed(() => ({
