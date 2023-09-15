@@ -40,7 +40,9 @@ const props = defineProps({
 
 // 二维码图片
 const qrcodeSvg = computed(() => {
-  const { content, size, padding, background, color } = props;
+  const { size, padding, background, color } = props;
+
+  const content = props.content ? props.content : 'http://blog.wei-jia.top';
 
   const qrcode = new QRcode({
     content,
