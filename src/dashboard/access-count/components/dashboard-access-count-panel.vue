@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
+import { computed } from 'vue';
 import store from '../../../app/app.store';
 
 const props = defineProps({
@@ -22,6 +22,7 @@ const props = defineProps({
   },
 });
 
+// 当前的 action
 const currentAction = computed(
   () => store.getters['dashboard/accessCount/currentAction'],
 );

@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue';
+import { computed, ref } from 'vue';
 import store from '../../../app/app.store';
 import CheckboxField from '../../../app/components/checkbox-field.vue';
 
@@ -47,6 +47,7 @@ const dateTimeRange = computed(
   () => store.getters['dashboard/accessCount/dateTimeRange'],
 );
 
+// 不同时间范围对应的访问量
 const accessCountDateTimeRange = computed({
   get() {
     return dateTimeRange.value;
@@ -56,6 +57,7 @@ const accessCountDateTimeRange = computed({
   },
 });
 
+// 点击 label 标签
 const onClickLabelButton = () => {
   store.commit('dashboard/accessCount/setDateTimeRange', '1-day');
 };

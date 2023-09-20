@@ -14,6 +14,7 @@ import { computed, watch, ref, onMounted } from 'vue';
 import store from '../../../app/app.store';
 import Chart from 'chart.js';
 
+// 访问量
 const accessCount = computed(
   () => store.getters['dashboard/accessCount/accessCount'],
 );
@@ -22,14 +23,17 @@ const dateTimeRange = computed(
   () => store.getters['dashboard/accessCount/dateTimeRange'],
 );
 
+// 当前的 action
 const currentAction = computed(
   () => store.getters['dashboard/accessCount/currentAction'],
 );
 
+// 统计图标题
 const chartPanelTitle = computed(() =>
   accessCount.value ? `${accessCount.value.title}统计图` : '统计图',
 );
 
+//
 const submitGetAccessCountByAction = async () => {
   try {
     await store.dispatch('dashboard/accessCount/getAccessCountByAction', {

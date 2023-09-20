@@ -56,7 +56,6 @@ const submitGetAccessCounts = async () => {
   }
 };
 submitGetAccessCounts();
-// router.replace({ query: { dateTimeRange, action } });
 
 const updateRouteQuery = () => {
   router.replace({
